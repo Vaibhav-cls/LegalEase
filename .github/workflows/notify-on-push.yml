@@ -19,5 +19,5 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: 'New commit in {{ github.repository }}'
         body: 'A new commit has been pushed by {{ github.actor }}. View it at {{ github.event.head_commit.url }}'
-        to: collaborator1@example.com,collaborator2@example.com
+        to: kashyapsahil233@gmail.com,vaibhav.ghanekar@ssipmt.com
         from: ${{ secrets.EMAIL_USERNAME }}
