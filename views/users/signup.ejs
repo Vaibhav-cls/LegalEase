@@ -7,15 +7,15 @@
   </head>
   <body>
     <h2>SignUp</h2>
-    <form action="/signup" method="POST">
+    <form action="/signup" method="POST" enctype="multipart/form-data">
       <div class="field">
-        <label for="firstName">First name</label>
-        <input type="text" name="firstName" id="firstName" required />
+        <label for="first_name">First name</label>
+        <input type="text" name="first_name" id="first_name" required />
       </div>
       <br /><br />
       <div class="field">
-        <label for="lastName">Last name</label>
-        <input type="text" name="lastName" id="lastName" required />
+        <label for="last_name">Last name</label>
+        <input type="text" name="last_name" id="last_name" required />
       </div>
       <br /><br />
       <div class="field">
@@ -24,13 +24,33 @@
       </div>
       <br /><br />
       <div class="field">
-        <label for="firstName">First name</label>
-        <input type="text" name="firstName" id="firstName" required />
-      </div>
-      <div class="field">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required />
       </div>
+      <br /><br />
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <br /><br />
+      <div class="field">
+        <label for="image">Image</label>
+        <input type="file" name="user[image]" id="image" required />
+      </div>
+      <br /><br />
+      <div class="field">
+        <label for="phone_number">phoneNumber</label>
+        <input type="text" name="phone_number" id="phone_number" required />
+      </div>
+      <br /><br />
+      <div class="field">
+        <label for="user_type">Type of user</label>
+        <select name="user_type" id="user_type">
+          <option value="provider">Provider</option>
+          <option value="client">Client</option>
+        </select>
+      </div>
+      <button>Signup</button>
     </form>
   </body>
 </html>
