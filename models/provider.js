@@ -9,7 +9,7 @@ const providerSchema = new Schema({
     ref: "User",
     required: true,
   },
-  description: {
+  bio: {
     type: String,
     required: true,
   },
@@ -28,6 +28,8 @@ const providerSchema = new Schema({
     },
     pincode: {
       type: String,
+      maxlength: 4,
+      minlength:4,
       required: true,
     },
     country: {
@@ -53,4 +55,4 @@ const providerSchema = new Schema({
   },
 });
 
-module.exports.mongoose.model("Provider", providerSchema);
+module.exports = mongoose.model("Provider", providerSchema);

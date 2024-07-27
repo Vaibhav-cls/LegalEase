@@ -19,7 +19,7 @@ const upload = multer({ storage });
 
 //MODELS REQUIRE
 const User = require("./models/user");
-const Service = 
+const Service = require("./models/service.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -71,7 +71,6 @@ app.use((req, res, next) => {
 app.get("/signup", (req, res) => {
   res.render("users/signup");
 });
-
 app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
   try {
     const {
@@ -95,12 +94,13 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
     if (req.file) {
       newUser.image = { url: req.file.path, filename: req.file.filename };
     }
-    console.log(newUser);
     const registeredUser = await User.register(newUser, password);
-    req.login(registeredUser, (err) => {
+    req.login(registeredUser, async (err) => {
       if (err) return next(err);
       req.flash("success", `Welcome, ${first_name}!`);
-      res.redirect(`/${user_type}/dashboard`); // either client/dashboard OR provider/dashboard
+      console.log("Signup success");
+      const id = registeredUser._id.toString();
+      res.redirect(`/signup/${id}/${user_type}`); // either client/dashboard OR provider/dashboard
     });
   } catch (e) {
     req.flash("error", e.message);
@@ -112,7 +112,6 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
 app.get("/login", (req, res) => {
   res.render("users/login");
 });
-
 app.post(
   "/login",
   passport.authenticate("local", {
@@ -124,6 +123,37 @@ app.post(
     res.redirect("/");
   }
 );
+
+//User logout api
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    // req.flash("success", "You are logged out!");
+    console.log("Logged out");
+    res.redirect("/login");
+  });
+});
+
+app.get("/signup/:id/provider", async (req, res) => {
+  const { id } = req.params;
+  const providerDetails = await User.findOne({ _id: id });
+  res.render("providers/providerForm.ejs", { id, providerDetails });
+});
+app.post("/signup/:id/provider", (req, res) => {
+  const providerDetails = req.body;
+  console.log(providerDetails);
+  res.send("Details added");
+});
+
+app.get("/tags", async (req, res) => {});
+
+// app.get("/services", async(req, res) => {
+//   const services = await Service.find({}).populate("user");
+//   console.log(services);
+//   res.render("services/index.ejs", { services });
+// });
 
 // ROOT PATH
 app.get("/", (req, res) => {

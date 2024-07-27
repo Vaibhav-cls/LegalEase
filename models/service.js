@@ -9,7 +9,7 @@ const serviceSchema = new Schema({
     type: String,
     required: true,
   },
-  providers: [
+  user: [
     {
       type: Schema.Types.ObjectId,
       ref: "Provider",
@@ -18,4 +18,4 @@ const serviceSchema = new Schema({
   ],
 });
 
-module.exports.mongoose.model("Service", serviceSchema);
+module.exports = mongoose.model("Service", serviceSchema);

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More details</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .field {
+        display: inline-block;
+      }
+      .field p {
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .profile-pic {
+        width: 150px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+      }
+      .profile-pic img {
+        width: 100%;
+      }
+      form {
+        background-color: #add8e6;
+        width: 50%;
+        padding: 10px;
+      }
+      .location {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        justify-content: space-evenly;
+      }
+      .location .field {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Some addtional details are required</h2>
+    <div class="profile-pic">
+      <img src="<%=providerDetails.image.url%>" alt="" />
+      Profile Pic
+    </div>
+    <div class="details">
+      <div class="field">
+        <p>first Name: <%=providerDetails.first_name%></p>
+        <p>Last Name: <%=providerDetails.last_name%></p>
+      </div>
+      <div class="field">
+        <p>Username: <%=providerDetails.username%></p>
+        <p>Email: <%=providerDetails.email%></p>
+      </div>
+      <div class="field">
+        <p>Phone Number: <%=providerDetails.phone_number%></p>
+        <p>User Type: <%=providerDetails.user_type%></p>
+      </div>
+    </div>
+    <h3>Form</h3>
+    <form action="/signup/<%=id%>>/provider" method="POST">
+      <div class="field">
+        <label for="bio">Add bio</label>
+        <input type="text" name="bio" id="bio" required />
+      </div>
+      <p>Location</p>
+      <div class="location">
+        <div class="field">
+          <label for="country">Country</label>
+          <input type="text" name="country" id="country" required />
+        </div>
+        <div class="field">
+          <label for="state">State</label>
+          <input type="text" name="state" id="state" required />
+        </div>
+        <div class="field">
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" required />
+        </div>
+        <div class="field">
+          <label for="pincode">Pincode</label>
+          <input
+            type="number"
+            maxlength="4"
+            minLength="4"
+            name="pincode"
+            id="pincode"
+            required
+          />
+        </div>
+      </div>
+      <div class="tags">
+        <p>
+          Add tags which defines your work, so that people can find you easily
+        </p>
+        <div class="tag-container"></div>
+      </div>
+    </form>
+  </body>
+</html>
