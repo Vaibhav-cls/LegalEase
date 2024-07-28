@@ -20,6 +20,8 @@ const upload = multer({ storage });
 //MODELS REQUIRE
 const User = require("./models/user");
 const Service = require("./models/service.js");
+const Tag = require("./models/tag.js");
+const Provider = require("./models/provider.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -136,28 +138,64 @@ app.get("/logout", (req, res) => {
   });
 });
 
-app.get("/signup/:id/provider", async (req, res) => {
+app.get("/signup/provider/:id", async (req, res) => {
   const { id } = req.params;
   const providerDetails = await User.findOne({ _id: id });
-  res.render("providers/providerForm.ejs", { id, providerDetails });
-});
-app.post("/signup/:id/provider", (req, res) => {
-  const providerDetails = req.body;
-  console.log(providerDetails);
-  res.send("Details added");
+  const allTags = await Tag.find();
+  res.render("providers/providerForm.ejs", { id, providerDetails, allTags });
 });
 
-app.get("/tags", async (req, res) => {});
+app.post("/signup/provider/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const providerDetails = req.body;
+    let { selectedTags } = providerDetails;
+    selectedTags = JSON.parse(selectedTags);
+    console.log(selectedTags);
 
-// app.get("/services", async(req, res) => {
-//   const services = await Service.find({}).populate("user");
-//   console.log(services);
-//   res.render("services/index.ejs", { services });
-// });
+    const user = await User.findById(id);
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("/signup");
+    }
+
+    const newProvider = new Provider({
+      user: user._id,
+      ...providerDetails,
+      tags: [],
+    });
+
+    await newProvider.save();
+    const providerId = newProvider._id;
+    const tagIds = [];
+
+    for (let tag of selectedTags) {
+      let tagData = await Tag.findOne({ name: tag });
+      if (!tagData) {
+        tagData = new Tag({ name: tag, providers: [providerId] });
+        await tagData.save();
+      } else {
+        if (!tagData.providers.includes(providerId)) {
+          tagData.providers.push(providerId);
+          await tagData.save();
+        }
+      }
+      tagIds.push(tagData._id);
+    }
+    newProvider.tags = tagIds;
+    await newProvider.save();
+    req.flash("success", "Provider details added successfully");
+    res.redirect(`/provider/dashboard/${id}`);
+  } catch (e) {
+    req.flash("error", e.message);
+    res.redirect(`/signup/provider/${req.params.id}`);
+  }
+});
+
 
 // ROOT PATH
 app.get("/", (req, res) => {
-  res.send("Welcome to homepage");
+  res.render("homepage.ejs");
 });
 
 const PORT = process.env.CONNECTION_PORT || 3000;

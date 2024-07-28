@@ -4,7 +4,7 @@ const User = require("./user.js");
 const Review = require("./review.js");
 const Tag = require("./tag.js");
 const providerSchema = new Schema({
-  user_id: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
@@ -29,7 +29,7 @@ const providerSchema = new Schema({
     pincode: {
       type: String,
       maxlength: 4,
-      minlength:4,
+      minlength: 4,
       required: true,
     },
     country: {

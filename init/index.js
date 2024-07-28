@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const MONGO_URL = "mongodb://127.0.0.1:27017/LegalEase";
 const User = require("../models/user.js");
 const Service = require("../models/service.js");
+const Tag = require("../models/tag.js");
 main()
   .then(() => {
     console.log("Connected to DB");
@@ -31,9 +32,13 @@ async function main() {
 // });
 
 
-const example = new Service({
-  service_name: "Aadhar Link",
-  description: "admin@gmail.com",
-  user: ["66a49de60e413a5f9a231024"]
-});
+// const example = new Service({
+//   service_name: "Aadhar Link",
+//   description: "admin@gmail.com",
+//   user: ["66a49de60e413a5f9a231024"]
+// });
+
+const example = new Tag({
+  name:"lawyer",
+})
 example.save();

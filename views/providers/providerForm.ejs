@@ -44,55 +44,74 @@
       .location .field {
         margin-bottom: 5px;
       }
+      textarea {
+        width: 100%;
+      }
+      .tag {
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid gray;
+        cursor: pointer;
+      }
+      .disabled {
+        opacity: 0.5;
+      }
     </style>
+    <script>
+      const allTags = <%- JSON.stringify(allTags) %>;
+    </script>
   </head>
   <body>
-    <h2>Some addtional details are required</h2>
+    <h2>Some additional details are required</h2>
     <div class="profile-pic">
-      <img src="<%=providerDetails.image.url%>" alt="" />
+      <img src="<%= providerDetails.image.url %>" alt="" />
       Profile Pic
     </div>
     <div class="details">
       <div class="field">
-        <p>first Name: <%=providerDetails.first_name%></p>
-        <p>Last Name: <%=providerDetails.last_name%></p>
+        <p>First Name: <%= providerDetails.first_name %></p>
+        <p>Last Name: <%= providerDetails.last_name %></p>
       </div>
       <div class="field">
-        <p>Username: <%=providerDetails.username%></p>
-        <p>Email: <%=providerDetails.email%></p>
+        <p>Username: <%= providerDetails.username %></p>
+        <p>Email: <%= providerDetails.email %></p>
       </div>
       <div class="field">
-        <p>Phone Number: <%=providerDetails.phone_number%></p>
-        <p>User Type: <%=providerDetails.user_type%></p>
+        <p>Phone Number: <%= providerDetails.phone_number %></p>
+        <p>User Type: <%= providerDetails.user_type %></p>
       </div>
     </div>
     <h3>Form</h3>
-    <form action="/signup/<%=id%>>/provider" method="POST">
+    <form id="details-form" action="/signup/provider/<%= id %>" method="POST">
       <div class="field">
         <label for="bio">Add bio</label>
         <input type="text" name="bio" id="bio" required />
       </div>
+      <div class="field">
+        <label for="experience">Experience (in years)</label>
+        <input type="text" name="experience" />
+      </div>
       <p>Location</p>
       <div class="location">
         <div class="field">
-          <label for="country">Country</label>
-          <input type="text" name="country" id="country" required />
+          <label for="location[country]">Country</label>
+          <input type="text" name="location[country]" id="country" required />
         </div>
         <div class="field">
-          <label for="state">State</label>
-          <input type="text" name="state" id="state" required />
+          <label for="location[state]">State</label>
+          <input type="text" name="location[state]" id="state" required />
         </div>
         <div class="field">
-          <label for="city">City</label>
-          <input type="text" name="city" id="city" required />
+          <label for="location[city]">City</label>
+          <input type="text" name="location[city]" id="city" required />
         </div>
         <div class="field">
           <label for="pincode">Pincode</label>
           <input
             type="number"
             maxlength="4"
-            minLength="4"
-            name="pincode"
+            minlength="4"
+            name="location[pincode]"
             id="pincode"
             required
           />
@@ -100,10 +119,91 @@
       </div>
       <div class="tags">
         <p>
-          Add tags which defines your work, so that people can find you easily
+          Add tags which define your work, so that people can find you easily
         </p>
-        <div class="tag-container"></div>
+        <div class="tag-container">
+          <textarea id="name" rows="3"></textarea>
+          <button type="button" id="add">+</button>
+          <div id="added-tags"></div>
+          <hr />
+          <div id="existing-tags"></div>
+        </div>
       </div>
+      <input type="hidden" name="selectedTags" id="selectedTags" />
+      <button type="submit">Submit</button>
     </form>
+    <script>
+      let addBtn = document.getElementById("add");
+      let nameInput = document.getElementById("name");
+      let addedTags = document.getElementById("added-tags");
+      let existingTags = document.getElementById("existing-tags");
+      let selectedTagsInput = document.getElementById("selectedTags");
+      let selectedTags = [];
+      let tagArray = [];
+
+      for (tag of allTags) {
+        tagArray.push(tag.name);
+      }
+
+      for (let i = 0; i < tagArray.length; i++) {
+        let newElement = document.createElement("button");
+        newElement.innerText = tagArray[i] + " +";
+        newElement.value = tagArray[i];
+        newElement.classList.add("tag");
+        newElement.type = "button";
+        existingTags.appendChild(newElement);
+      }
+
+      function updateAddedTags() {
+        addedTags.innerHTML = "";
+        selectedTags.forEach((tag) => {
+          let newElement = document.createElement("button");
+          newElement.innerText = tag + " x";
+          newElement.value = tag;
+          newElement.classList.add("tag", "addedTag");
+          newElement.type = "button";
+          newElement.addEventListener("click", () => {
+            selectedTags = selectedTags.filter((val) => val !== tag);
+            let correspondingButton = document.querySelector(
+              `.tag[value="${tag}"]:not(.addedTag)`
+            );
+            if (correspondingButton) {
+              correspondingButton.classList.remove("disabled");
+              correspondingButton.ariaDisabled = false;
+            }
+            updateAddedTags();
+            console.log(selectedTags);
+          });
+          addedTags.appendChild(newElement);
+        });
+      }
+
+      document.querySelectorAll(".tag").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!button.classList.contains("disabled")) {
+            selectedTags.push(button.value);
+            button.ariaDisabled = true;
+            button.classList.add("disabled");
+            updateAddedTags();
+            console.log(selectedTags);
+          }
+        });
+      });
+
+      addBtn.addEventListener("click", () => {
+        let newTag = nameInput.value.trim();
+        if (newTag && !selectedTags.includes(newTag)) {
+          selectedTags.push(newTag);
+          updateAddedTags();
+          nameInput.value = "";
+        }
+      });
+
+      document
+        .getElementById("details-form")
+        .addEventListener("submit", function (event) {
+          selectedTagsInput.value = JSON.stringify(selectedTags);
+        });
+    </script>
   </body>
 </html>
