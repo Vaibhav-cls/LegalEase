@@ -120,9 +120,30 @@ app.post(
     failureRedirect: "/login",
     failureFlash: true,
   }),
-  (req, res) => {
-    console.log("login success");
-    res.redirect("/");
+  async (req, res) => {
+    try {
+      const { username } = req.body;
+      const user = await User.findOne({ username: username });
+
+      if (!user) {
+        req.flash("error", "User not found");
+        return res.redirect("/login");
+      }
+
+      const { user_type, _id } = user;
+      if (user_type === "provider") {
+        return res.redirect(`/provider/dashboard/${_id}`);
+      } else if (user_type === "client") {
+        return res.redirect(`/client/dashboard/${_id}`);
+      } else {
+        // Default case for unknown user types or admin user_type
+        return res.redirect("/admin/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      req.flash("error", "An error occurred during login. Please try again.");
+      return res.redirect("/login");
+    }
   }
 );
 
@@ -151,7 +172,6 @@ app.post("/signup/provider/:id", async (req, res) => {
     const providerDetails = req.body;
     let { selectedTags } = providerDetails;
     selectedTags = JSON.parse(selectedTags);
-    console.log(selectedTags);
 
     const user = await User.findById(id);
     if (!user) {
@@ -168,7 +188,7 @@ app.post("/signup/provider/:id", async (req, res) => {
     await newProvider.save();
     const providerId = newProvider._id;
     const tagIds = [];
-
+    
     for (let tag of selectedTags) {
       let tagData = await Tag.findOne({ name: tag });
       if (!tagData) {
@@ -192,6 +212,19 @@ app.post("/signup/provider/:id", async (req, res) => {
   }
 });
 
+// Provider Dashboard
+app.get("/provider/dashboard/:id", async (req, res) => {
+  const { id } = req.params;
+  const userInfo = await User.findOne({ _id: id });
+  const userId = userInfo._id.toString();
+  const providerInfo = await Provider.findOne({ user: userId }).populate(
+    "tags"
+  );
+  res.render("providers/dashboard.ejs", {
+    provider: providerInfo,
+    user: userInfo,
+  });
+});
 
 // ROOT PATH
 app.get("/", (req, res) => {

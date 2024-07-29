@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Provider Dashboard</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .field {
+        display: inline-block;
+      }
+      .field p {
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .profile-pic {
+        width: 150px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+      }
+      .profile-pic img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome <%=user.first_name%> <%=user.last_name%> to your dashboard</h1>
+    <div class="profile-pic">
+      <img src="<%= user.image.url %>" alt="" />
+      Profile Pic
+    </div>
+    <div class="details">
+      <div class="field">
+        <p>First Name: <%= user.first_name %></p>
+        <p>Last Name: <%= user.last_name %></p>
+      </div>
+      <div class="field">
+        <p>Username: <%= user.username %></p>
+        <p>Email: <%= user.email %></p>
+      </div>
+      <div class="field">
+        <p>Phone Number: <%= user.phone_number %></p>
+        <p>User Type: <%= user.user_type %></p>
+      </div>
+    </div>
+    <p>Location</p>
+    <div class="location">
+      <p>Country: <%=provider.location.country%></p>
+      <p>State: <%=provider.location.state%></p>
+      <p>City: <%=provider.location.city%></p>
+      <p>Pincode: <%=provider.location.pincode%></p>
+    </div>
+  </body>
+</html>

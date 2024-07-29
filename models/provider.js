@@ -28,7 +28,7 @@ const providerSchema = new Schema({
     },
     pincode: {
       type: String,
-      maxlength: 4,
+      maxlength: 6,
       minlength: 4,
       required: true,
     },
