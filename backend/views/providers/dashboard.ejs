@@ -30,13 +30,22 @@
       .profile-pic img {
         width: 100%;
       }
+      .tags {
+        background-color: yellowgreen;
+        padding: 5px;
+        border-radius: 10px;
+        margin: 5px;
+      }
     </style>
   </head>
   <body>
     <h1>Welcome <%=user.first_name%> <%=user.last_name%> to your dashboard</h1>
+    <h4>bio: <%=provider.bio%></h4>
     <div class="profile-pic">
       <img src="<%= user.image.url %>" alt="" />
       Profile Pic
+      <a href="/logout">logout</a>
+      <a href="/provider/edit/<%=provider._id%>">Edit Details</a>
     </div>
     <div class="details">
       <div class="field">
@@ -58,6 +67,12 @@
       <p>State: <%=provider.location.state%></p>
       <p>City: <%=provider.location.city%></p>
       <p>Pincode: <%=provider.location.pincode%></p>
+    </div>
+    Tags:
+    <div class="tags-container">
+      <%for (tag of provider.tags) {%>
+      <div class="tags"><%=tag.name%></div>
+      <%}%>
     </div>
   </body>
 </html>

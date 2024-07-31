@@ -102,7 +102,7 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
       req.flash("success", `Welcome, ${first_name}!`);
       console.log("Signup success");
       const id = registeredUser._id.toString();
-      res.redirect(`/signup/${id}/${user_type}`); // either client/dashboard OR provider/dashboard
+      res.redirect(`/signup/${user_type}/${id}`); // either client/dashboard OR provider/dashboard
     });
   } catch (e) {
     req.flash("error", e.message);
@@ -110,62 +110,13 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
   }
 });
 
-// User login api
-app.get("/login", (req, res) => {
-  res.render("users/login");
-});
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
-  async (req, res) => {
-    try {
-      const { username } = req.body;
-      const user = await User.findOne({ username: username });
-
-      if (!user) {
-        req.flash("error", "User not found");
-        return res.redirect("/login");
-      }
-
-      const { user_type, _id } = user;
-      if (user_type === "provider") {
-        return res.redirect(`/provider/dashboard/${_id}`);
-      } else if (user_type === "client") {
-        return res.redirect(`/client/dashboard/${_id}`);
-      } else {
-        // Default case for unknown user types or admin user_type
-        return res.redirect("/admin/dashboard");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      req.flash("error", "An error occurred during login. Please try again.");
-      return res.redirect("/login");
-    }
-  }
-);
-
-//User logout api
-app.get("/logout", (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    // req.flash("success", "You are logged out!");
-    console.log("Logged out");
-    res.redirect("/login");
-  });
-});
-
+//Provider additonal signup details
 app.get("/signup/provider/:id", async (req, res) => {
   const { id } = req.params;
   const providerDetails = await User.findOne({ _id: id });
   const allTags = await Tag.find();
   res.render("providers/providerForm.ejs", { id, providerDetails, allTags });
 });
-
 app.post("/signup/provider/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -188,7 +139,7 @@ app.post("/signup/provider/:id", async (req, res) => {
     await newProvider.save();
     const providerId = newProvider._id;
     const tagIds = [];
-    
+
     for (let tag of selectedTags) {
       let tagData = await Tag.findOne({ name: tag });
       if (!tagData) {
@@ -226,6 +177,128 @@ app.get("/provider/dashboard/:id", async (req, res) => {
   });
 });
 
+// Provider edit deteils
+app.get("/provider/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  const providerDetails = await Provider.findOne({ _id: id }).populate("tags");
+  const userId = providerDetails.user.toString();
+  const userDetails = await User.findOne({ _id: userId });
+  const allTags = await Tag.find();
+  res.render("providers/edit.ejs", {
+    provider: providerDetails,
+    user: userDetails,
+    allTags,
+  });
+});
+app.put("/provider/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const newValues = req.body;
+    let { tags } = newValues;
+
+    try {
+      tags = JSON.parse(tags);
+    } catch (error) {
+      return res.status(400).send("Invalid tags format");
+    }
+
+    const providerDetails = await Provider.findOne({ _id: id }).populate(
+      "tags"
+    );
+    if (!providerDetails) {
+      return res.status(404).send("Provider not found");
+    }
+
+    const oldTags = providerDetails.tags;
+    const removedTags = oldTags.filter((item) => !tags.includes(item.name));
+    const tagIds = [];
+
+    // Update new tags
+    for (let tag of tags) {
+      let tagData = await Tag.findOne({ name: tag });
+      if (!tagData) {
+        tagData = new Tag({ name: tag, providers: [id] });
+        await tagData.save();
+      } else {
+        if (!tagData.providers.includes(id)) {
+          tagData.providers.push(id);
+          await tagData.save();
+        }
+      }
+      tagIds.push(tagData._id);
+    }
+
+    // Handle removed tags
+    for (let tag of removedTags) {
+      let tagData = await Tag.findOne({ name: tag.name });
+      if (tagData) {
+        tagData.providers = tagData.providers.filter(
+          (item) => item.toString() != id
+        );
+        await tagData.save();
+      }
+    }
+
+    newValues.tags = tagIds;
+    const updatedData = await Provider.findByIdAndUpdate(id, newValues, {
+      new: true,
+    });
+
+    res.redirect(`/provider/dashboard/${providerDetails.user.toString()}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while updating provider details");
+  }
+});
+
+// User LOGIN api
+app.get("/login", (req, res) => {
+  res.render("users/login");
+});
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  async (req, res) => {
+    try {
+      const { username } = req.body;
+      const user = await User.findOne({ username: username });
+
+      if (!user) {
+        req.flash("error", "User not found");
+        return res.redirect("/login");
+      }
+
+      const { user_type, _id } = user;
+      if (user_type === "provider") {
+        return res.redirect(`/provider/dashboard/${_id}`);
+      } else if (user_type === "client") {
+        return res.redirect(`/client/dashboard/${_id}`);
+      } else {
+        // Default case for unknown user types or admin user_type
+        return res.redirect("/admin/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      req.flash("error", "An error occurred during login. Please try again.");
+      return res.redirect("/login");
+    }
+  }
+);
+
+//User LOGOUT api
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    // req.flash("success", "You are logged out!");
+    console.log("Logged out");
+    res.redirect("/login");
+  });
+});
 // ROOT PATH
 app.get("/", (req, res) => {
   res.render("homepage.ejs");
