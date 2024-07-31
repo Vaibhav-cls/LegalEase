@@ -67,7 +67,7 @@
       <img src="<%= user.image.url %>" alt="Profile Pic" />
     </div>
     <h3>Update Details</h3>
-    <form id="details-form" action="/provider/edit/<%=provider._id%>?_method=PUT" method="POST">
+    <form id="details-form" action="/provider/edit/<%=provider._id%>?_method=PATCH" method="POST">
       <div class="field">
         <label for="bio">Bio</label>
         <input

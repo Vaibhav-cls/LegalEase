@@ -36,6 +36,9 @@
         border-radius: 10px;
         margin: 5px;
       }
+      #upload-file {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -46,6 +49,22 @@
       Profile Pic
       <a href="/logout">logout</a>
       <a href="/provider/edit/<%=provider._id%>">Edit Details</a>
+      <button id="changeBtn">Change Profile Photo</button>
+      <div id="upload-file">
+        <form
+          action="/<%=user._id%>/?_method=PUT"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="file"
+            name="user[image]"
+            placeholder="Upload new image"
+            required
+          />
+          <button>Make changes</button>
+        </form>
+      </div>
     </div>
     <div class="details">
       <div class="field">
@@ -74,5 +93,12 @@
       <div class="tags"><%=tag.name%></div>
       <%}%>
     </div>
+    <script>
+      let uploadFile = document.getElementById("upload-file");
+      let changeBtn = document.getElementById("changeBtn");
+      changeBtn.addEventListener("click", () => {
+        uploadFile.style.display = "block";
+      });
+    </script>
   </body>
 </html>

@@ -190,7 +190,7 @@ app.get("/provider/edit/:id", async (req, res) => {
     allTags,
   });
 });
-app.put("/provider/edit/:id", async (req, res) => {
+app.patch("/provider/edit/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const newValues = req.body;
@@ -250,6 +250,18 @@ app.put("/provider/edit/:id", async (req, res) => {
     res.status(500).send("An error occurred while updating provider details");
   }
 });
+app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
+  let { id } = req.params;
+  let user = await User.findOne({ _id: id });
+  if (typeof req.file != "undefined") {
+    let url = req.file.path;
+    let filename = req.file.filename;
+    user.image = { url, filename };
+    await user.save();
+  }
+  res.redirect(`/${user.user_type}/dashboard/${id}`);
+});
+//Provider delete route
 
 // User LOGIN api
 app.get("/login", (req, res) => {
