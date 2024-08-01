@@ -262,6 +262,7 @@ app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
   res.redirect(`/${user.user_type}/dashboard/${id}`);
 });
 //Provider delete route
+// app.delete("/:id", (req, res) => {});
 
 // User LOGIN api
 app.get("/login", (req, res) => {
