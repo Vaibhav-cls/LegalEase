@@ -25,17 +25,46 @@ function DarkMode() {
 }
 
 /* ----------------text change---------*/
-document.addEventListener('DOMContentLoaded', (event) => {
-    const texts = [
-      "Connecting you to the best legal services",
-      "Find, Compare and book legal experts with ease"
+document.addEventListener('DOMContentLoaded', () => {
+    const motoElement = document.querySelector('.moto');
+    const phrases = [
+        "Connecting you to the best legal services.",
+        "Find, Compare and book legal experts with ease"
     ];
-    let index = 0;
-    const element = document.getElementById('moto-text');
-  
-    setInterval(() => {
-      index = (index + 1) % texts.length;
-      element.textContent = texts[index];
-    }, 5000); // Change text every 5 seconds
-  });
+    let currentPhraseIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentPhrase = phrases[currentPhraseIndex];
+        const displayedText = motoElement.textContent;
+        let nextText = '';
+
+        if (isDeleting) {
+            nextText = currentPhrase.slice(0, displayedText.length - 1);
+        } else {
+            nextText = currentPhrase.slice(0, displayedText.length + 1);
+        }
+
+        motoElement.textContent = nextText;
+
+        let typingSpeed = 100;
+        if (isDeleting) {
+            typingSpeed /= 2;
+        }
+
+        if (!isDeleting && nextText === currentPhrase) {
+            typingSpeed = 2000; // Pause before starting to delete
+            isDeleting = true;
+        } else if (isDeleting && nextText === '') {
+            isDeleting = false;
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before typing next phrase
+        }
+
+        setTimeout(typeEffect, typingSpeed);
+    }
+
+    typeEffect();
+});
+
   
