@@ -263,6 +263,11 @@ app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
 });
 //Provider delete route
 // app.delete("/:id", (req, res) => {});
+//------------------------------------------------------------------
+// CLIENT SIDE ROUTES
+app.get("/client/dashboard/:id", (req, res) => {
+  res.send("client dashboard");
+});
 
 // User LOGIN api
 app.get("/login", (req, res) => {
