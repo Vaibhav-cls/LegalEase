@@ -22,6 +22,7 @@ const User = require("./models/user");
 const Service = require("./models/service.js");
 const Tag = require("./models/tag.js");
 const Provider = require("./models/provider.js");
+const Client = require("./models/client.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -102,7 +103,7 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
       req.flash("success", `Welcome, ${first_name}!`);
       console.log("Signup success");
       const id = registeredUser._id.toString();
-      res.redirect(`/signup/${user_type}/${id}`); // either client/dashboard OR provider/dashboard
+      res.redirect(`/signup/${user_type}/${id}`);
     });
   } catch (e) {
     req.flash("error", e.message);
@@ -265,8 +266,47 @@ app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
 // app.delete("/:id", (req, res) => {});
 //------------------------------------------------------------------
 // CLIENT SIDE ROUTES
-app.get("/client/dashboard/:id", (req, res) => {
-  res.send("client dashboard");
+
+app.get("/client/dashboard/:id", async (req, res) => {
+  const { id } = req.params;
+  const userDetails = await User.findOne({ _id: id });
+  const clientDetails = await Client.findOne({ user: id });
+  res.render("clients/dashboard.ejs", {
+    user: userDetails,
+    client: clientDetails,
+  });
+});
+
+// Client additonal signup details
+app.get("/signup/client/:id", async (req, res) => {
+  const { id } = req.params;
+  const clientDetails = await User.findOne({ _id: id });
+  res.render("clients/clientForm.ejs", { id, clientDetails });
+});
+app.post("/signup/client/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const clientDetails = req.body;
+
+    const user = await User.findById(id);
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("/signup");
+    }
+
+    const newClient = new Client({
+      user: user._id,
+      ...clientDetails,
+    });
+    // console.log(newClient);
+    const cc = await newClient.save();
+    console.log(cc);
+    req.flash("success", "Client details added successfully");
+    res.redirect(`/client/dashboard/${id}`);
+  } catch (e) {
+    req.flash("error", e.message);
+    res.redirect(`/signup/client/${req.params.id}`);
+  }
 });
 
 // User LOGIN api

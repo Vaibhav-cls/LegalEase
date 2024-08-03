@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More details</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .field {
+        display: inline-block;
+      }
+      .field p {
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .profile-pic {
+        width: 150px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+      }
+      .profile-pic img {
+        width: 100%;
+      }
+      form {
+        background-color: #add8e6;
+        width: 50%;
+        padding: 10px;
+      }
+      .location {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        justify-content: space-evenly;
+      }
+      .location .field {
+        margin-bottom: 5px;
+      }
+      textarea {
+        width: 100%;
+      }
+      .tag {
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid gray;
+        cursor: pointer;
+      }
+      .disabled {
+        opacity: 0.5;
+      }
+      img{
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Some additional details are required</h2>
+    <div class="profile-pic">
+      <img src="<%= clientDetails.image.url %>" alt="image could not load" />
+      Profile Pic
+    </div>
+    <div class="details">
+      <div class="field">
+        <p>First Name: <%= clientDetails.first_name %></p>
+        <p>Last Name: <%= clientDetails.last_name %></p>
+      </div>
+      <div class="field">
+        <p>Username: <%= clientDetails.username %></p>
+        <p>Email: <%= clientDetails.email %></p>
+      </div>
+      <div class="field">
+        <p>Phone Number: <%= clientDetails.phone_number %></p>
+        <p>User Type: <%= clientDetails.user_type %></p>
+      </div>
+    </div>
+    <h3>Form</h3>
+    <form id="details-form" action="/signup/client/<%= id %>" method="POST">
+      <div class="field">
+        <label for="bio">Add bio</label>
+        <input type="text" name="bio" id="bio" required />
+      </div>
+      <p>Location</p>
+      <div class="location">
+        <div class="field">
+          <label for="location[country]">Country</label>
+          <input type="text" name="location[country]" id="country" required />
+        </div>
+        <div class="field">
+          <label for="location[state]">State</label>
+          <input type="text" name="location[state]" id="state" required />
+        </div>
+        <div class="field">
+          <label for="location[city]">City</label>
+          <input type="text" name="location[city]" id="city" required />
+        </div>
+        <div class="field">
+          <label for="pincode">Pincode</label>
+          <input
+            type="number"
+            maxlength="4"
+            minlength="4"
+            name="location[pincode]"
+            id="pincode"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
