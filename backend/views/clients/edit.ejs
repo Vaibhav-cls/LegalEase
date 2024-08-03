@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Provider Details</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .field {
+        display: inline-block;
+      }
+      .field p {
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .profile-pic {
+        width: 150px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+      }
+      .profile-pic img {
+        width: 100%;
+      }
+      form {
+        background-color: #add8e6;
+        width: 50%;
+        padding: 10px;
+      }
+      .location {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        justify-content: space-evenly;
+      }
+      .location .field {
+        margin-bottom: 5px;
+      }
+      textarea {
+        width: 100%;
+      }
+      .tag {
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid gray;
+        cursor: pointer;
+      }
+      .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      img {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-pic">
+      <img src="<%= user.image.url %>" alt="Profile Pic" />
+    </div>
+    <h3>Update Details</h3>
+    <form
+      id="details-form"
+      action="/client/edit/<%=client._id%>?_method=PATCH"
+      method="POST"
+    >
+      <div class="field">
+        <label for="bio">Bio</label>
+        <input
+          type="text"
+          name="bio"
+          id="bio"
+          value="<%=client.bio%>"
+          required
+        />
+      </div>
+      <p>Location</p>
+      <div class="location">
+        <div class="field">
+          <label for="location[country]">Country</label>
+          <input
+            type="text"
+            name="location[country]"
+            id="country"
+            value="<%=client.location.country%>"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="location[state]">State</label>
+          <input
+            type="text"
+            name="location[state]"
+            id="state"
+            value="<%=client.location.state%>"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="location[city]">City</label>
+          <input
+            type="text"
+            name="location[city]"
+            id="city"
+            value="<%=client.location.city%>"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="pincode">Pincode</label>
+          <input
+            type="number"
+            maxlength="4"
+            minlength="4"
+            name="location[pincode]"
+            id="pincode"
+            value="<%=client.location.pincode%>"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

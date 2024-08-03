@@ -251,17 +251,7 @@ app.patch("/provider/edit/:id", async (req, res) => {
     res.status(500).send("An error occurred while updating provider details");
   }
 });
-app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
-  let { id } = req.params;
-  let user = await User.findOne({ _id: id });
-  if (typeof req.file != "undefined") {
-    let url = req.file.path;
-    let filename = req.file.filename;
-    user.image = { url, filename };
-    await user.save();
-  }
-  res.redirect(`/${user.user_type}/dashboard/${id}`);
-});
+
 //Provider delete route
 // app.delete("/:id", (req, res) => {});
 //------------------------------------------------------------------
@@ -307,6 +297,46 @@ app.post("/signup/client/:id", async (req, res) => {
     req.flash("error", e.message);
     res.redirect(`/signup/client/${req.params.id}`);
   }
+});
+//Client edit details
+app.get("/client/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  const clientDetails = await Client.findOne({ _id: id });
+  const userId = clientDetails.user.toString();
+  const userDetails = await User.findOne({ _id: userId });
+  res.render("clients/edit.ejs", {
+    client: clientDetails,
+    user: userDetails,
+  });
+});
+app.patch("/client/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const newValues = req.body;
+
+    const clientDetails = await Client.findOne({ _id: id });
+    if (!clientDetails) {
+      return res.status(404).send("Client not found");
+    }
+    const updatedData = await Client.findByIdAndUpdate(id, newValues);
+    console.log(updatedData);
+    res.redirect(`/client/dashboard/${clientDetails.user.toString()}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while updating client details");
+  }
+});
+// change user image
+app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
+  let { id } = req.params;
+  let user = await User.findOne({ _id: id });
+  if (typeof req.file != "undefined") {
+    let url = req.file.path;
+    let filename = req.file.filename;
+    user.image = { url, filename };
+    await user.save();
+  }
+  res.redirect(`/${user.user_type}/dashboard/${id}`);
 });
 
 // User LOGIN api

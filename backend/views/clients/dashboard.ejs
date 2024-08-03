@@ -39,7 +39,7 @@
       #upload-file {
         display: none;
       }
-      img{
+      img {
         height: 150px;
         width: 150px;
         object-fit: cover;
@@ -48,11 +48,12 @@
   </head>
   <body>
     <h2>Welcome <%=user.first_name%> <%=user.last_name%> to the dashboard</h2>
+    <h4>bio: <%=client.bio%></h4>
     <div class="profile-pic">
-      <img src="<%= user.image.url %>" alt="" />
+      <img src="<%= user.image.url %>" alt="can't load image" />
       Profile Pic
       <a href="/logout">logout</a>
-      <a href="/client/edit/<%=user._id%>">Edit Details</a>
+      <a href="/client/edit/<%=client._id%>">Edit Details</a>
       <button id="changeBtn">Change Profile Photo</button>
       <div id="upload-file">
         <form
@@ -91,5 +92,12 @@
       <p>City: <%=client.location.city%></p>
       <p>Pincode: <%=client.location.pincode%></p>
     </div>
+    <script>
+      let uploadFile = document.getElementById("upload-file");
+      let changeBtn = document.getElementById("changeBtn");
+      changeBtn.addEventListener("click", () => {
+        uploadFile.style.display = "block";
+      });
+    </script>
   </body>
 </html>

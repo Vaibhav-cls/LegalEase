@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "legalEase_User",
-    allowedFormats: ["png", "jpg", "jpeg", "webp"],
+    allowedFormats: ["png", "jpg", "jpeg", "webp", "jfif"],
   },
 });
 
