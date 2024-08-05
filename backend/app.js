@@ -387,11 +387,22 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
+
+//Marketplace
+app.get("/marketplace/:id", async (req, res) => {
+  const providers = await Provider.find().populate("user").populate("tags");
+  console.log(providers);
+  res.render("marketplace.ejs", { providers });
+});
+
 // ROOT PATH
 app.get("/", (req, res) => {
   res.render("homepage.ejs");
 });
 
+app.get("/nav", (req, res) => {
+  res.render("includes/navbar.ejs");
+});
 const PORT = process.env.CONNECTION_PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
