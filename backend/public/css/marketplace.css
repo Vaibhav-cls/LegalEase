@@ -1,0 +1,162 @@
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  transition: all 0.3s ease-in;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.card {
+  position: relative;
+  width: 16rem;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  background-size: cover;
+  height: 20rem;
+  transition: all 0.5s ease-in;
+  overflow: hidden;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+.overlay {
+  position: absolute;
+  top: 155px;
+  width: 100%;
+  height: 180%;
+  background-color: #2b2b2b80;
+  border: 1px solid #d3d3d37e;
+  padding: 0px 15px;
+  margin: 0px;
+  transition: all 0.5s ease-in;
+  color: white;
+}
+.heading {
+  text-align: center;
+  margin: 0px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  margin-top: 3px;
+}
+.address {
+  font-size: 11px;
+  color: lightgrey;
+  text-align: center;
+  margin-top: 3px;
+}
+.tag-head {
+  font-size: 12px;
+  margin: 0px;
+  margin-top: 5px;
+}
+.tags {
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 3px;
+}
+.tag {
+  padding: 5px;
+  font-size: 12px;
+  text-wrap: nowrap;
+  margin:  0px 3px;
+  overflow:hidden;
+  border: 2px solid gray;
+  border-radius: 3px;
+}
+.bottom-panel {
+  margin: 15px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.bottom-panel .section {
+  text-align: center;
+}
+.bottom-panel .section p {
+  margin: 0px;
+  font-size: 13px;
+}
+.upper-part {
+  min-height: 160px;
+}
+.card:hover .overlay {
+  top: -160px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  backdrop-filter: blur(2px);
+}
+.hidden h4 {
+  margin: 8px 0px;
+}
+.abt-txt {
+  margin: 0px;
+  max-height: 90px;
+  overflow-y: scroll;
+  line-height: 20px;
+  font-size: 11px !important;
+}
+.hidden p {
+  margin: 0px;
+  margin-top: 5px;
+  line-height: 20px;
+  font-size: 13px;
+}
+.badge-head {
+  margin: 5px 0px;
+}
+.badge {
+  display: flex;
+  margin-top: 6px;
+  justify-content: space-between;
+}
+.badge i {
+  font-size: 25px;
+  color: gold;
+}
+button {
+  margin-top: 10px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+}
+.visit {
+  margin-right: 10px;
+  background: lightgreen;
+}
+.visit:hover {
+  color: white;
+  background-color: green;
+}
+.chat {
+  margin-right: 10px;
+  background: transparent;
+  color: white;
+}
+.chat i {
+  margin-left: 5px;
+}
+.chat:hover {
+  color: white;
+  background-color: green;
+}
