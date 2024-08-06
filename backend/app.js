@@ -395,7 +395,8 @@ app.get("/logout", (req, res) => {
 app.get("/marketplace", async (req, res) => {
   let results = req.session.searchResults || [];
   let providers;
-  const q = req.query.q.split(" ").join(", ");
+  const query = req.query.q;
+  const q = query ? query.split(" ").join(",") : "";
   console.log(q);
   const providerIds = results.flatMap((service) => service.providers);
   if (results.length == 0) {
