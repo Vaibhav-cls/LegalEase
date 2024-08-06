@@ -395,8 +395,9 @@ app.get("/logout", (req, res) => {
 app.get("/marketplace", async (req, res) => {
   let results = req.session.searchResults || [];
   let providers;
+  const q = req.query.q.split(" ").join(", ");
+  console.log(q);
   const providerIds = results.flatMap((service) => service.providers);
-  console.log(providerIds);
   if (results.length == 0) {
     providers = await Provider.find().populate("user").populate("tags");
   } else {
@@ -404,17 +405,14 @@ app.get("/marketplace", async (req, res) => {
       .populate("user")
       .populate("tags");
   }
-  res.render("marketplace.ejs", { providers });
+  res.render("marketplace.ejs", { providers, q });
   req.session.searchResults = null;
 });
 
 app.post("/search", async (req, res) => {
   const { search } = req.body;
-  const arr = search.split(" ");
   try {
     const results = await Tag.find({ $text: { $search: search } });
-    // const results = await Tag.find({ name: { $in: arr } });
-    console.log(results);
     req.session.searchResults = results;
     const query = results.map((result) => result.name).join("+");
     res.redirect(`/marketplace?q=${query}`);
