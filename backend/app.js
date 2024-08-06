@@ -16,6 +16,7 @@ const LocalStrategy = require("passport-local");
 const multer = require("multer");
 const { storage } = require("./cloudConfig.js");
 const upload = multer({ storage });
+const bodyParser = require("body-parser");
 
 //MODELS REQUIRE
 const User = require("./models/user");
@@ -29,6 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(bodyParser.json());
 app.engine("ejs", ejsMate);
 
 main()
@@ -67,6 +69,7 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
+  res.locals.results = req.results;
   next();
 });
 
@@ -389,10 +392,35 @@ app.get("/logout", (req, res) => {
 });
 
 //Marketplace
-app.get("/marketplace/:id", async (req, res) => {
-  const providers = await Provider.find().populate("user").populate("tags");
-  console.log(providers);
+app.get("/marketplace", async (req, res) => {
+  let results = req.session.searchResults || [];
+  let providers;
+  const providerIds = results.flatMap((service) => service.providers);
+  console.log(providerIds);
+  if (results.length == 0) {
+    providers = await Provider.find().populate("user").populate("tags");
+  } else {
+    providers = await Provider.find({ _id: { $in: providerIds } })
+      .populate("user")
+      .populate("tags");
+  }
   res.render("marketplace.ejs", { providers });
+  req.session.searchResults = null;
+});
+
+app.post("/search", async (req, res) => {
+  const { search } = req.body;
+  const arr = search.split(" ");
+  try {
+    const results = await Tag.find({ $text: { $search: search } });
+    // const results = await Tag.find({ name: { $in: arr } });
+    console.log(results);
+    req.session.searchResults = results;
+    const query = results.map((result) => result.name).join("+");
+    res.redirect(`/marketplace?q=${query}`);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // ROOT PATH
