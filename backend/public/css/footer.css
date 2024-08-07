@@ -1,0 +1,44 @@
+
+footer {
+  background-color: #141414;
+  padding: 0;
+  display: flex;
+  position: static;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  margin-top: 5rem;
+  align-items: center;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  margin-left: 7rem;
+  width: 10rem;
+}
+.logo img {
+  height: 100%;
+  width: 100%;
+}
+.footer-text p {
+  margin-top: 10px;
+  margin-left: 8rem;
+}
+.footer-text p a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15.5px;
+}
+.footer-text p {
+  color: wheat;
+  font-size: 18px;
+}
+
+.footer-text a:hover {
+  color: #23527c; /* darker blue color on hover, you can change it to your desired color */
+}

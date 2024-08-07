@@ -14,20 +14,19 @@
   font-family: sans-serif;
   box-sizing: border-box;
 }
-.container {
+.card-container {
   display: flex;
   transition: all 0.3s ease-in;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
-.card {
+.provider-card {
   position: relative;
   width: 16rem;
   margin-top: 20px;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
-
   background-size: cover;
   height: 20rem;
   transition: all 0.5s ease-in;
@@ -37,17 +36,23 @@ img {
   width: 100%;
   height: 100%;
 }
-.overlay {
+.card-overlay {
   position: absolute;
-  top: 155px;
+  background-color: #2b2b2b80;
+  padding: 0px 15px;
   width: 100%;
   height: 180%;
-  background-color: #2b2b2b80;
   border: 1px solid #d3d3d37e;
-  padding: 0px 15px;
   margin: 0px;
+  top: 140px;
   transition: all 0.5s ease-in;
   color: white;
+}
+.provider-card:hover .card-overlay {
+  top: -170px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  backdrop-filter: blur(2px);
 }
 .heading {
   text-align: center;
@@ -78,8 +83,8 @@ img {
   padding: 5px;
   font-size: 12px;
   text-wrap: nowrap;
-  margin:  0px 3px;
-  overflow:hidden;
+  margin: 0px 3px;
+  overflow: hidden;
   border: 2px solid gray;
   border-radius: 3px;
 }
@@ -98,12 +103,7 @@ img {
 .upper-part {
   min-height: 160px;
 }
-.card:hover .overlay {
-  top: -160px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  backdrop-filter: blur(2px);
-}
+
 .hidden h4 {
   margin: 8px 0px;
 }

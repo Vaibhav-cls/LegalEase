@@ -1,83 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marketplace</title>
-    <link rel="stylesheet" href="/css/marketplace.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <h1>Welcome to the marketplace</h1>
-    <form action="/search" method="POST">
-      <input type="text" name="search" placeholder="Search" />
-      <button type="submit">Search</button>
-    </form>
-    <% if(q) {%>
-    <h5>Showing results for: <%=q%></h5>
-    <% }else {%>
-    <h5>Showing results for: All(*)</h5>
-    <% } %>
+<% layout("/layouts/boilerplate") -%>
+<% if(q) {%>
+<p class="result-text">Showing results for:- <%=q%></p>
+<% }else {%>
+<p class="result-text">Showing results for:- All(*)</p>
+<% } %>
 
-    <div class="container">
-      <% for(p of providers) {%> <%if(p.user.user_type=="provider") {%>
-      <div
-        class="card card-1"
-        style="background-image: url('<%= p.user.image.url %>')"
-      >
-        <div class="overlay">
-          <div class="upper-part">
-            <h2 class="heading">
-              <%=p.user.first_name%> <%=p.user.last_name%>
-            </h2>
-            <p class="address">
-              <%=p.location.city%>, <%=p.location.state%>,
-              <%=p.location.country%>
-            </p>
-            <p class="tag-head">Tags</p>
-            <div class="tags">
-              <% for(let i=0;i<3;i++) {%>
-              <div class="tag"><%=p.tags[i].name%></div>
-              <% } %>
-            </div>
-            <div class="bottom-panel">
-              <div class="section">
-                <p>#4</p>
-                <p>Rank</p>
-              </div>
-              <div class="section">
-                <p>200+</p>
-                <p>Happy Clients</p>
-              </div>
-              <div class="section">
-                <p>5</p>
-                <p>Reviews</p>
-              </div>
-            </div>
+<div class="card-container" id="main">
+  <% for(p of providers) {%> <%if(p.user.user_type=="provider") {%>
+  <div class="provider-card" style="background-image: url('<%= p.user.image.url %>')">
+    <div class="card-overlay">
+      <div class="upper-part">
+        <h2 class="heading"><%=p.user.first_name%> <%=p.user.last_name%></h2>
+        <p class="address">
+          <%=p.location.city%>, <%=p.location.state%>, <%=p.location.country%>
+        </p>
+        <p class="tag-head">Tags</p>
+        <div class="tags">
+          <% for(let i=0;i<3;i++) {%>
+          <div class="tag"><%=p.tags[i].name%></div>
+          <% } %>
+        </div>
+        <div class="bottom-panel">
+          <div class="section">
+            <p>#4</p>
+            <p>Rank</p>
           </div>
-          <div class="hidden">
-            <h4>About</h4>
-            <p class="abt-txt"><%=p.bio%></p>
-            <p>Experience: <%=p.experience%></p>
-            <p>Age 25 years</p>
-            <p>Username: <%=p.user.username%></p>
-            <p>Joined on: 13-July-2024</p>
+          <div class="section">
+            <p>200+</p>
+            <p>Happy Clients</p>
           </div>
-          <h4 class="badge-head">Badge</h4>
-          <div class="badge">
-            <i class="fa-solid fa-certificate"></i>
-            <i class="fa-solid fa-certificate"></i>
-            <i class="fa-solid fa-certificate"></i>
-            <i class="fa-solid fa-certificate"></i>
+          <div class="section">
+            <p>5</p>
+            <p>Reviews</p>
           </div>
-          <button class="visit">Visit Profile</button>
-          <button class="chat">
-            Chat <i class="fa-solid fa-comment-dots"></i>
-          </button>
         </div>
       </div>
-      <% } %> <% } %>
+      <div class="hidden">
+        <h6>About</h6>
+        <p class="abt-txt"><%=p.bio%></p>
+        <p>Experience: <%=p.experience%></p>
+        <p>Age 25 years</p>
+        <p>Username: <%=p.user.username%></p>
+        <p>Joined on: 13-July-2024</p>
+      </div>
+      <h6 class="badge-head">Badge</h6>
+      <div class="badge">
+        <i class="fa-solid fa-certificate"></i>
+        <i class="fa-solid fa-certificate"></i>
+        <i class="fa-solid fa-certificate"></i>
+        <i class="fa-solid fa-certificate"></i>
+      </div>
+      <button class="visit">Visit Profile</button>
+      <button class="chat">
+        Chat <i class="fa-solid fa-comment-dots"></i>
+      </button>
     </div>
-    <script></script>
-  </body>
-</html>
+  </div>
+  <% } %> <% } %>
+</div>
