@@ -3,8 +3,233 @@
   padding: 0px;
   box-sizing: border-box;
 }
+body {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    149deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 220, 188, 1) 100%
+  );
+}
+/* CSS for top_head Section */
+.head-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top_head {
+  background-color: white;
+  padding: 1px 50px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.social-media a {
+  text-decoration: none;
+}
+.social-media i {
+  font-size: 22px;
+  margin-right: 10px;
+}
+.social-media a .fa-square-facebook {
+  color: rgb(21, 114, 255);
+}
+.social-media a .fa-x-twitter {
+  color: black;
+}
 
-.top-nav-ribbon{
-    display: flex;
-    
+.topright {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+.topright a {
+  color: black;
+  text-decoration: none;
+  padding: 0px 10px 0px 5px;
+  border-right: 1px solid rgb(66, 66, 66);
+}
+
+.languagechanger {
+  background-color: #ffa07a;
+  color: #ffffff;
+  padding: 5px 10px;
+  text-align: center;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  border: none !important;
+}
+
+.languagechanger:hover {
+  background-color: #ff8c00;
+}
+
+.sizechanger a {
+  margin: 0 5px;
+  border: none;
+  padding: 0px;
+}
+
+/* CSS for top_middle Section */
+.top_middle {
+  padding: 0px 50px;
+}
+.nav-container {
+  padding: 10px 0px;
+  width: 100%;
+}
+.Site-logo {
+  display: flex;
+}
+.Site-logo img {
+  width: 13rem;
+  height: 11rem;
+}
+
+.moto {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  font-weight: normal;
+  padding-left: 50px;
+  flex-grow: 1;
+  /* background-color: firebrick; */
+  line-height: 1.2;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+.cursor {
+  display: inline-block;
+  width: 4px;
+  background-color: #333;
+  margin-left: 2px;
+  animation: blink-caret 0.75s step-end infinite;
+}
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
+}
+
+/*------------------search bar----------------*/
+.search-br {
+  padding: 0px 50px;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+.navbar {
+  padding: 0px !important;
+}
+.search-area {
+  display: flex;
+  align-items: center;
+  background-color: #e1e1e1;
+  background-image: url('https://res.cloudinary.com/djzomy8vf/image/upload/v1723019316/noise_bg_1_bwoiyr.png');
+  background-size: cover;
+  background-blend-mode: difference;
+  padding: 15px 50px;
+  justify-content: space-between;
+  width: 100%;
+}
+.search-element {
+  position: relative;
+  display: flex;
+  width: 280px;
+}
+.searchTerm {
+  width: 100%;
+  border: 3px solid #0c0c0c;
+  border-left: none;
+  padding: 15px;
+  height: 40px;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.3s ease;
+  outline: none;
+  color: #080808;
+}
+.search-btn {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: rgb(12, 0, 32);
+  transition: all 0.3s ease;
+  z-index: -1;
+  opacity: 0;
+}
+.searchTerm:focus + .search-btn {
+  right: -35px;
+  z-index: 0;
+  opacity: 1;
+}
+.searchTerm:focus {
+  color: #080808;
+}
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #050505;
+  background: #131414;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px 0 0 5px;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+
+.wrap {
+  position: relative;
+  width: 50%;
+}
+
+.part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.diff-site {
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+.part h2 {
+  font-size: 1.8rem;
+  align-items: center;
+  margin: 0;
+  line-height: 25px;
+  color: #333;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.part a {
+  text-decoration: none;
+  color: #070707;
+}
+
+.part a:hover {
+  text-decoration: underline;
+}
+
+.part .separator {
+  margin: 0 5px;
+  color: #6c757d;
 }
