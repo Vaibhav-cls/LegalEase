@@ -17,7 +17,7 @@
 .card-container {
   display: flex;
   transition: all 0.3s ease-in;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 .provider-card {
@@ -109,7 +109,7 @@ img {
 }
 .abt-txt {
   margin: 0px;
-  max-height: 90px;
+  max-height: 60px;
   overflow-y: scroll;
   line-height: 20px;
   font-size: 11px !important;
@@ -132,16 +132,21 @@ img {
   font-size: 25px;
   color: gold;
 }
-button {
+.links{
+  margin-top: 10px;
+}
+.card-overlay a {
   margin-top: 10px;
   padding: 5px 7px;
   border-radius: 5px;
+  text-decoration: none;
   transition: all 0.3s ease;
   border: 1px solid grey;
   margin-bottom: 10px;
 }
 .visit {
   margin-right: 10px;
+  color: black;
   background: lightgreen;
 }
 .visit:hover {

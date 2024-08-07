@@ -411,7 +411,7 @@ app.get("/marketplace", async (req, res) => {
 });
 
 app.post("/search", async (req, res) => {
-  const { search } = req.body;
+  let { search } = req.body;
   try {
     const results = await Tag.find({ $text: { $search: search } });
     req.session.searchResults = results;

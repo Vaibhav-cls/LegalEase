@@ -39,7 +39,7 @@
   </div>
 </div>
 <!-----------------search bar area-------------->
-<div class="search-bar" >
+<div class="search-bar">
   <nav class="navbar">
     <div class="search-area">
       <div class="wrap">
@@ -69,13 +69,22 @@
       <div class="part">
         <h2>Most<br />Searched</h2>
         <div class="diff-site">
-          <a href="" class="lawyer">Lawyer</a>
-          <span class="separator">|</span>
-          <a href="" class="Notaries">Notaries</a>
-          <span class="separator">|</span>
-          <a href="" class="Mediators">mediators</a>
-          <span class="separator">|</span>
-          <a href="" class="Arbitrators">Arbitrators</a>
+          <form action="/search" method="POST">
+            <input type="hidden" name="search" value="lawyer" />
+            <button>Lawyer</button>
+          </form>
+          <form action="/search" method="POST">
+            <input type="hidden" name="search" value="notary" />
+            <button>Notaries</button>
+          </form>
+          <form action="/search" method="POST">
+            <input type="hidden" name="search" value="mediator" />
+            <button>Meditators</button>
+          </form>
+          <form action="/search" method="POST">
+            <input type="hidden" name="search" value="arbitrator" />
+            <button>Arbitrators</button>
+          </form>
         </div>
       </div>
     </div>

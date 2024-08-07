@@ -216,13 +216,16 @@
   color: #333;
   font-family: "Times New Roman", Times, serif;
 }
-
-.part a {
-  text-decoration: none;
-  color: #070707;
+.part form{
+  display: inline-block;
 }
-
-.part a:hover {
+.part form button{
+  background-color: transparent;
+  border: none;
+  padding: 0px 5px;
+  border-right: 1px solid gray;
+}
+.part form button:hover {
   text-decoration: underline;
 }
 

@@ -1,5 +1,4 @@
-<% layout("/layouts/boilerplate") -%>
-<% if(q) {%>
+<% layout("/layouts/boilerplate") -%> <% if(q) {%>
 <p class="result-text">Showing results for:- <%=q%></p>
 <% }else {%>
 <p class="result-text">Showing results for:- All(*)</p>
@@ -7,7 +6,10 @@
 
 <div class="card-container" id="main">
   <% for(p of providers) {%> <%if(p.user.user_type=="provider") {%>
-  <div class="provider-card" style="background-image: url('<%= p.user.image.url %>')">
+  <div
+    class="provider-card"
+    style="background-image: url('<%= p.user.image.url %>')"
+  >
     <div class="card-overlay">
       <div class="upper-part">
         <h2 class="heading"><%=p.user.first_name%> <%=p.user.last_name%></h2>
@@ -50,10 +52,10 @@
         <i class="fa-solid fa-certificate"></i>
         <i class="fa-solid fa-certificate"></i>
       </div>
-      <button class="visit">Visit Profile</button>
-      <button class="chat">
-        Chat <i class="fa-solid fa-comment-dots"></i>
-      </button>
+      <div class="links">
+        <a href="/provider/dashboard/<%=p.user._id%>" class="visit">Visit Profile</a>
+        <a class="chat"> Chat <i class="fa-solid fa-comment-dots"></i> </a>
+      </div>
     </div>
   </div>
   <% } %> <% } %>
