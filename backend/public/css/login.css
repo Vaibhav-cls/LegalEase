@@ -1,0 +1,12 @@
+.form-container{
+  background: yellowgreen;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginForm {
+  background-color: fuchsia;
+  padding: 10px;
+  border-radius: 10px;
+}

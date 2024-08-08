@@ -406,7 +406,7 @@ app.get("/marketplace", async (req, res) => {
       .populate("user")
       .populate("tags");
   }
-  res.render("marketplace.ejs", { providers, q });
+  res.render("users/marketplace.ejs", { providers, q });
   req.session.searchResults = null;
 });
 
@@ -424,7 +424,7 @@ app.post("/search", async (req, res) => {
 
 // ROOT PATH
 app.get("/", (req, res) => {
-  res.render("homepage.ejs");
+  res.render("users/homepage.ejs");
 });
 
 app.get("/nav", (req, res) => {
