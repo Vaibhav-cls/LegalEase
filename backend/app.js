@@ -17,6 +17,7 @@ const multer = require("multer");
 const { storage } = require("./cloudConfig.js");
 const upload = multer({ storage });
 const bodyParser = require("body-parser");
+// const textFlow = require("textflow");
 
 //MODELS REQUIRE
 const User = require("./models/user");
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
+// textFlow.usekey(process.env.TEXTFLOW_API_KEY);
 app.engine("ejs", ejsMate);
 
 main()
@@ -421,7 +423,16 @@ app.post("/search", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+// app.post("/verify", async (req, res) => {
+//   const { phone_number } = req.body;
+//   var result = await textFlow.sendVerificationSMS(
+//     phone_number,
+//     verificationOptions
+//   );
+//   res.send(result);
+//   // if (result.ok) return res.status(200).json({ success: true });
+//   // return res.status(400).json({ success: false });
+// });
 // ROOT PATH
 app.get("/", (req, res) => {
   res.render("users/homepage.ejs");
