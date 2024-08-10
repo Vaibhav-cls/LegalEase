@@ -1,33 +1,71 @@
-<% layout("/layouts/boilerplate") -%>
-
-<div class="form-container" id="main">
-  <form action="/login" method="POST" class="loginForm">
-    
-    <div class="logo">
-      <img src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png" alt="Cannot load logo">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="outer-container">
+      <div class="outer-child-container">
+        <div class="left-section">
+          <div class="welcome-card">
+            <div class="logo-container">
+              <img
+                src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png"
+                alt="logo.png"
+              />
+            </div>
+            <div class="logo-heading">
+              <div class="inner-block" style="text-align: left">
+                <h2>Log In</h2>
+                <p class="tagline">to continue to LegalEase</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="login-form-parent-container">
+            <div class="login-form-child-container">
+              <form method="POST" action="/login">
+                <div class="field">
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder=" "
+                    value="adam143"
+                    autocomplete="username"
+                    required
+                  />
+                  <label for="username">Username</label>
+                </div>
+                <div class="field">
+                  <input
+                    type="password"
+                    name="password"
+                    value="adam@123"
+                    placeholder=" "
+                    required
+                  />
+                  <label for="password">Password</label>
+                </div>
+                <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+                <button class="btn btn-1">
+                  Login <i class="fa-solid fa-right-to-bracket"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h2>Log In</h2>
-    <div class="field">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        value="adam143"
-        required
-      />
-    </div>
-    <br /><br />
-    <div class="field">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value="adam@123"
-        required
-      />
-    </div>
-    <button>Login</button>
-  </form>
-</div>
+  </body>
+</html>

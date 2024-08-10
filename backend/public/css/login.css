@@ -1,12 +1,185 @@
-.form-container{
-  background: yellowgreen;
-  height: 100vh;
+.outer-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
-.loginForm {
-  background-color: fuchsia;
-  padding: 10px;
+.outer-child-container {
+  background-color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  padding: 30px;
+  border-radius: 20px;
+  width: 70%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  height: fit-content;
+}
+.left-section {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.left-section .welcome-card {
+  width: 100%;
+}
+.logo-container {
+  width: 150px;
+}
+.logo-container img {
+  width: 100%;
+}
+
+.left-section .welcome-card .logo-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tagline {
+  font-size: 14px;
+  margin-left: 2px;
+}
+.list-heading {
+  font-size: 20px;
+  margin-top: 28px;
+}
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.welcome-card .logo-heading .inner-block {
+  text-align: left;
+  width: 100%;
+}
+.welcome-card .logo-heading .inner-block h2 {
+  font-size: 30px;
+  margin: 15px 0px 7px 0px;
+  font-weight: 400;
+}
+.login-form-parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.login-form-child-container {
+  padding: 30px;
   border-radius: 10px;
+  height: 100%;
+  transition: all 0.2s ease;
+  width: 35rem;
+}
+.login-form-child-container h2 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #ffdead;
+}
+.login-form-child-container form {
+  width: 100%;
+  padding: 20px 45px;
+  height: 100%;
+}
+.login-form-child-container form .field {
+  position: relative;
+  margin-top: 30px;
+}
+.login-form-child-container form label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6d6d6d;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.login-form-child-container form input {
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 20px 5px 5px 5px;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  border: 1px solid #6d6d6d;
+}
+.login-form-child-container form input:focus {
+  border-color: dodgerblue;
+}
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: 0px;
+  left: 5px;
+  font-size: 12px;
+  background-color: white;
+  color: dodgerblue;
+}
+.login-form-child-container form p{
+  font-size: 12px;
+  margin-top: 23px;
+}
+.login-form-child-container form a{
+  text-decoration: none;
+  color: dodgerblue;
+}
+.btn {
+  background-color: bisque;
+  position: relative;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  color: black;
+  margin-top: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn-1 {
+  background-color: #72af00;
+}
+.btn-1:hover {
+  background-color: #81c700;
+}
+@media screen and (max-width: 414px) {
+  .left-section,
+  .right-section {
+    width: 100%;
+  }
+  .left-section .welcome-card .logo-heading img {
+    width: 50px;
+    height: 50px;
+  }
+  .left-section .welcome-card .logo-heading .inner-block h1 {
+    font-size: 22px;
+  }
+  .list-heading {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .list-points {
+    margin-top: 2px;
+    font-size: 14px;
+    padding-left: 20px;
+  }
+  .left-section {
+    border: none;
+    padding: 20px;
+    border-bottom: 1px solid rgb(73, 73, 73);
+  }
+  .login-form-child-container {
+    padding: 10px;
+    display: flex;
+    height: 25rem;
+    width: 25rem;
+    margin: 0px 25px;
+  }
+  .login-form-child-container form {
+    padding: 10px 10px;
+  }
 }

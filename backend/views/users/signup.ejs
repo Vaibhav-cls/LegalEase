@@ -3,58 +3,136 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/signup.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Sign Up</title>
   </head>
   <body>
-    <h2>SignUp</h2>
-    <form action="/signup" method="POST" enctype="multipart/form-data">
-      <div class="field">
-        <label for="first_name">First name</label>
-        <input type="text" name="first_name" id="first_name" required />
+    <div class="outer-container">
+      <div class="outer-child-container">
+        <div class="left-section">
+          <div class="welcome-card">
+            <div class="logo-container">
+              <img
+                src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png"
+                alt="logo.png"
+              />
+            </div>
+            <div class="logo-heading">
+              <div class="inner-block" style="text-align: left">
+                <h2>Sign Up</h2>
+                <p class="tagline">Be a part of LegalEase Community</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="login-form-parent-container">
+            <div class="login-form-child-container">
+              <form method="POST" action="/signup">
+                <div class="field-row">
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="first_name"
+                      placeholder=" "
+                      autocomplete="first_name"
+                      required
+                    />
+                    <label for="first_name"> First name</label>
+                  </div>
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="last_name"
+                      placeholder=" "
+                      autocomplete="last_name"
+                      required
+                    />
+                    <label for="last_name"> Last name</label>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder=" "
+                      autocomplete="username"
+                      required
+                    />
+                    <label for="username"> Enter username</label>
+                  </div>
+                  <div class="field">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder=" "
+                      autocomplete="email"
+                      required
+                    />
+                    <label for="email"> Your email</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <input
+                    type="number"
+                    maxlength="10"
+                    name="phone_numer"
+                    placeholder=" "
+                    autocomplete="phone_number"
+                    required
+                  />
+                  <label for="phone_number"> Phone number</label>
+                </div>
+                <div class="field">
+                  <input
+                    type="file"
+                    name="user[image]"
+                    placeholder=" "
+                    required
+                  />
+                  <label for="image"> Upload Image</label>
+                </div>
+                <div class="toggleBtn">
+                  <p>Join us as</p>
+                  <div class="toggle-container">
+                    <input type="checkbox" id="toggle-button" />
+                    <label for="toggle-button" class="toggle-label">
+                      <span class="toggle-text provider">Provider</span>
+                      <span class="toggle-text client">Client</span>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <p>Already a user? <a href="/login">Log In</a></p>
+                <button class="btn btn-1">
+                  Login <i class="fa-solid fa-right-to-bracket"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <br /><br />
-      <div class="field">
-        <label for="last_name">Last name</label>
-        <input type="text" name="last_name" id="last_name" required />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" required />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="image">Image</label>
-        <!-- add required to input field later -->
-        <input type="file" name="user[image]" id="image" />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="phone_number">phoneNumber</label>
-        <input type="text" name="phone_number" id="phone_number" required />
-      </div>
-      <br /><br />
-      <div class="field">
-        <label for="user_type">Type of user</label>
-        <select name="user_type" id="user_type">
-          <option value="provider">Provider</option>
-          <option value="client">Client</option>
-        </select>
-      </div>
-      <button type="submit">Signup</button>
-    </form>
-    <form action="/verify" method="POST">
-      <button>Verify phone number</button>
-    </form>
+    </div>
+    <script>
+      const toggleButton = document.getElementById("toggle-button");
+      const selectedValue = document.getElementById("selected-value");
+
+      toggleButton.addEventListener("change", function () {
+        if (toggleButton.checked) {
+          selectedValue.textContent = "Selected: Provider";
+        } else {
+          selectedValue.textContent = "Selected: Client";
+        }
+      });
+    </script>
   </body>
 </html>
