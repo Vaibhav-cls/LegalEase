@@ -1392,7 +1392,7 @@ footer {
 /*Resize the wrap to see the search bar change!*/
 
 .wrap{
-  width: 70%;
+  width: 85%;
   position: relative;
  padding-top: -100px;
   transform: translate(20%, 5%); /* changes for the search bar padding */
@@ -1464,9 +1464,9 @@ footer {
   display: grid;
   position: absolute;
   grid-template-columns: 1fr 1fr;
-  top: 130%;
+  top: 100%;
   left: 45%;
-  transform: translate(-49%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .work-logo ul li {
@@ -1505,7 +1505,7 @@ footer {
 
 .content-portion-2 h1 {
   margin: 0 2rem;
-  margin-top: 15rem;
+  margin-top: 20rem;
   font-size: 30px;
   font-weight: bold;
   color: #333;
@@ -1513,10 +1513,9 @@ footer {
 
 .containers {
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 50px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .image-container {
@@ -1530,19 +1529,19 @@ footer {
 }
 
 .text-container {
-  width: 70%;
+  width: 50%;
 }
 
 .text-container h2 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #050505;
-  text-align: center;
+  margin: 1rem -4rem;
 }
 
 .text-container p {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.5;
   margin-bottom: 10px;
   color: #000000;
@@ -1560,7 +1559,7 @@ footer {
   position: relative;
   margin-bottom: 10px;
   color: #080808;
-  left: -1rem;
+ 
 }
 
 .text-container li::before {
@@ -1597,6 +1596,7 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  flex-wrap: wrap;
 }
 
 .box1 {
@@ -1604,18 +1604,19 @@ footer {
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 48%;
+  width: 70%;
   height: 5%;
-  margin: 2rem 0.2rem;
+  margin: 2rem 3.5rem;
+  text-align: justify;
 }
 .box2 {
   background-color: #fffefe;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 48%;
+  width: 70%;
   height: 8%;
-  margin: -33.6rem 12.2rem;
+  margin: 1rem 3.5rem;
 }
 .box h2 {
   color: #030303;
@@ -1632,7 +1633,7 @@ footer {
 .box li {
   margin-bottom: 10px;
   text-align: justify;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .box li::before {
@@ -1649,25 +1650,23 @@ footer {
 .container3 {
   background-color: #fff;
   padding: 20px;
-  margin: 44rem 0.5rem;
+  margin: 4rem 0.3rem;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
   text-align: justify;
-  
 }
 
 .container3 h1, h2 {
   margin: 0  -0.5rem;
   margin-bottom: 20px;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .container3 p {
   line-height: 1.6;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .list {
@@ -1683,16 +1682,17 @@ footer {
 /*---------cards------*/
 .topic-header5{
   display: flex;
-  margin: -20rem 1rem;
+  margin: -4rem 1rem;
   }
   .topic-header5 h1{
     font-weight: 700;
   color: #333;
-  margin: -14rem 0;
+  margin: 3rem 0;
   }
 
 #provider-cards{
-  margin: 10rem 0.1rem; 
+  margin: 8rem 0;
+  margin-top: 2rem; 
 }
 .container{
   display:grid;
