@@ -3,135 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>More details</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .field {
-        display: inline-block;
-      }
-      .field p {
-        border: 2px solid black;
-        padding: 5px;
-      }
-      .profile-pic {
-        width: 150px;
-        position: absolute;
-        right: 30px;
-        top: 30px;
-      }
-      .profile-pic img {
-        width: 100%;
-      }
-      form {
-        background-color: #add8e6;
-        width: 50%;
-        padding: 10px;
-      }
-      .location {
-        display: flex;
-        flex-wrap: wrap;
-        padding: 10px;
-        justify-content: space-evenly;
-      }
-      .location .field {
-        margin-bottom: 5px;
-      }
-      textarea {
-        width: 100%;
-      }
-      .tag {
-        padding: 5px;
-        border-radius: 10px;
-        border: 1px solid gray;
-        cursor: pointer;
-      }
-      .disabled {
-        opacity: 0.5;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/signup.css" />
+    <link rel="stylesheet" href="/css/providerForm.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script>
       const allTags = <%- JSON.stringify(allTags) %>;
     </script>
+    <title>Sign Up</title>
   </head>
   <body>
-    <h2>Some additional details are required</h2>
-    <div class="profile-pic">
-      <img src="<%= providerDetails.image.url %>" alt="" />
-      Profile Pic
+    <div class="outer-container">
+      <div class="outer-child-container">
+        <div class="left-section">
+          <div class="welcome-card">
+            <div class="logo-container">
+              <img
+                src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png"
+                alt="logo.png"
+              />
+            </div>
+            <div class="logo-heading">
+              <div class="inner-block" style="text-align: left">
+                <h2>Sign Up</h2>
+                <p class="tagline">Tell us more about you</p>
+              </div>
+            </div>
+          </div>
+          <div class="steps" id="steps-container">
+            <p class="step">1</p>
+            <p id="step-2" class="step active-step">2</p>
+            <p id="step-3" class="step">3</p>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="login-form-parent-container">
+            <div class="login-form-child-container">
+              <form
+                id="details-form"
+                method="POST"
+                action="/signup/provider/<%= id %>"
+              >
+                <div class="field">
+                  <textarea name="bio" placeholder=" " required></textarea>
+                  <label for="bio">
+                    Write a good introduction of yourself...</label
+                  >
+                </div>
+                <div class="field">
+                  <input
+                    type="number"
+                    name="experience"
+                    placeholder=" "
+                    required
+                  />
+                  <label for="experience"> Experience(in years)</label>
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="location[state]"
+                      placeholder=" "
+                      autocomplete="state"
+                      required
+                    />
+                    <label for="state"> State</label>
+                  </div>
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="location[city]"
+                      placeholder=" "
+                      autocomplete="city"
+                      required
+                    />
+                    <label for="city"> City</label>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="location[country]"
+                      placeholder=" "
+                      autocomplete="country"
+                      required
+                    />
+                    <label for="country"> Country</label>
+                  </div>
+                  <div class="field">
+                    <input
+                      type="number"
+                      name="location[pincode]"
+                      placeholder=" "
+                      autocomplete="email"
+                      required
+                    />
+                    <label for="pincode"> Pincode</label>
+                  </div>
+                </div>
+                <button type="button" id="nextPage" class="btn btn-1">
+                  Next
+                </button>
+                <div id="tag-page" class="sp">
+                  <div class="tags">
+                    <h6>
+                      Add tags which define your work, so that people can find
+                      you easily
+                    </h6>
+                    <div class="tag-container">
+                      <div class="field">
+                        <input id="name" placeholder="" style="height: 40px" />
+                        <label for="tag">Enter a tag name here</label>
+                      </div>
+                      <button type="button" id="add">
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </button>
+                      <div class="tag-box">
+                        <div class="tag-div" id="added-tags"></div>
+                        <div
+                          class="tag-div"
+                          id="existing-tags"
+                          style="border-left: 1px solid black"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="selectedTags" id="selectedTags" />
+                  <button class="btn btn-1">
+                    Sign Up <i class="fa-solid fa-right-to-bracket"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="back-page" class=""><i class="fa-solid fa-left-long"></i></div>
+        </div>
+      </div>
     </div>
-    <div class="details">
-      <div class="field">
-        <p>First Name: <%= providerDetails.first_name %></p>
-        <p>Last Name: <%= providerDetails.last_name %></p>
-      </div>
-      <div class="field">
-        <p>Username: <%= providerDetails.username %></p>
-        <p>Email: <%= providerDetails.email %></p>
-      </div>
-      <div class="field">
-        <p>Phone Number: <%= providerDetails.phone_number %></p>
-        <p>User Type: <%= providerDetails.user_type %></p>
-      </div>
-    </div>
-    <h3>Form</h3>
-    <form id="details-form" action="/signup/provider/<%= id %>" method="POST">
-      <div class="field">
-        <label for="bio">Add bio</label>
-        <input type="text" name="bio" id="bio" required />
-      </div>
-      <div class="field">
-        <label for="experience">Experience (in years)</label>
-        <input type="text" name="experience" />
-      </div>
-      <p>Location</p>
-      <div class="location">
-        <div class="field">
-          <label for="location[country]">Country</label>
-          <input type="text" name="location[country]" id="country" required />
-        </div>
-        <div class="field">
-          <label for="location[state]">State</label>
-          <input type="text" name="location[state]" id="state" required />
-        </div>
-        <div class="field">
-          <label for="location[city]">City</label>
-          <input type="text" name="location[city]" id="city" required />
-        </div>
-        <div class="field">
-          <label for="pincode">Pincode</label>
-          <input
-            type="number"
-            maxlength="4"
-            minlength="4"
-            name="location[pincode]"
-            id="pincode"
-            required
-          />
-        </div>
-      </div>
-      <div class="tags">
-        <p>
-          Add tags which define your work, so that people can find you easily
-        </p>
-        <div class="tag-container">
-          <textarea id="name" rows="3"></textarea>
-          <button type="button" id="add">+</button>
-          <div id="added-tags"></div>
-          <hr />
-          <div id="existing-tags"></div>
-        </div>
-      </div>
-      <input type="hidden" name="selectedTags" id="selectedTags" />
-      <button type="submit">Submit</button>
-    </form>
     <script>
       let addBtn = document.getElementById("add");
       let nameInput = document.getElementById("name");
@@ -198,12 +214,44 @@
           nameInput.value = "";
         }
       });
-
       document
         .getElementById("details-form")
         .addEventListener("submit", function (event) {
           selectedTagsInput.value = JSON.stringify(selectedTags);
         });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const nextPage = document.getElementById("nextPage");
+        const tagPage = document.getElementById("tag-page");
+        const step3 = document.getElementById("step-3");
+        const step2 = document.getElementById("step-2");
+        const backPage = document.getElementById("back-page");
+        const newWidth = 50 + "%";
+        document
+          .querySelector(".steps")
+          .style.setProperty("--progress-width", newWidth);
+
+        nextPage.addEventListener("click", () => {
+          backPage.classList.add("show-backPage")
+          tagPage.classList.add("show-page");
+          step2.classList.remove("active-step");
+          step3.classList.add("active-step");
+          const newWidth = 100 + "%";
+          document
+            .querySelector(".steps")
+            .style.setProperty("--progress-width", newWidth);
+        });
+        backPage.addEventListener("click",()=>{
+          backPage.classList.remove("show-backPage")
+          tagPage.classList.remove("show-page");
+          step2.classList.add("active-step");
+          step3.classList.remove("active-step");
+          const newWidth = 50 + "%";
+          document
+            .querySelector(".steps")
+            .style.setProperty("--progress-width", newWidth);
+        })
+      });
     </script>
   </body>
 </html>

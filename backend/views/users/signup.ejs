@@ -32,11 +32,20 @@
               </div>
             </div>
           </div>
+          <div class="steps" id="steps-container">
+            <p class="step active-step">1</p>
+            <p class="step">2</p>
+            <p class="step">3</p>
+          </div>
         </div>
         <div class="right-section">
           <div class="login-form-parent-container">
             <div class="login-form-child-container">
-              <form method="POST" action="/signup">
+              <form
+                method="POST"
+                action="/signup"
+                enctype="multipart/form-data"
+              >
                 <div class="field-row">
                   <div class="field">
                     <input
@@ -85,7 +94,7 @@
                   <input
                     type="number"
                     maxlength="10"
-                    name="phone_numer"
+                    name="phone_number"
                     placeholder=" "
                     autocomplete="phone_number"
                     required
@@ -101,21 +110,34 @@
                   />
                   <label for="image"> Upload Image</label>
                 </div>
+                <div class="field">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder=" "
+                    required
+                  />
+                  <label for="password"> Set password</label>
+                </div>
                 <div class="toggleBtn">
                   <p>Join us as</p>
                   <div class="toggle-container">
+                    <input
+                      type="hidden"
+                      name="user_type"
+                      id="selected-value"
+                      value="client"
+                    />
                     <input type="checkbox" id="toggle-button" />
-                    <label for="toggle-button" class="toggle-label">
+                    <div for="toggle-button" class="toggle-div">
                       <span class="toggle-text provider">Provider</span>
                       <span class="toggle-text client">Client</span>
                       <span class="toggle-slider"></span>
-                    </label>
+                    </div>
                   </div>
                 </div>
                 <p>Already a user? <a href="/login">Log In</a></p>
-                <button class="btn btn-1">
-                  Login <i class="fa-solid fa-right-to-bracket"></i>
-                </button>
+                <button class="btn btn-1">Submit</button>
               </form>
             </div>
           </div>
@@ -124,14 +146,20 @@
     </div>
     <script>
       const toggleButton = document.getElementById("toggle-button");
+      const toggleDiv = document.querySelector(".toggle-div");
       const selectedValue = document.getElementById("selected-value");
+      const stepsContainer = document.getElementById("steps-container");
 
-      toggleButton.addEventListener("change", function () {
+      toggleDiv.addEventListener("click", function () {
+        toggleButton.checked = !toggleButton.checked;
         if (toggleButton.checked) {
-          selectedValue.textContent = "Selected: Provider";
+          stepsContainer.style.display = "flex";
+          selectedValue.value = "provider";
         } else {
-          selectedValue.textContent = "Selected: Client";
+          stepsContainer.style.display = "none";
+          selectedValue.value = "client";
         }
+        console.log(selectedValue.value);
       });
     </script>
   </body>
