@@ -1397,44 +1397,14 @@ footer {
  padding-top: -100px;
   transform: translate(20%, 5%); /* changes for the search bar padding */
 }
-
-.part {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem; /* change the direction of most searched left to right */
-}
-.diff-site{
-  font-size: 14px;
-  font-family: "Times New Roman", Times, serif;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0  -1rem;
-}
-.part h2 {
-  font-size: 1.3rem;
-  margin: 0 3rem;
-}
-
-.part a {
-  text-decoration: none;
-  color: #070707;
-  padding: 5px;
-}
-
-.part a:hover {
-  text-decoration: underline;
-}
-
-.part .separator {
-  margin: 0 5px;
-  color: #000000;
+.part{
+  display: none;
 }
 /*------slider-----*/
 #carouselExampleAutoplaying {
   height: 150px;
   width: 100%;
+  margin: 1rem 0;
 }
 
 .topic-header{
