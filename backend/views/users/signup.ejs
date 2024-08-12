@@ -32,10 +32,14 @@
               </div>
             </div>
           </div>
-          <div class="steps" id="steps-container">
+          <div class="steps" id="steps-container1">
             <p class="step active-step">1</p>
             <p class="step">2</p>
             <p class="step">3</p>
+          </div>
+          <div class="steps" id="steps-container2" style="display: flex;">
+            <p class="step active-step">1</p>
+            <p class="step">2</p>
           </div>
         </div>
         <div class="right-section">
@@ -148,15 +152,18 @@
       const toggleButton = document.getElementById("toggle-button");
       const toggleDiv = document.querySelector(".toggle-div");
       const selectedValue = document.getElementById("selected-value");
-      const stepsContainer = document.getElementById("steps-container");
+      const stepsContainer1 = document.getElementById("steps-container1");
+      const stepsContainer2 = document.getElementById("steps-container2");
 
       toggleDiv.addEventListener("click", function () {
         toggleButton.checked = !toggleButton.checked;
         if (toggleButton.checked) {
-          stepsContainer.style.display = "flex";
+          stepsContainer1.style.display = "flex";
+          stepsContainer2.style.display = "none";
           selectedValue.value = "provider";
         } else {
-          stepsContainer.style.display = "none";
+          stepsContainer1.style.display = "none";
+          stepsContainer2.style.display = "flex";
           selectedValue.value = "client";
         }
         console.log(selectedValue.value);

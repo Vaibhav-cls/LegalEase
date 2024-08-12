@@ -1,104 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Provider Dashboard</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .field {
-        display: inline-block;
-      }
-      .field p {
-        border: 2px solid black;
-        padding: 5px;
-      }
-      .profile-pic {
-        width: 150px;
-        position: absolute;
-        right: 30px;
-        top: 30px;
-      }
-      .profile-pic img {
-        width: 100%;
-      }
-      .tags {
-        background-color: yellowgreen;
-        padding: 5px;
-        border-radius: 10px;
-        margin: 5px;
-      }
-      #upload-file {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome <%=user.first_name%> <%=user.last_name%> to your dashboard</h1>
-    <h4>bio: <%=provider.bio%></h4>
-    <div class="profile-pic">
-      <img src="<%= user.image.url %>" alt="" />
-      Profile Pic
-      <a href="/logout">logout</a>
-      <a href="/provider/edit/<%=provider._id%>">Edit Details</a>
-      <button id="changeBtn">Change Profile Photo</button>
-      <div id="upload-file">
-        <form
-          action="/<%=user._id%>/?_method=PUT"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input
-            type="file"
-            name="user[image]"
-            placeholder="Upload new image"
-            required
-          />
-          <button>Make changes</button>
-        </form>
-      </div>
+<% layout("/layouts/boilerplate") -%>
+
+<div class="main-container">
+  <h1><%=user.first_name%>'s dashboard</h1>
+  <h4>bio: <%=provider.bio%></h4>
+  <div class="profile-pic">
+    <img src="<%= user.image.url %>" alt="" />
+    Profile Pic <% if(currUser && currUser.user_type=="provider") {%>
+    <a href="/logout">logout</a>
+    <a href="/provider/edit/<%=provider._id%>">Edit Details</a>
+    <button id="changeBtn">Change Profile Photo</button>
+    <div id="upload-file">
+      <form
+        action="/<%=user._id%>/?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="file"
+          name="user[image]"
+          placeholder="Upload new image"
+          required
+        />
+        <button>Make changes</button>
+      </form>
     </div>
-    <div class="details">
-      <div class="field">
-        <p>First Name: <%= user.first_name %></p>
-        <p>Last Name: <%= user.last_name %></p>
-      </div>
-      <div class="field">
-        <p>Username: <%= user.username %></p>
-        <p>Email: <%= user.email %></p>
-      </div>
-      <div class="field">
-        <p>Phone Number: <%= user.phone_number %></p>
-        <p>User Type: <%= user.user_type %></p>
-      </div>
+    <%}%>
+  </div>
+  <div class="details">
+    <div class="field">
+      <p>First Name: <%= user.first_name %></p>
+      <p>Last Name: <%= user.last_name %></p>
     </div>
-    <p>Location</p>
-    <div class="location">
-      <p>Country: <%=provider.location.country%></p>
-      <p>State: <%=provider.location.state%></p>
-      <p>City: <%=provider.location.city%></p>
-      <p>Pincode: <%=provider.location.pincode%></p>
+    <div class="field">
+      <p>Username: <%= user.username %></p>
+      <p>Email: <%= user.email %></p>
     </div>
-    Tags:
-    <div class="tags-container">
-      <%for (tag of provider.tags) {%>
-      <div class="tags"><%=tag.name%></div>
-      <%}%>
+    <div class="field">
+      <p>Phone Number: <%= user.phone_number %></p>
+      <p>User Type: <%= user.user_type %></p>
     </div>
-    <script>
-      let uploadFile = document.getElementById("upload-file");
-      let changeBtn = document.getElementById("changeBtn");
-      changeBtn.addEventListener("click", () => {
-        uploadFile.style.display = "block";
-      });
-    </script>
-  </body>
-</html>
+  </div>
+  <p>Location</p>
+  <div class="location">
+    <p>Country: <%=provider.location.country%></p>
+    <p>State: <%=provider.location.state%></p>
+    <p>City: <%=provider.location.city%></p>
+    <p>Pincode: <%=provider.location.pincode%></p>
+  </div>
+  Tags:
+  <div class="tags-container">
+    <%for (tag of provider.tags) {%>
+    <div class="tags"><%=tag.name%></div>
+    <%}%>
+  </div>
+  <%if(currUser && currUser.user_type!="provider"){%>
+  <h4>Leave a Review</h4>
+  <form
+    class="needs-validation"
+    action="/listings/ listing.id/reviews"
+    method="POST"
+    novalidate
+  >
+    <div class="mb-3 mt-3">
+      <label for="rating" class="form-label">Rating</label>
+      <fieldset class="starability-slot">
+        <input
+          type="radio"
+          id="no-rate"
+          class="input-no-rate"
+          name="review[rating]"
+          value="1"
+          checked
+          aria-label="No rating."
+        />
+        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="comment" class="form-label">Comments</label>
+      <textarea
+        name="review[comment]"
+        id="comment"
+        cols="30"
+        rows="5"
+        class="form-control"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please add some comments for review</div>
+    </div>
+    <button class="btn btn-outline-dark">Submit</button>
+  </form>
+  <%}%>
+</div>
+<script>
+  let uploadFile = document.getElementById("upload-file");
+  let changeBtn = document.getElementById("changeBtn");
+  changeBtn.addEventListener("click", () => {
+    uploadFile.style.display = "block";
+  });
+</script>

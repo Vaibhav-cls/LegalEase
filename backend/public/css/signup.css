@@ -112,7 +112,7 @@
   position: absolute;
   height: 3px;
   top: 12px;
-  background-color: red;
+  background-color: green;
   transition: all 0.3s ease-in;
 }
 .active-step {

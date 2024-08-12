@@ -19,6 +19,8 @@ const upload = multer({ storage });
 const bodyParser = require("body-parser");
 // const textFlow = require("textflow");
 
+const { isLoggedIn, isOwner } = require("./middleware.js");
+
 //MODELS REQUIRE
 const User = require("./models/user");
 const Service = require("./models/service.js");
@@ -170,7 +172,7 @@ app.post("/signup/provider/:id", async (req, res) => {
 });
 
 // Provider Dashboard
-app.get("/provider/dashboard/:id", async (req, res) => {
+app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const userInfo = await User.findOne({ _id: id });
   const userId = userInfo._id.toString();
@@ -184,7 +186,7 @@ app.get("/provider/dashboard/:id", async (req, res) => {
 });
 
 // Provider edit deteils
-app.get("/provider/edit/:id", async (req, res) => {
+app.get("/provider/edit/:id", isLoggedIn, isOwner, async (req, res) => {
   const { id } = req.params;
   const providerDetails = await Provider.findOne({ _id: id }).populate("tags");
   const userId = providerDetails.user.toString();
@@ -196,7 +198,7 @@ app.get("/provider/edit/:id", async (req, res) => {
     allTags,
   });
 });
-app.patch("/provider/edit/:id", async (req, res) => {
+app.patch("/provider/edit/:id", isLoggedIn, isOwner, async (req, res) => {
   try {
     const { id } = req.params;
     const newValues = req.body;
