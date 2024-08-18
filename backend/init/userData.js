@@ -1,0 +1,96 @@
+const data = [
+  {
+    _id: {
+      $oid: "66a49d280e413a5f9a231019",
+    },
+    first_name: "admin",
+    last_name: "admin",
+    username: "admin",
+    email: "admin123@gmail.com",
+    image: {
+      url: "https://res.cloudinary.com/djzomy8vf/image/upload/v1722064167/legalEase_User/nifpgtlhzgwoqis6efyo.png",
+      filename: "legalEase_User/nifpgtlhzgwoqis6efyo",
+    },
+    phone_number: 9644582521,
+    user_type: "admin",
+    salt: "adc188b27c12887e5331b2894b8aafb5a33c90ef6728d8908eb36abaeb75df3d",
+    hash: "fdfec440629c2f4f6ec8cfb21ac3c45951751e5d91b1cf7b6d1d17cb9beb2ff880c7e9524c3b582d4740415398f47d81ac410841033852e9577eb7e0f4938d453dbfe5fb8430759c6edc4259a173e9c8f22c4a3d35b9e85ac2aad71c57ff13264199a2cb507ebce07e8549e99cc187b9c26d3330afdae20737487d34582722465856175f2cd3dbde195f87de9745be22da8b10005008908dc96d965c39fe187d623d577172613f4db3b34219efcb689bb34e1a107f7cec6c01c150083f0e7ee1b5d61ac4b913b6728543181d692a2c5944cc78bbc04bd032a4f66ecea9fef739314111ca6bddf9bbb8fe96959cfe20bbd44c2f49f91512a44d36f62fe441e5056034e6e1299c11e3144e97847d948e7b056ec37c14282a7ac3b7fb0c5a8bb98a9fad3625c69d50084b01472173266791c9f776674ed4e1a68566f655cc4de8aa4f15eab6848ae9e7857bc509474e7c70db5716902fc052a81ae0f477dda03b52d1c06e89e18a44e9d60a7af8035b6539791de223f63243c5c1b152403ac582466e6116669b599932527457faa0376b13ed5ad390fd9efe7a3389b779196add18237fee017ae3a05949f63b00a903989819cb9fa39ccfb79cd2be1a04f202d1a338f499412a8ce616af215b16ca5559c51d6e93ee1a17d9a4446ec59177cba51051c5c98063232e260bb6e839c31a2f0f226638b9a5e1ef562a823729be6df86d",
+    created_at: {
+      $date: "2024-07-27T07:09:29.829Z",
+    },
+    updated_at: {
+      $date: "2024-07-27T07:09:29.829Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "66a4bfb195bdb7779f4d7f6f",
+    },
+    first_name: "Adam ",
+    last_name: "Justice",
+    username: "adam143",
+    email: "justice.adam@law.com",
+    image: {
+      url: "https://res.cloudinary.com/djzomy8vf/image/upload/v1722443036/legalEase_User/lmiz8kdkjxrl4jtszdpn.webp",
+      filename: "legalEase_User/lmiz8kdkjxrl4jtszdpn",
+    },
+    phone_number: {
+      $numberLong: "9874554712",
+    },
+    user_type: "provider",
+    salt: "ef8ad907989b0a08450baf0a822906975d7b4b213efe52e71818c525c3b99b0a",
+    hash: "dc8450223fc80e9fe25b4bb273bd640fe3ac22788d811c8ba3337ed5ee0bf16280705eb94dabd88e6303cc2cfecfc55f48cf0a7450fc5d978d846b4f07cc52554d67d87aa071f63f468421025a9350b4156f05df863f8d4ede54f2d6672bdc8d64ee2df4e756dec59e5a62b3d759b0df03e6d8d08901bfb72f8c51326da378e52f14f11d83d5aee0403701206ef3b243271c3a9cc0f4af10ef55fe7d8c01622bdb816b2dc381e7e94bca9f2005b33bab2a65edda433ad72be65ac65918244ec0ba1b44b9d8dad230ef33dc4a4145f837c0504762a0edd4effb58b86c7602d60ca44511aa26a9e940cae94dbf572846e1085967c7e1b4e53026b1f115ea686d46a1cc22f4086719b2efb319e0aab01536cef0645932b8f1cc852a525de4fa42e619145f399f5adb708dbb12d55adfa0c76a010017cdf7eb9126440ec9a70da2f24359bde824f2b8f5a42d36afb38a0ca1eea44d221ac8c90b1ad98a9deb15e8055d9914441289257f183dad7cf713674a670df382ed7d21aa02d4844d91c4d14857cda432e4196aa4be7d4d4709a6ae2eb70441111ca76381af8942c530f793ae78caee857a411de4c0ade83d58fbee8a4e3ccab404accd1b27fd7da04b55da99031efa6f16edf83c1d202a9bb9c3392dd9ce9f7ad9a2bdeb36a1e23ef8a75d7bdb9ddc4999e3e6a5fcda0d872de10a9c7f4bb033f9cb830c9498fa8d24fbfcf1",
+    created_at: {
+      $date: "2024-07-27T09:36:50.690Z",
+    },
+    updated_at: {
+      $date: "2024-07-31T16:23:56.779Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "66a49f76bf727b6395bcb5ad",
+    },
+    first_name: "Sahil",
+    last_name: "Kashyap",
+    username: "sai-kas",
+    email: "kashyapsahil233@gmail.com",
+    image: {
+      url: "https://res.cloudinary.com/djzomy8vf/image/upload/v1722696781/legalEase_User/eyenqfcibfx12uf3cagx.jpg",
+      filename: "legalEase_User/eyenqfcibfx12uf3cagx",
+    },
+    phone_number: 7389321202,
+    user_type: "client",
+    salt: "91adb58bfdb38c64c571e49264070b2b9ec77fc9aed67beeccce2fc331d20af3",
+    hash: "419a28253164756425bf567b98be6b420e7164cd5f3400c584278906d64633f54e17ba1ab4e5d4f191f6303751e360695577edfc8b3195d34b1b7f5abfad3495b993ade59e1cd740a35321f318a5251161f2eb96faa6c2616043c750707f04f59d83105b62a4ec56794f35b979716db83974fba2841d7a5689aea42a7be8296498597b37b6f1b0762f1e4fa33e79e6d47213a5a6a63933fed3b1ea4a1c341b9134f749672712e363124eda57d96118de9176c1fe907a5a3f754029e9cb02a7aa99f5a4142dfc663bd149169eff3a4a3d49da7e78c674660e24526c10f32624d002723ded43e02a305abb0f2744451ca37d057fdcab1b5b352e3d7a3cfa3f8ad5112920a97cbe2fdc81aa0c3f65efa0681500e9e1608fa3ca2f323afe9ed190608fe55b6b078a001ad52219bde2cccbdda19cdb3ff65b412a03f57fc39d1c3212cc02c16ccb81891b06403da55ee69fa092bd78f54780898c599d293b5a6ab871cca8fe556efd29f8731cf79ec2fb90be321a3d12cfdc699c0421f139aa300cfcd6b9737c80ab3787880a7222e9d054132971488cc574ccddaf6cb4a621d2b2a1ba063e1c2781c220d13185a5131f1b107979e4155a770fc19f413cc6cdf2feef1a3ee205092b9f35ad6e443877e9817045726a36f6c84eb70736db669bc31da67865c5fc2c2e08c9535593a05ca2c217fb011dddc43c54f5dd229ebe364dbcb1",
+    created_at: {
+      $date: "2024-07-27T07:19:19.156Z",
+    },
+    updated_at: {
+      $date: "2024-08-03T14:53:03.132Z",
+    },
+  },
+  {
+    _id: {
+      $oid: "66a49de60e413a5f9a231024",
+    },
+    first_name: "Vaibhav",
+    last_name: "Ghanekar",
+    username: "vaibhav19",
+    email: "vaibhavghanekar19@gmail.com",
+    image: {
+      url: "https://res.cloudinary.com/djzomy8vf/image/upload/v1722064357/legalEase_User/qxrvdsvnd2blj87bxhtl.png",
+      filename: "legalEase_User/qxrvdsvnd2blj87bxhtl",
+    },
+    phone_number: 8817329155,
+    user_type: "provider",
+    salt: "2965dbf7890c126d76c428874086e13be5f26d27ec5c202bbbc955389f858422",
+    hash: "c6f19053dc5e7d1a1ba9c465de2960ab9ff15eb9b4a39b328527b03f1d08cd8470762516901e9fa318e90f416bba3dadea329484c89e9cc609650722a73f5b101e18312ab63763d86822cad47fc4f69cf7cf996134206966f84270f7dba4ec5cffb49e291e2de194befe473c0ad61e8f44deaf2ae5f0923e77a987245a3fe35373197f24f921474bf1a7764bf20613a411d1ac71bdc3c2e3183dd0aedeab54becf2303136349ce4827da68fa8dd03445bad71c9b7432283cbffe28ac2cf32e25aa59bc112eddae0a018b144b88b7f7607db52108f174ff5b18fbdf92b3ebdcc1e09555a89103adc734786913ab7495e597a252fb4fe19e6967e884c0e9cad9bcaa594636d57e8d70995edff5455c9eb264f8968fc5cc7b8f7d18e2a3a056fc232461edf6a92158dd2f2749a859448f6883704ac1216aeed929ae393e324136d382bd122c1339d72d6c5ec1c6a6263b75b177aef66150e90d1cc230a067c6196eab8f0c185a56876f0cc8a60a61d6de855300fb460a3ce98942b8b6675771c36787afbca15ff9667513264173721ed06f27ea9cb3e8e61a90e7f4c925685f2938478abaa1d9ebe9b4a1cbfbd7b1cf2843128a5a3f5ed00905e4f740a5600bf1d24e53c441013a77dbe0f7f077cc146ea3b133916783d3cd6267ddfae304d547dae9826411348d921e743ad96410e8b448750ab2b9e04da7236f0595d23757d563",
+    created_at: {
+      $date: "2024-07-27T07:12:39.325Z",
+    },
+    updated_at: {
+      $date: "2024-07-27T07:12:39.325Z",
+    },
+  },
+];

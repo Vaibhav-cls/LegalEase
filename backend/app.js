@@ -296,8 +296,7 @@ app.post("/signup/client/:id", async (req, res) => {
       ...clientDetails,
     });
     // console.log(newClient);
-    const cc = await newClient.save();
-    console.log(cc);
+    await newClient.save();
     req.flash("success", "Client details added successfully");
     res.redirect(`/client/dashboard/${id}`);
   } catch (e) {
