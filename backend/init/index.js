@@ -21,19 +21,19 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 const initUserDB = async () => {
-  await User.insertMany(initUser.userData);
+  await User.insertMany(initUser.data);
   console.log("--> Users initialized");
 };
 const initTagDB = async () => {
-  await Tag.insertMany(initTag.tagData);
+  await Tag.insertMany(initTag.data);
   console.log("--> Tags initialized");
 };
 const initProviderDB = async () => {
-  await Provider.insertMany(initProvider.providerData);
+  await Provider.insertMany(initProvider.data);
   console.log("--> Providers initialized");
 };
 const initClientDB = async () => {
-  await Client.insertMany(initClient.clientData);
+  await Client.insertMany(initClient.data);
   console.log("--> Clients initialized");
 };
 initUserDB();

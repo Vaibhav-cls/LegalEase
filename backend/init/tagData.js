@@ -59,3 +59,4 @@ const Tag = [
     providers: [],
   },
 ];
+module.exports = { data: Tag };

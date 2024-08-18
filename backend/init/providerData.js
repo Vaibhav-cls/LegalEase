@@ -40,3 +40,4 @@ const Provider = [
     ],
   },
 ];
+module.exports = { data: Provider };

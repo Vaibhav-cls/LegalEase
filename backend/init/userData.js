@@ -1,4 +1,4 @@
-const data = [
+const User = [
   {
     _id: "66a49d280e413a5f9a231019",
     first_name: "admin",
@@ -69,3 +69,4 @@ const data = [
     updated_at: "2024-07-27T07:12:39.325Z",
   },
 ];
+module.exports = { data: User };

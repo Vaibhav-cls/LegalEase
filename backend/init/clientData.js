@@ -9,3 +9,4 @@ const Client = {
     pincode: "495334",
   },
 };
+module.exports = { data: Client };
