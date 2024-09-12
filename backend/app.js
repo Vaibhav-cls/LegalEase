@@ -27,6 +27,7 @@ const Service = require("./models/service.js");
 const Tag = require("./models/tag.js");
 const Provider = require("./models/provider.js");
 const Client = require("./models/client.js");
+const Appointment = require("./models/appointment.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -108,7 +109,7 @@ app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
     req.login(registeredUser, async (err) => {
       if (err) return next(err);
       req.flash("success", `Welcome, ${first_name}!`);
-      console.log("Signup success");
+      console.log("login success");
       const id = registeredUser._id.toString();
       res.redirect(`/signup/${user_type}/${id}`);
     });
@@ -179,9 +180,14 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const providerInfo = await Provider.findOne({ user: userId }).populate(
     "tags"
   );
+  const appointments = await Appointment.find({
+    providerId: providerInfo._id,
+  }).populate("clientId");
+  console.log(appointments);
   res.render("providers/dashboard.ejs", {
     provider: providerInfo,
     user: userInfo,
+    appointment: appointments,
   });
 });
 
@@ -270,7 +276,7 @@ app.get("/client/dashboard/:id", async (req, res) => {
   const clientDetails = await Client.findOne({ user: id });
   res.render("clients/dashboard.ejs", {
     user: userDetails,
-    client: clientDetails,
+    clients: clientDetails,
   });
 });
 
@@ -325,7 +331,6 @@ app.patch("/client/edit/:id", async (req, res) => {
       return res.status(404).send("Client not found");
     }
     const updatedData = await Client.findByIdAndUpdate(id, newValues);
-    console.log(updatedData);
     res.redirect(`/client/dashboard/${clientDetails.user.toString()}`);
   } catch (error) {
     console.error(error);
@@ -400,7 +405,6 @@ app.get("/marketplace", async (req, res) => {
   let providers;
   const query = req.query.q;
   const q = query ? query.split(" ").join(",") : "";
-  console.log(q);
   const providerIds = results.flatMap((service) => service.providers);
   if (results.length == 0) {
     providers = await Provider.find().populate("user").populate("tags");
@@ -438,7 +442,23 @@ app.post("/search", async (req, res) => {
 app.get("/", (req, res) => {
   res.render("users/homepage.ejs");
 });
-
+app.get("/booking", (req, res) => {
+  res.render("users/booking.ejs");
+});
+app.post("/booking/:clientId/:providerId", async (req, res) => {
+  const appointmentCreds = req.body;
+  const { clientId, providerId } = req.params;
+  // console.log(client,"...",provider)
+  const bookingDetails = new Appointment({
+    clientId: clientId,
+    providerId: providerId,
+    confirmationStatus: "pending",
+    ...appointmentCreds,
+  });
+  await bookingDetails.save();
+  console.log("Booking success");
+  res.redirect(`provider/dashboard/${providerId}`);
+});
 app.get("/nav", (req, res) => {
   res.render("includes/navbar.ejs");
 });

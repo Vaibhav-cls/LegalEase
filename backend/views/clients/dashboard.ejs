@@ -1,103 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Client Dashboard</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .field {
-        display: inline-block;
-      }
-      .field p {
-        border: 2px solid black;
-        padding: 5px;
-      }
-      .profile-pic {
-        width: 150px;
-        position: absolute;
-        right: 30px;
-        top: 30px;
-      }
-      .profile-pic img {
-        width: 100%;
-      }
-      .tags {
-        background-color: yellowgreen;
-        padding: 5px;
-        border-radius: 10px;
-        margin: 5px;
-      }
-      #upload-file {
-        display: none;
-      }
-      img {
-        height: 150px;
-        width: 150px;
-        object-fit: cover;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Welcome <%=user.first_name%> <%=user.last_name%> to the dashboard</h2>
-    <h4>bio: <%=client.bio%></h4>
-    <div class="profile-pic">
-      <img src="<%= user.image.url %>" alt="can't load image" />
-      Profile Pic
-      <a href="/logout">logout</a>
-      <a href="/client/edit/<%=client._id%>">Edit Details</a>
-      <button id="changeBtn">Change Profile Photo</button>
-      <div id="upload-file">
-        <form
-          action="/<%=user._id%>/?_method=PUT"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input
-            type="file"
-            name="user[image]"
-            placeholder="Upload new image"
-            required
-          />
-          <button>Make changes</button>
-        </form>
-      </div>
-    </div>
-    <div class="details">
-      <div class="field">
-        <p>First Name: <%= user.first_name %></p>
-        <p>Last Name: <%= user.last_name %></p>
-      </div>
-      <div class="field">
-        <p>Username: <%= user.username %></p>
-        <p>Email: <%= user.email %></p>
-      </div>
-      <div class="field">
-        <p>Phone Number: <%= user.phone_number %></p>
-        <p>User Type: <%= user.user_type %></p>
-      </div>
-    </div>
-    <p>Location</p>
-    <div class="location">
-      <p>Country: <%=client.location.country%></p>
-      <p>State: <%=client.location.state%></p>
-      <p>City: <%=client.location.city%></p>
-      <p>Pincode: <%=client.location.pincode%></p>
-    </div>
-    <script>
-      let uploadFile = document.getElementById("upload-file");
-      let changeBtn = document.getElementById("changeBtn");
-      changeBtn.addEventListener("click", () => {
-        uploadFile.style.display = "block";
-      });
-    </script>
-  </body>
-</html>
+<% layout("/layouts/boilerplate") -%>
+
+<title>clients Dashboard</title>
+
+<h2>Welcome <%=user.first_name%> <%=user.last_name%> to the dashboard</h2>
+<h4>bio: <%=clients.bio%></h4>
+<div class="profile-pic">
+  <img src="<%= user.image.url %>" alt="can't load image" />
+  Profile Pic
+  <a href="/logout">logout</a>
+  <a href="/clients/edit/<%=clients._id%>">Edit Details</a>
+  <button id="changeBtn">Change Profile Photo</button>
+  <div id="upload-file">
+    <form
+      action="/<%=user._id%>/?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="file"
+        name="user[image]"
+        placeholder="Upload new image"
+        required
+      />
+      <button>Make changes</button>
+    </form>
+  </div>
+</div>
+<div class="details">
+  <div class="field">
+    <p>First Name: <%= user.first_name %></p>
+    <p>Last Name: <%= user.last_name %></p>
+  </div>
+  <div class="field">
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+  </div>
+  <div class="field">
+    <p>Phone Number: <%= user.phone_number %></p>
+    <p>User Type: <%= user.user_type %></p>
+  </div>
+</div>
+<p>Location</p>
+<div class="location">
+  <p>Country: <%=clients.location.country%></p>
+  <p>State: <%=clients.location.state%></p>
+  <p>City: <%=clients.location.city%></p>
+  <p>Pincode: <%=clients.location.pincode%></p>
+</div>
+<script>
+  let uploadFile = document.getElementById("upload-file");
+  let changeBtn = document.getElementById("changeBtn");
+  changeBtn.addEventListener("click", () => {
+    uploadFile.style.display = "block";
+  });
+</script>

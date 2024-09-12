@@ -23,3 +23,32 @@
   #upload-file {
     display: none;
   }
+
+
+  /* .field p {
+    border: 2px solid black;
+    padding: 5px;
+  }
+  .profile-pic {
+    width: 150px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
+  .profile-pic img {
+    width: 100%;
+  }
+  .tags {
+    background-color: yellowgreen;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  #upload-file {
+    display: none;
+  }
+  img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+  } */
