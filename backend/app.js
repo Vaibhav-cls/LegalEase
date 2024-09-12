@@ -274,9 +274,20 @@ app.get("/client/dashboard/:id", async (req, res) => {
   const { id } = req.params;
   const userDetails = await User.findOne({ _id: id });
   const clientDetails = await Client.findOne({ user: id });
+  const bookingDetails = await Appointment.find({
+    clientId: userDetails._id,
+  }).populate({
+    path: "providerId",
+    populate: {
+      path: "user",
+      model: "User",
+    },
+  });
+  console.log(bookingDetails);
   res.render("clients/dashboard.ejs", {
     user: userDetails,
     clients: clientDetails,
+    booking: bookingDetails,
   });
 });
 
