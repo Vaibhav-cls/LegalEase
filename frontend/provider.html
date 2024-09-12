@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="prvd.css">
+    <title>Provider Profile page</title>
+</head>
+<body>
+    <!-- First Navbar: top_head -->
+    <section class="top_head">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <div class="topleft">
+            <span class="social-media">
+              <a href="#"><img src="https://github.com/Kas-Sai/testing/blob/main/New%20folder/face.png?raw=true" alt="FaceBook"></a>
+              <a href="#"><img src="https://github.com/Kas-Sai/testing/blob/main/New%20folder/x.png?raw=true" alt="Twitter"></a>
+            </span>
+          </div>
+          <div class="topright d-flex align-items-center">
+            <a href="#" class="skip login">Skip to main content</a>
+            <a href="" class="src"><i class="fa-solid fa-forward"></i></a>
+            <span class="separator">|</span>
+              <a href="#" class="login">Home</a>
+              <a href="" class="src"><i class="fa-solid fa-house"></i></a>
+            <span class="separator">|</span>
+            <a href="#" class="login">Log In</a>
+            <a href="" class="src"><i class="fa-solid fa-right-to-bracket"></i></a>
+            <span class="separator">|</span>
+            <a href="#" class="login">Sign Up</a>
+            <a href="" class="src"><i class="fa-solid fa-user-plus"></i></a>
+            <span class="separator">|</span>
+            <span class="sizechanger">
+              <a href="#" class="text_size_decrease changer" onclick="Decrease()">-A</a>
+              <a href="#" class="text_size_reset changer" onclick="Reset()">A</a>
+              <a href="#" class="text_size_increase changer" onclick="Increase()">+A</a>
+            </span>
+          <a href="#" class="languagechanger" onclick="Language()">हिन्दी</a>
+          <a href="" class="src" onclick="Language()"><i class="fa-solid fa-language"></i></a>
+          </div>
+        </div>
+    </section>
+    
+    <!-- Second Navbar: top_middle -->
+    <div class="top_middle" id="Home">  
+        <div class="nav-container d-flex justify-content-between align-items-center">
+          <span class="Site-logo "><img src="https://github.com/Kas-Sai/testing/blob/main/New%20folder/sitelog.png?raw=true"></span>
+          <span class="moto">
+            <h1 id="moto-text" ></h1>
+          </span>
+        </div>
+    </div>
+    <!-----------------search bar area-------------->
+    <section class="search-bar">
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid search-area">
+          <div class="wrap">
+            <div class="search">
+               <button type="submit" class="searchButton">
+                 <i class="fa fa-search"></i>
+              </button>
+               <input type="text" class="searchTerm" placeholder="search for legal services here">
+            </div>
+         </div>
+          <div class="part">
+          <h2>Most<br>Searched</h2>
+          <div class="diff-site">
+          <a href="" class="lawyer">Lawyer</a>
+          <span class="separator">|</span>
+          <a href="" class="Notaries">Notaries</a>
+          <span class="separator">|</span>
+          <a href="" class="Mediators">mediators</a>
+          <span class="separator">|</span>
+          <a href="" class="Arbitrators">Arbitrators</a>
+          </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <section>
+        <div class="container">
+             <div class="profile-1 ">
+              <div class="img-1">
+                <img src="https://cdn.pixabay.com/photo/2020/09/18/22/05/man-5583034_1280.jpg" alt="">
+              </div>
+                <div class="info">
+                    <h2 class="name">Sam Jordan</h2>
+                    <h3 class="proff">Advocate</h3>
+                    <p class="address">1465 Flinderation Road,Bensenville <br>Saint Paul, CADGA 4824</p>
+                </div>
+                <div class="follow">
+                    <ul>
+                      <li class="btn-f"><button >Follow</button></li>
+                      <li class="btn-m"><button>Message</button></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                        <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+             </div>
+        </div>
+        <div class="stats-container">
+          <div class="stat-box">
+              <img src="assest/camera.png" alt="Shots View">
+              <p class="stat-number">2413</p>
+              <p class="stat-type">Shots View</p>
+          </div>
+          <div class="stat-box">
+              <img src="assest/like.png" alt="Likes">
+              <p class="stat-number">1512</p>
+              <p class="stat-type">Likes</p>
+          </div>
+          <div class="stat-box">
+              <img src="assest/comments.png" alt="Comments">
+              <p class="stat-number">642</p>
+              <p class="stat-type">Comments</p>
+          </div>
+          <div class="stat-box">
+              <img src="assest/p.views.png" alt="Profile View">
+              <p class="stat-number">6001</p>
+              <p class="stat-type">Profile View</p>
+          </div>
+          <div class="stat-box">
+              <img src="assest/W.views.png" alt="Website View">
+              <p class="stat-number">240</p>
+              <p class="stat-type">Website View</p>
+          </div>
+          <div class="stat-box">
+              <img src="assest/attachment.png" alt="Attachment">
+              <p class="stat-number">52</p>
+              <p class="stat-type">Attachment</p>
+          </div>
+      </div>
+    </section>
+    <section class="about-cat">
+      <div class="container-ab">
+        <div class="de-header">
+          <button id="aboutBtn" class="tab1 active">About</button>
+          <button id="settingBtn" class="tab1">Setting</button>
+        </div>
+    
+        <div id="aboutSection" class="section">
+          <div class="info-section">
+            <strong>Email address:</strong>
+            <p>Jordan@gmail.com</p>
+            <hr>
+    
+            <strong>Phone Number:</strong>
+            <p>+202-555-4926</p>
+            <hr>
+    
+            <strong>Birth Day:</strong>
+            <p>05/09/1991</p>
+            <hr>
+          </div>
+    
+          <div class="expertise">
+            <strong>Expertise:</strong>
+            <div class="tags">
+              <span class="tag">Corporate Law</span>
+              <span class="tag">Criminal Law</span>
+              <span class="tag">Family Law</span>
+              <span class="tag">Personal Injury</span>
+            </div>
+            <hr>
+          </div>
+    
+          <div class="description-section">
+            <strong>Description:</strong>
+            <div class="description-box">
+              <p>Graduating with honors from [Law School Name], Sam began their career with a focus on corporate transactions and mergers, where they excelled in advising businesses on strategic legal matters and regulatory compliance. Sam's expertise extends to intellectual property law, where they have successfully navigated complex patent and trademark disputes, ensuring client innovations and brand identities are well-protected.</p>
+            </div>
+          </div>
+        </div>
+    
+        <div id="settingSection" class="section-s hidden-s">
+        <button class="setting-btn">Edit Profile</button>
+        <button class="setting-btn">Change Password</button>
+        <button class="setting-btn">Notification Preferences</button>
+        <button class="setting-btn">Theme</button>
+        <button class="setting-btn">Language</button>
+        <button class="setting-btn">Manage Linked Accounts</button>
+        <button class="setting-btn">Login Activity</button>
+        <button class="setting-btn">Two-Factor Authentication</button>
+        <button class="setting-btn">Help Center</button>
+        <button class="setting-btn">Contact Support</button>
+        <button class="setting-btn">Report</button>
+        <button class="setting-btn btn-delete">Delete Account</button>
+        </div>
+        <button class="book-btn">Book Appointment</button>
+      </div>
+    </section>
+
+    <section class="post-points">
+      <div class="post-container">
+        <div class="post-header">
+          <button id="postsBtn" class="tab active">Posts</button>
+          <button id="reviewsBtn" class="tab">Reviews</button>
+          <button id="appointmentBtn" class="tab">Appointment</button>
+        </div>
+    
+        <!-- Posts Section -->
+        <div id="postsSection" class="section1">
+          <textarea id="postInput" placeholder="Please write your comment"></textarea>
+          <div class="action-row">
+            <input type="file" id="imageUpload" class="hidden1">
+            <button class="icon-btn igg-btn" id="imageBtn"><img src="assest/attachment2.png" alt="Image"></button>
+            <button class="icon-btn" id="emojiBtn"><img src="assest/emoji.png" alt="Emoji"></button>
+            <button id="postBtn" class="post-btn">Post</button>
+          </div>
+          <div id="postContent" class="content-box"></div>
+        </div>
+    
+        <!-- Reviews Section -->
+        <div id="reviewsSection" class="section1 hidden1">
+          <textarea id="reviewInput" placeholder="Please write your review"></textarea>
+          <button id="reviewBtn" class="post-btn">Post</button>
+          <div id="reviewContent" class="review-list"></div>
+        </div>
+    
+        <!-- Appointment Section -->
+        <div id="appointmentSection" class="section1 hidden1">
+          <form id="appointmentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <button type="submit" class="post-btn">Book Appointment</button>
+          </form>
+          <div id="appointmentResult" class="content-box"></div>
+        </div>
+      </div>
+    
+    </section>
+
+
+
+
+
+
+
+
+<script src="./main.js"></script>
+</body>
+</html>
