@@ -1,129 +1,170 @@
 <% layout("/layouts/boilerplate") -%>
-
-<div class="main-container">
-  <h1><%=user.first_name%>'s dashboard</h1>
-  <h4>bio: <%=provider.bio%></h4>
-  <div class="profile-pic">
-    <img src="<%= user.image.url %>" alt="" />
-    Profile Pic <% if(currUser && currUser.user_type=="provider") {%>
-    <a href="/logout">logout</a>
-    <a href="/provider/edit/<%=provider._id%>">Edit Details</a>
-    <button id="changeBtn">Change Profile Photo</button>
-    <div id="upload-file">
-      <form
-        action="/<%=user._id%>/?_method=PUT"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-        <input
-          type="file"
-          name="user[image]"
-          placeholder="Upload new image"
-          required
-        />
-        <button>Make changes</button>
+<div class="master">
+  <section>
+    <div class="ms-container">
+         <div class="profile-1 ">
+          <div class="img-1">
+            <img src="https://cdn.pixabay.com/photo/2020/09/18/22/05/man-5583034_1280.jpg" alt="">
+          </div>
+            <div class="info">
+                <h2 class="name">Sam Jordan</h2>
+                <h3 class="proff">Advocate</h3>
+                <p class="address">1465 Flinderation Road,Bensenville <br>Saint Paul, CADGA 4824</p>
+            </div>
+            <div class="follow">
+                <ul>
+                  <li class="btn-f"><button >Follow</button></li>
+                  <li class="btn-m"><button>Message</button></li>
+                </ul>
+            </div>
+            <div class="links">
+                <ul>
+                    <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+         </div>
+    </div>
+    <div class="stats-container">
+      <div class="stat-box">
+          <img src="assest/camera.png" alt="Shots View">
+          <p class="stat-number">2413</p>
+          <p class="stat-type">Shots View</p>
+      </div>
+      <div class="stat-box">
+          <img src="assest/like.png" alt="Likes">
+          <p class="stat-number">1512</p>
+          <p class="stat-type">Likes</p>
+      </div>
+      <div class="stat-box">
+          <img src="assest/comments.png" alt="Comments">
+          <p class="stat-number">642</p>
+          <p class="stat-type">Comments</p>
+      </div>
+      <div class="stat-box">
+          <img src="assest/p.views.png" alt="Profile View">
+          <p class="stat-number">6001</p>
+          <p class="stat-type">Profile View</p>
+      </div>
+      <div class="stat-box">
+          <img src="assest/W.views.png" alt="Website View">
+          <p class="stat-number">240</p>
+          <p class="stat-type">Website View</p>
+      </div>
+      <div class="stat-box">
+          <img src="assest/attachment.png" alt="Attachment">
+          <p class="stat-number">52</p>
+          <p class="stat-type">Attachment</p>
+      </div>
+  </div>
+  </section>
+  <section class="about-cat">
+  <div class="container-ab">
+    <div class="de-header">
+      <button id="aboutBtn" class="tab1 active">About</button>
+      <button id="settingBtn" class="tab1">Setting</button>
+    </div>
+  
+    <div id="aboutSection" class="section">
+      <div class="info-section">
+        <strong>Email address:</strong>
+        <p>Jordan@gmail.com</p>
+        <hr>
+  
+        <strong>Phone Number:</strong>
+        <p>+202-555-4926</p>
+        <hr>
+  
+        <strong>Birth Day:</strong>
+        <p>05/09/1991</p>
+        <hr>
+      </div>
+  
+      <div class="expertise">
+        <strong>Expertise:</strong>
+        <div class="tags">
+          <span class="tag">Corporate Law</span>
+          <span class="tag">Criminal Law</span>
+          <span class="tag">Family Law</span>
+          <span class="tag">Personal Injury</span>
+        </div>
+        <hr>
+      </div>
+  
+      <div class="description-section">
+        <strong>Description:</strong>
+        <div class="description-box">
+          <p>Graduating with honors from [Law School Name], Sam began their career with a focus on corporate transactions and mergers, where they excelled in advising businesses on strategic legal matters and regulatory compliance. Sam's expertise extends to intellectual property law, where they have successfully navigated complex patent and trademark disputes, ensuring client innovations and brand identities are well-protected.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div id="settingSection" class="section-s hidden">
+    <button class="setting-btn">Edit Profile</button>
+    <button class="setting-btn">Change Password</button>
+    <button class="setting-btn">Notification Preferences</button>
+    <button class="setting-btn">Theme</button>
+    <button class="setting-btn">Language</button>
+    <button class="setting-btn">Manage Linked Accounts</button>
+    <button class="setting-btn">Login Activity</button>
+    <button class="setting-btn">Two-Factor Authentication</button>
+    <button class="setting-btn">Help Center</button>
+    <button class="setting-btn">Contact Support</button>
+    <button class="setting-btn">Report</button>
+    <button class="setting-btn btn-delete">Delete Account</button>
+    </div>
+    <button class="book-btn">Book Appointment</button>
+  </div>
+  </section>
+  
+  <section class="post-points">
+  <div class="post-container">
+    <div class="post-header">
+      <button id="postsBtn" class="tab active">Posts</button>
+      <button id="reviewsBtn" class="tab">Reviews</button>
+      <button id="appointmentBtn" class="tab">Appointment</button>
+    </div>
+  
+    <!-- Posts Section -->
+    <div id="postsSection" class="section1 cmt-input">
+      <textarea id="postInput" placeholder="Please write your comment"></textarea>
+      <div class="action-row">
+        <input type="file" id="imageUpload" class="hidden1">
+        <button class="icon-btn igg-btn" id="imageBtn"><img src="assest/attachment2.png" alt="Image"></button>
+        <button class="icon-btn" id="emojiBtn"><img src="assest/emoji.png" alt="Emoji"></button>
+        <button id="postBtn" class="post-btn">Post</button>
+      </div>
+      <div id="postContent" class="content-box"></div>
+    </div>
+  
+    <!-- Reviews Section -->
+    <div id="reviewsSection" class="section1 hidden1 cmt-input">
+      <textarea id="reviewInput" placeholder="Please write your review"></textarea>
+      <button id="reviewBtn" class="post-btn">Post</button>
+      <div id="reviewContent" class="review-list"></div>
+    </div>
+  
+    <!-- Appointment Section -->
+    <div id="appointmentSection" class="section1 hidden1 cmt-input">
+      <form id="appointmentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+        <button type="submit" class="post-btn">Book Appointment</button>
       </form>
-    </div>
-    <%}%>
-  </div>
-  <div class="details">
-    <div class="field">
-      <p>First Name: <%= user.first_name %></p>
-      <p>Last Name: <%= user.last_name %></p>
-    </div>
-    <div class="field">
-      <p>Username: <%= user.username %></p>
-      <p>Email: <%= user.email %></p>
-    </div>
-    <div class="field">
-      <p>Phone Number: <%= user.phone_number %></p>
-      <p>User Type: <%= user.user_type %></p>
+      <div id="appointmentResult" class="content-box"></div>
     </div>
   </div>
-  <p>Location</p>
-  <div class="location">
-    <p>Country: <%=provider.location.country%></p>
-    <p>State: <%=provider.location.state%></p>
-    <p>City: <%=provider.location.city%></p>
-    <p>Pincode: <%=provider.location.pincode%></p>
-  </div>
-  Tags:
-  <div class="tags-container">
-    <%for (tag of provider.tags) {%>
-    <div class="tags"><%=tag.name%></div>
-    <%}%>
-  </div>
-  <%if(currUser && currUser.user_type=="provider"){%>
-    <h4>Appointments</h4>
-    <%=appointment%>
-  <%}%>
-  <%if(currUser && currUser.user_type!="provider"){%>
-  <h4>Book An appointment</h4>
-  <form id="appointmentForm" method="POST" action="/booking/<%=currUser._id%>/<%=provider._id%>">
-    <div class="form-group">
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required />
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        rows="4"
-        placeholder="Want to describe your issue here?"
-      ></textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit">Submit Appointment</button>
-    </div>
-  </form> 
-  <h4>Leave a Review</h4>
-  <form
-    class="needs-validation"
-    action="/listings/ listing.id/reviews"
-    method="POST"
-    novalidate
-  >
-    <div class="mb-3 mt-3">
-      <label for="rating" class="form-label">Rating</label>
-      <fieldset class="starability-slot">
-        <input
-          type="radio"
-          id="no-rate"
-          class="input-no-rate"
-          name="review[rating]"
-          value="1"
-          checked
-          aria-label="No rating."
-        />
-        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-        <label for="first-rate1" title="Terrible">1 star</label>
-        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-        <label for="first-rate2" title="Not good">2 stars</label>
-        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-        <label for="first-rate3" title="Average">3 stars</label>
-        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-        <label for="first-rate4" title="Very good">4 stars</label>
-        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-        <label for="first-rate5" title="Amazing">5 stars</label>
-      </fieldset>
-    </div>
-    <div class="mb-3 mt-3">
-      <label for="comment" class="form-label">Comments</label>
-      <textarea
-        name="review[comment]"
-        id="comment"
-        cols="30"
-        rows="5"
-        class="form-control"
-        required
-      ></textarea>
-      <div class="invalid-feedback">Please add some comments for review</div>
-    </div>
-    <button class="btn btn-outline-dark">Submit</button>
-  </form>
-  <%}%>
+  
+  </section>
 </div>
+<!-- <script src="./main.js"></script> -->
+
 <script>
   let uploadFile = document.getElementById("upload-file");
   let changeBtn = document.getElementById("changeBtn");

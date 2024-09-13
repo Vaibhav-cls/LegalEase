@@ -180,8 +180,9 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const providerInfo = await Provider.findOne({ user: userId }).populate(
     "tags"
   );
+  const providerId = providerInfo._id.toString()
   const appointments = await Appointment.find({
-    providerId: providerInfo._id,
+    providerId: providerId,
   }).populate("clientId");
   console.log(appointments);
   res.render("providers/dashboard.ejs", {
@@ -274,15 +275,10 @@ app.get("/client/dashboard/:id", async (req, res) => {
   const { id } = req.params;
   const userDetails = await User.findOne({ _id: id });
   const clientDetails = await Client.findOne({ user: id });
+  const clientId = userDetails._id.toString();
   const bookingDetails = await Appointment.find({
-    clientId: userDetails._id,
-  }).populate({
-    path: "providerId",
-    populate: {
-      path: "user",
-      model: "User",
-    },
-  });
+    clientId: clientId,
+  }).populate("providerId");
   console.log(bookingDetails);
   res.render("clients/dashboard.ejs", {
     user: userDetails,
