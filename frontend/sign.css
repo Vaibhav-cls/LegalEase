@@ -414,3 +414,30 @@ p a:hover {
 .register-btn:hover {
     background-color: #2eaf44;
 }
+
+.prev {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.prev i {
+    font-size: 24px;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.prev:hover i {
+    color: #37e955;
+}
+
+.prev-part2{
+   margin: 2rem 24rem;
+}
+
+.prev-part3{
+    margin: 6rem 24rem;
+ }
+
