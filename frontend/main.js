@@ -229,5 +229,74 @@ document.getElementById("postsBtn").addEventListener("click", function() {
   
     document.getElementById("appointmentForm").reset();
   });
-  
+
+
+  /*-------------Experties selection Script-----------*/
+  // Function to add skill from input to chosen tags
+  function addSkill() {
+    const skillInput = document.getElementById("skill");
+    const skillValue = skillInput.value.trim();
+    if (skillValue) {
+        displayTag(skillValue);
+        skillInput.value = ""; // Clear input after adding
+    }
+}
+
+// Function to display chosen tags in the left box
+function displayTag(tagName) {
+    const chosenTagsList = document.getElementById("chosen-tags-list");
+    const tagElement = document.createElement("div");
+    tagElement.className = "tag-item";
+    tagElement.innerText = tagName;
+    chosenTagsList.appendChild(tagElement);
+}
+
+// Function to select tag from available tags on the right
+function selectTag(tagName) {
+    displayTag(tagName);
+}
+
+/*-------------Sign Up page Changing script-----------*/
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize sections and buttons
+  const part1 = document.querySelector('.sign-up-part-1');
+  const part2 = document.querySelector('.sign-up-part-2');
+  const part3 = document.querySelector('.sign-up-part-3');
+  const nextButtonPart1 = document.querySelector('.sign-up-part-1 .btn');
+  const toggleSwitch = document.getElementById('toggle-switch');
+
+  // Initially show the first part and hide the others
+  part1.style.display = 'block';
+  part2.style.display = 'none';
+  part3.style.display = 'none';
+
+  // Handle the next button click in part 1
+  nextButtonPart1.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent form submission
+      const userType = toggleSwitch.checked ? 'provider' : 'client';
+
+      // Hide part 1 and show part 2
+      part1.style.display = 'none';
+      part2.style.display = 'block';
+
+      // Change button text and behavior in part 2
+      const part2NextButton = document.createElement('button');
+      part2NextButton.classList.add('next-btn');
+      part2NextButton.textContent = userType === 'provider' ? 'Next' : 'Sign Up';
+      part2NextButton.type = 'button'; // Prevent form submission
+      part2.appendChild(part2NextButton);
+
+      // Handle the next button click in part 2
+      part2NextButton.addEventListener('click', function() {
+          part2.style.display = 'none';
+          if (userType === 'provider') {
+              part3.style.display = 'block';
+          } else {
+              // Here you can handle the sign-up process for clients
+              alert("Client sign-up completed!"); // Placeholder action
+          }
+      });
+  });
+});
+
   
