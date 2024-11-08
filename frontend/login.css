@@ -59,7 +59,7 @@ body::before {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .input-group input {
@@ -67,18 +67,19 @@ body::before {
     padding: 10px;
     border-radius: 30px;
     border: 1px solid #ccc;
-    font-size: 16px;
+    font-size: 14px;
 }
 .sub-heading {
     display: flex;
     color: #71777c;
     justify-content: left;
     padding-left: 1rem;
+    font-size: 14px;
 }
 .forgot-password {
     display: block;
     text-align: right;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 14px;
     color: gray;
     text-decoration: none;
@@ -91,7 +92,7 @@ body::before {
     width: 100%;
     border-radius: 30px;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     cursor: pointer;
 }
@@ -127,4 +128,7 @@ body::before {
 .google-login img {
     width: 50px;
     margin-right: 10px;
+}
+.mr-lg p {
+    font-size: 14px;
 }
