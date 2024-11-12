@@ -1,8 +1,7 @@
 <% layout("/layouts/boilerplate") -%>
 
 <title>clients Dashboard</title>
-<div class="container">
-  <%=user%>
+<div class="container mt-xl-3">
   <div class="row">
     <div class="col-xl-8">
       <div class="card">
@@ -37,820 +36,260 @@
                         >
                       </p>
                       <p class="text-muted fw-medium mb-0">
-                        <i class="mdi mdi-phone-in-talk-outline"></i
-                        >+91 <%=user.phone_number%>
+                        <i class="mdi mdi-phone-in-talk-outline"></i>+91
+                        <%=user.phone_number%>
                       </p>
                     </div>
                   </div>
                 </div>
-                <ul
-                  class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied"
-                  role="tablist"
-                >
-                  <li class="nav-item" role="presentation">
-                    <a
-                      class="nav-link px-4"
-                      href="https://bootdey.com/snippets/view/profile-projects"
-                      target="__blank"
-                    >
-                      <span class="d-block d-sm-none"
-                        ><i class="fas fa-home"></i
-                      ></span>
-                      <span class="d-none d-sm-block">Projects</span>
-                    </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a
-                      class="nav-link px-4 active"
-                      data-bs-toggle="tab"
-                      href="#tasks-tab"
-                      role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                    >
-                      <span class="d-block d-sm-none"
-                        ><i class="mdi mdi-menu-open"></i
-                      ></span>
-                      <span class="d-none d-sm-block">Tasks</span>
-                    </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a
-                      class="nav-link px-4"
-                      href="https://bootdey.com/snippets/view/profile-with-team-section"
-                      target="__blank"
-                    >
-                      <span class="d-block d-sm-none"
-                        ><i class="mdi mdi-account-group-outline"></i
-                      ></span>
-                      <span class="d-none d-sm-block">Team</span>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="tab-content p-4">
-          <div class="tab-pane active show" id="tasks-tab" role="tabpanel">
-            <h4 class="card-title mb-4">Tasks</h4>
-            <div class="row">
-              <div class="col-xl-12">
-                <div class="task-list-box" id="landing-task">
-                  <div id="task-item-1">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customCheck1"
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customCheck1"
-                                >Create a New Landing</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-2"
-                                      data-bs-placement="top"
-                                      aria-label="Mark Powell"
-                                      data-bs-original-title="Mark Powell"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-4"
-                                      data-bs-placement="top"
-                                      aria-label="Craig Hall"
-                                      data-bs-original-title="Craig Hall"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-11"
-                                      data-bs-placement="top"
-                                      data-bs-original-title="Sarah Kerns"
-                                    >
-                                      <div class="avatar-sm">
-                                        <div
-                                          class="avatar-title rounded-circle bg-info"
-                                        >
-                                          S
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-warning font-size-11 task-status"
-                                      >Progress</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >4/8
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-1')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-1')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline align-middle font-size-16 text-danger"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button
+            class="nav-link active"
+            id="nav-setting-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-setting"
+            type="button"
+            role="tab"
+            aria-controls="nav-setting"
+            aria-selected="false"
+          >
+            Settings
+          </button>
+          <button
+            class="nav-link"
+            id="nav-transaction-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-transaction"
+            type="button"
+            role="tab"
+            aria-controls="nav-transaction"
+            aria-selected="true"
+          >
+            Transaction History
+          </button>
+          <button
+            class="nav-link"
+            id="nav-notification-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-notification"
+            type="button"
+            role="tab"
+            aria-controls="nav-notification"
+            aria-selected="false"
+          >
+            Notifications
+          </button>
+          <button
+            class="nav-link"
+            id="nav-document-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-document"
+            type="button"
+            role="tab"
+            aria-controls="nav-document"
+            aria-selected="false"
+          >
+            Documents
+          </button>
+        </div>
+      </nav>
+      <div class="tab-content bg-white py-3 px-5 mb-5" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="nav-setting"
+          role="tabpanel"
+          aria-labelledby="nav-setting-tab"
+          tabindex="0"
+        >
+          <form id="details-form" action="/client/edit/<%=clients._id%>?_method=PATCH" method="POST">
+            <fieldset disabled id="fieldset">
+              <div class="row">
+                <legend class="col-4">Account Details</legend>
+                <p id="editBtn" class="col-4 py-2 text-primary text-decoration-underline">Edit</p>
+              </div>
+              <div class="row">
+                <div class="mb-3 col">
+                  <label for="first_name" class="form-label"
+                    >First name</label
+                  >
+                  <input
+                    type="text"
+                    id="first_name"
+                    class="form-control"
+                    value=<%=user.first_name%>
+                  />
                 </div>
-                <div class="task-list-box" id="design-task">
-                  <div id="task-item-2">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customCheck2"
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customCheck2"
-                                >Create a Layout Design</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      value="member-3"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      aria-label="Terrell Soto"
-                                      data-bs-original-title="Terrell Soto"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      value="member-2"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      aria-label="Ruhi Shah"
-                                      data-bs-original-title="Ruhi Shah"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      value="member-1"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      aria-label="Ruhi Shah"
-                                      data-bs-original-title="Ruhi Shah"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-warning font-size-11 task-status"
-                                      >Progress</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >8/12
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-2')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-2')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline font-size-16 text-danger align-middle"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-list-box" id="blog-task">
-                  <div id="task-item-3">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customCheck3"
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customCheck3"
-                                >Create a Blog Template UI</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      value="member-6"
-                                      aria-label="Scott Edward"
-                                      data-bs-original-title="Scott Edward"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-12"
-                                      data-bs-placement="top"
-                                      data-bs-original-title="Denny Silva"
-                                    >
-                                      <div class="avatar-sm">
-                                        <div
-                                          class="avatar-title rounded-circle bg-primary"
-                                        >
-                                          D
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      value="member-10"
-                                      aria-label="Betty Cooney"
-                                      data-bs-original-title="Betty Cooney"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      value="member-5"
-                                      aria-label="Michael Jackson"
-                                      data-bs-original-title="Michael Jackson"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-danger font-size-11 task-status"
-                                      >Pending</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >0/6
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-3')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-3')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-list-box" id="comp-task">
-                  <div id="task-item-4">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customChat"
-                                checked
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customChat"
-                                >Chat App Pages</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      value="member-3"
-                                      aria-label="Annmarie Paul"
-                                      data-bs-original-title="Annmarie Paul"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-success font-size-11 task-status"
-                                      >Completed</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >3/3
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-4')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-4')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-list-box" id="app-task">
-                  <div id="task-item-5">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customComponents"
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customComponents"
-                                >Components Pages</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-7"
-                                      data-bs-placement="top"
-                                      aria-label="Eric Williams"
-                                      data-bs-original-title="Eric Williams"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-9"
-                                      data-bs-placement="top"
-                                      aria-label="Richard Millar"
-                                      data-bs-original-title="Richard Millar"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar8.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-8"
-                                      data-bs-placement="top"
-                                      aria-label="Tama Turner"
-                                      data-bs-original-title="Tama Turner"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar8.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-danger font-size-11 task-status"
-                                      >Pending</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >7/17
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-5')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-5')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="task-list-box" id="gallery-task">
-                  <div id="task-item-6">
-                    <div class="card task-box rounded-3">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-xl-6 col-sm-5">
-                            <div class="checklist form-check font-size-15">
-                              <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="customGallry"
-                                checked
-                              />
-                              <label
-                                class="form-check-label ms-1 task-title"
-                                for="customGallry"
-                                >Create a Gallery Pages</label
-                              >
-                            </div>
-                          </div>
-                          <div class="col-xl-6 col-sm-7">
-                            <div class="row align-items-center">
-                              <div class="col-xl-5 col-md-6 col-sm-5">
-                                <div
-                                  class="avatar-group mt-3 mt-xl-0 task-assigne"
-                                >
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      value="member-5"
-                                      data-bs-placement="top"
-                                      aria-label="John Walker"
-                                      data-bs-original-title="John Walker"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                  <div class="avatar-group-item">
-                                    <a
-                                      href="javascript: void(0);"
-                                      class="d-inline-block"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-placement="top"
-                                      value="member-4"
-                                      aria-label="Willie Garcia"
-                                      data-bs-original-title="Willie Garcia"
-                                    >
-                                      <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                                        alt
-                                        class="rounded-circle avatar-sm"
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xl-7 col-md-6 col-sm-7">
-                                <div
-                                  class="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end"
-                                >
-                                  <div>
-                                    <span
-                                      class="badge rounded-pill badge-soft-success font-size-11 task-status"
-                                      >Completed</span
-                                    >
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      ><i
-                                        class="mdi mdi-checkbox-marked-circle-outline me-1"
-                                      ></i
-                                      >5/5
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="mb-0 text-muted fw-medium"
-                                      data-bs-toggle="modal"
-                                      data-bs-target=".bs-example-new-task"
-                                      ><i
-                                        class="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                        onclick="editTask('task-item-6')"
-                                      ></i
-                                    ></a>
-                                  </div>
-                                  <div>
-                                    <a
-                                      href="#"
-                                      class="delete-item"
-                                      onclick="deleteProjects('task-item-6')"
-                                    >
-                                      <i
-                                        class="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"
-                                      ></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="mb-3 col">
+                  <label for="last_name" class="form-label"
+                    >Last name</label
+                  >
+                  <input
+                    type="text"
+                    id="last_name"
+                    class="form-control"
+                    value=<%=user.last_name%>
+                  />
                 </div>
               </div>
-            </div>
-          </div>
+              <div class="row">
+                <div class="mb-3 col">
+                  <label for="username" class="form-label"
+                    >Username</label
+                  >
+                  <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    value=<%=user.username%>
+                  />
+                </div>
+                <div class="mb-3 col">
+                  <label for="phone_number" class="form-label"
+                    >Phone number</label
+                  >
+                  <input
+                    type="text"
+                    id="phone_number"
+                    class="form-control"
+                    value=<%=user.phone_number%>
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="user_type" class="form-label"
+                  >User role</label
+                >
+                <input
+                  type="text"
+                  id="user_type"
+                  class="form-control"
+                  value=<%=user.user_type%>
+                  disabled
+                />
+              </div>
+              <div class="mb-3">
+                <label for="bio" class="form-label"
+                  >Bio</label
+                >
+                <textarea
+                  type="text"
+                  id="bio"
+                  class="form-control"
+                ><%=clients.bio%></textarea>
+              </div>
+              <h5>Location Details</h5>
+              <div class="row">
+                <div class="mb-3 col">
+                  <label for="location[country]" class="form-label"
+                    >Country</label
+                  >
+                  <input
+                    type="text"
+                    id="country"
+                    name="location[country]"
+                    class="form-control"
+                    value=<%=clients.location.country%>
+                  />
+                </div>
+                <div class="mb-3 col">
+                  <label for="location[state]" class="form-label"
+                    >State</label
+                  >
+                  <input
+                    type="text"
+                    name="location[state]"
+                    id="state"
+                    class="form-control"
+                    value="<%=clients.location.state%>"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col">
+                  <label for="location[city]" class="form-label"
+                    >City</label
+                  >
+                  <input
+                    type="text"
+                    id="city"
+                    name="location[city]"
+                    class="form-control"
+                    value=<%=clients.location.city%>
+                  />
+                </div>
+                <div class="mb-3 col">
+                  <label for="location[pincode]" class="form-label"
+                    >Pincode</label
+                  >
+                  <input
+                    type="number"
+                    name="location[pincode]"
+                    id="pincode"
+                    maxlength="4"
+                    minlength="4"
+                    class="form-control"
+                    value="<%=clients.location.pincode%>"
+                  />
+                </div>
+              </div>
+              <button type="submit" id="submitBtn" class="btn btn-primary d-none">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-transaction"
+          role="tabpanel"
+          aria-labelledby="nav-transaction-tab"
+          tabindex="0"
+        >
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat nisi
+          tempora aut cupiditate deserunt consequatur inventore dolor vitae
+          excepturi quia explicabo asperiores recusandae perspiciatis et, eaque
+          omnis repellendus? Rerum maxime exercitationem labore placeat numquam
+          tempora incidunt soluta, nulla harum commodi nihil modi explicabo,
+          eaque eos ad itaque porro sunt! Tempora quidem beatae laboriosam
+          aspernatur aliquid. Vero aliquid, doloribus voluptatem magni saepe
+          deleniti asperiores voluptas consequuntur aliquam nulla ducimus quae
+          optio aut facere beatae harum debitis quisquam a cumque? Ullam nobis
+          facilis cupiditate incidunt! Deleniti quos explicabo inventore ullam,
+          pariatur non aut doloremque vero id soluta necessitatibus ea laborum
+          minus magni reprehenderit! Molestias nihil repellendus veritatis
+          impedit cumque quidem voluptates magni perferendis! Ullam fugiat
+          repellat quo odit, cumque et ipsam nihil. Soluta, accusamus.
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-notification"
+          role="tabpanel"
+          aria-labelledby="nav-notification-tab"
+          tabindex="0"
+        >
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat nisi
+          tempora aut cupiditate deserunt consequatur inventore dolor vitae
+          excepturi quia explicabo asperiores recusandae perspiciatis et, eaque
+          omnis repellendus? Rerum maxime exercitationem labore placeat numquam
+          tempora incidunt soluta, nulla harum commodi nihil modi explicabo,
+          eaque eos ad itaque porro sunt! Tempora quidem beatae laboriosam
+          aspernatur aliquid.
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-document"
+          role="tabpanel"
+          aria-labelledby="nav-document-tab"
+          tabindex="0"
+        >
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat nisi
+          tempora aut cupiditate deserunt consequatur inventore dolor vitae
+          excepturi quia explicabo asperiores recusandae perspiciatis et, eaque
+          omnis repellendus?
         </div>
       </div>
     </div>
@@ -859,105 +298,90 @@
         <div class="card-body">
           <div class="pb-2">
             <h4 class="card-title mb-3">Active Booking</h4>
-            <%=booking%>
-            <div class="card mb-3" style="max-width: 540px;">
+            <% booking.forEach(item => { %> <%if(!item.status) {%>
+            <div class="card mb-3" style="max-width: 540px">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="..." class="img-fluid rounded-start" alt="...">
+                  <img
+                    src="<%=item.providerId.user.image.url%>"
+                    class="img-flid rounded-start"
+                    alt="Provider Image"
+                  />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title"><%booking.providerId%></h5>
-                    <p class="card-text">This is a wider card with supporting</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title"><%item.providerId%></h5>
+
+                    <b
+                      ><%= item.providerId.user.first_name %> <%=
+                      item.providerId.user.last_name %></b
+                    >
+                    <br />
+                    <small class="text-body-secondary fs-9"
+                      >note: <%= item.description %></small
+                    >
+                    <br />
+                    <small>
+                      Booking Date: <%= item.date.toDateString()%>
+                    </small>
+                    <br />
+                    <% if(item.confirmationStatus == "pending") {%>
+                    <small> Status: Pending </small>
+                    <%}else if(item.confirmationStatus == "confirmed"){%>
+                    <small> Status: Confirmed </small>
+                    <%}else if(item.confirmationStatus == "canceled") {%>
+                    <small> Status: Canceled </small>
+                    <%}else{%>
+                    <small> Status: N/A </small>
+                    <%}%>
                   </div>
                 </div>
               </div>
             </div>
-            <p>
-              Hi I'm Jansh, has been the industry's standard dummy text To an
-              English person, it will seem like simplified.
-            </p>
-            <ul class="ps-3 mb-0">
-              <li>it will seem like simplified.</li>
-              <li>
-                To achieve this, it would be necessary to have uniform
-                pronunciation
-              </li>
-            </ul>
-          </div>
-          <hr />
-          <div class="pt-2">
-            <h4 class="card-title mb-4">My Skill</h4>
-            <div class="d-flex gap-2 flex-wrap">
-              <span class="badge badge-soft-secondary p-2">HTML</span>
-              <span class="badge badge-soft-secondary p-2">Bootstrap</span>
-              <span class="badge badge-soft-secondary p-2">Scss</span>
-              <span class="badge badge-soft-secondary p-2">Javascript</span>
-              <span class="badge badge-soft-secondary p-2">React</span>
-              <span class="badge badge-soft-secondary p-2">Angular</span>
+            <%}%> <% }) %>
+            <hr />
+            <h4 class="card-title mb-3">Completed Booking</h4>
+            <% booking.forEach(item => { %> <%if(item.status) {%>
+            <div class="card mb-3" style="max-width: 540px">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="<%=item.providerId.user.image.url%>"
+                    class="img-flid rounded-start"
+                    alt="Provider Image"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%item.providerId%></h5>
+
+                    <b
+                      ><%= item.providerId.user.first_name %> <%=
+                      item.providerId.user.last_name %></b
+                    >
+                    <br />
+                    <small class="text-body-secondary fs-9"
+                      ><%= item.providerId.bio %></small
+                    >
+
+                    <small>
+                      Booking Date: <%= item.date.toDateString()%>
+                    </small>
+                    <br />
+                    <% if(item.confirmationStatus == "pending") {%>
+                    <small> Status: Pending </small>
+                    <%}else if(item.confirmationStatus == "confirmed"){%>
+                    <small> Status: Confirmed </small>
+                    <%}else if(item.confirmationStatus == "canceled") {%>
+                    <small> Status: Canceled </small>
+                    <%}else{%>
+                    <small> Status: N/A </small>
+                    <%}%>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div>
-            <h4 class="card-title mb-4">Personal Details</h4>
-            <div class="table-responsive">
-              <table class="table table-bordered mb-0">
-                <tbody>
-                  <tr>
-                    <th scope="row">Name</th>
-                    <td>Jansh Wells</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Location</th>
-                    <td>California, United States</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Language</th>
-                    <td>English</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Website</th>
-                    <td>
-                      <a
-                        href="/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="95f4f7f6a4a7d5e5e7faf7fcf6bbf6faf8"
-                        >[email&#160;protected]</a
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div>
-            <h4 class="card-title mb-4">Work Experince</h4>
-            <ul class="list-unstyled work-activity mb-0">
-              <li class="work-item" data-date="2020-21">
-                <h6 class="lh-base mb-0">ABCD Company</h6>
-                <p class="font-size-13 mb-2">Web Designer</p>
-                <p>
-                  To achieve this, it would be necessary to have uniform
-                  grammar, and more common words.
-                </p>
-              </li>
-              <li class="work-item" data-date="2019-20">
-                <h6 class="lh-base mb-0">XYZ Company</h6>
-                <p class="font-size-13 mb-2">Graphic Designer</p>
-                <p class="mb-0">
-                  It will be as simple as occidental in fact, it will be
-                  Occidental person, it will seem like simplified.
-                </p>
-              </li>
-            </ul>
+            <%}%> <% }) %>
           </div>
         </div>
       </div>
@@ -966,9 +390,18 @@
 </div>
 
 <script>
-  let uploadFile = document.getElementById("upload-file");
-  let changeBtn = document.getElementById("changeBtn");
-  changeBtn.addEventListener("click", () => {
-    uploadFile.style.display = "block";
-  });
+  // let uploadFile = document.getElementById("upload-file");
+  // let changeBtn = document.getElementById("changeBtn");
+  // changeBtn.addEventListener("click", () => {
+  //   uploadFile.style.display = "block";
+  // });
+
+  let fieldSet = document.getElementById("fieldset");
+  let editBtn = document.getElementById("editBtn");
+  let submitBtn = document.getElementById("submitBtn");
+
+  editBtn.addEventListener('click',()=>{
+    fieldSet.removeAttribute("disabled");
+    submitBtn.classList.remove("d-none");
+  })
 </script>

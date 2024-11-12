@@ -180,7 +180,8 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const providerInfo = await Provider.findOne({ user: userId }).populate(
     "tags"
   );
-  const providerId = providerInfo._id.toString()
+  const providerId = providerInfo._id.toString();
+  req.session.providerId = providerId;
   const appointments = await Appointment.find({
     providerId: providerId,
   }).populate("clientId");
@@ -271,15 +272,21 @@ app.patch("/provider/edit/:id", isLoggedIn, isOwner, async (req, res) => {
 //------------------------------------------------------------------
 // CLIENT SIDE ROUTES
 
-app.get("/client/dashboard/:id", async (req, res) => {
+app.get("/client/dashboard/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const userDetails = await User.findOne({ _id: id });
+  const userDetails = await User.findOne({ _id: id.toString() });
   const clientDetails = await Client.findOne({ user: id });
   const clientId = userDetails._id.toString();
+  req.session.clientId = clientId.toString();
   const bookingDetails = await Appointment.find({
     clientId: clientId,
-  }).populate("providerId");
-  console.log(bookingDetails);
+  }).populate({
+    path: "providerId",
+    populate: {
+      path: "user", // Assuming each provider has a reference to a User document
+      model: "User", // Adjust model name if needed
+    },
+  });
   res.render("clients/dashboard.ejs", {
     user: userDetails,
     clients: clientDetails,
@@ -401,6 +408,8 @@ app.get("/logout", (req, res) => {
       return next(err);
     }
     // req.flash("success", "You are logged out!");
+    req.session.clientId = null;
+    req.session.providerId = null;
     console.log("Logged out");
     res.redirect("/login");
   });
@@ -450,7 +459,12 @@ app.get("/", (req, res) => {
   res.render("users/homepage.ejs");
 });
 app.get("/booking", (req, res) => {
-  res.render("users/booking.ejs");
+  const sessionData = {
+    clientId: req.session.clientId,
+    providerId: req.session.providerId,
+  };
+  console.log(sessionData);
+  res.render("users/booking.ejs", { sessionData });
 });
 app.post("/booking/:clientId/:providerId", async (req, res) => {
   const appointmentCreds = req.body;
@@ -464,7 +478,7 @@ app.post("/booking/:clientId/:providerId", async (req, res) => {
   });
   await bookingDetails.save();
   console.log("Booking success");
-  res.redirect(`provider/dashboard/${providerId}`);
+  res.redirect(`/marketplace`);
 });
 app.get("/nav", (req, res) => {
   res.render("includes/navbar.ejs");

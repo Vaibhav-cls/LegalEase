@@ -7,40 +7,18 @@
     <title>Document</title>
   </head>
   <body>
+    provider: <%=sessionData.providerId%>
+    <br />
+    client: <%=sessionData.clientId%>
+    <form
+      action="booking/<%=sessionData.clientId%>/<%=sessionData.providerId%>"
+      method="POST"
+      id="appointmentForm"
+    >
+      <input type="date" name="date" id="" />
+      <textarea name="description" id="">Description</textarea>
+      <button type="submit">Submit</button>
+    </form>
     
-    <script>
-      document
-        .getElementById("appointmentForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData.entries());
-
-          try {
-            const response = await fetch("/api/appointments", {
-              // Adjust the URL to match your backend endpoint
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-
-            const result = await response.json();
-            alert("Appointment submitted successfully!");
-            console.log(result);
-            // Optionally clear the form or redirect
-            this.reset();
-          } catch (error) {
-            console.error("Error submitting the form:", error);
-            alert("There was a problem submitting the appointment.");
-          }
-        });
-    </script>
   </body>
 </html>
