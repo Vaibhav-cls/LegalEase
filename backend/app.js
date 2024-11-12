@@ -185,7 +185,6 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const appointments = await Appointment.find({
     providerId: providerId,
   }).populate("clientId");
-  console.log(appointments);
   res.render("providers/dashboard.ejs", {
     provider: providerInfo,
     user: userInfo,
@@ -315,7 +314,6 @@ app.post("/signup/client/:id", async (req, res) => {
       user: user._id,
       ...clientDetails,
     });
-    // console.log(newClient);
     await newClient.save();
     req.flash("success", "Client details added successfully");
     res.redirect(`/client/dashboard/${id}`);
@@ -339,6 +337,7 @@ app.patch("/client/edit/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const newValues = req.body;
+    console.log("value: ", newValues)
 
     const clientDetails = await Client.findOne({ _id: id });
     if (!clientDetails) {
@@ -463,7 +462,6 @@ app.get("/booking", (req, res) => {
     clientId: req.session.clientId,
     providerId: req.session.providerId,
   };
-  console.log(sessionData);
   res.render("users/booking.ejs", { sessionData });
 });
 app.post("/booking/:clientId/:providerId", async (req, res) => {
