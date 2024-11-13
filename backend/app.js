@@ -337,7 +337,7 @@ app.patch("/client/edit/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const newValues = req.body;
-    console.log("value: ", newValues)
+    console.log("value: ", newValues);
 
     const clientDetails = await Client.findOne({ _id: id });
     if (!clientDetails) {
@@ -365,7 +365,7 @@ app.put("/:id", upload.single("user[image]"), async (req, res, next) => {
 
 // User LOGIN api
 app.get("/login", (req, res) => {
-  res.render("users/login");
+  res.render("users/login1");
 });
 app.post(
   "/login",
