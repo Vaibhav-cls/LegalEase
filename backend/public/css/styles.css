@@ -12,7 +12,7 @@ body {
     149deg,
     rgba(255, 255, 255, 1) 0%,
     rgba(255, 220, 188, 1) 100%
-  );
+  ) !important;
 }
 .result-text {
   font-size: 16px;
