@@ -18,8 +18,11 @@
         </p>
         <p class="tag-head">Tags</p>
         <div class="tags">
-          <% for(let i=0;i<3;i++) {%>
-          <div class="tag"><%=p.tags[i].name%></div>
+          <% for(let i=0;i<p.tags.length;i++) { var count=0%>
+            <%if(count<=3){%>
+              <div class="tag"><%=p.tags[i].name%></div>
+            <%count+=1 }%>
+          
           <% } %>
         </div>
         <div class="bottom-panel">
