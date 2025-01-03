@@ -1,49 +1,42 @@
 <% layout("/layouts/boilerplate") -%>
 
-<div class="master">
-  provider = <%=provider %>
-  user = <%= user %>
-  <section>
-    <div class="ms-container">
-      <div class="profile-1">
-        <div class="img-1">
-          <img
-            src= <%= user.image.url %>
-            alt="profile picture"
-          />
+<div class="master-container">
+  <section class="top-container">
+    <div class="profile-1">
+      <div class="img-1">
+        <img src="<%= user.image.url %>" alt="profile picture" />
+      </div>
+      <div class="right-card">
+        <div class="info">
+          <h2 class="name"><%= user.first_name %> <%= user.last_name %></h2>
+          <p class="address" style="text-align: left">
+            <%= provider.location.city %>, <%= provider.location.state %>
+            <br />
+            <%= provider.location.country %>
+          </p>
         </div>
-        <div class="right-card">
-          <div class="info">
-            <h2 class="name"><%= user.first_name %> <%= user.last_name %></h2>
-            <p class="address" style="text-align: left;">
-              <%= provider.location.city %>, <%= provider.location.state %>
-              <br> <%= provider.location.country %>
-            </p>
-          </div>
-          <div class="follow">
-            <ul>
-              <% for(tag of provider.tags) {%>
-                <li class="btn-f"><button><%=tag.name%></button></li>
-              <% } %>
-            </ul>
-            
-          </div>
-          <div class="links">
-            <ul>
-              <li>
-                <a href=""><i class="fa-brands fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa-brands fa-linkedin"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa-brands fa-instagram"></i></a>
-              </li>
-            </ul>
-          </div>
+        <div class="follow">
+          <ul>
+            <% for(tag of provider.tags) {%>
+            <li class="btn-f"><button><%=tag.name%></button></li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="links">
+          <ul>
+            <li>
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa-brands fa-instagram"></i></a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -80,125 +73,121 @@
       </div>
     </div>
   </section>
-  <section class="about-cat">
-    <div class="container-ab">
-      <div class="de-header">
-        <button id="aboutBtn" class="tab1 active">About</button>
-        <button id="settingBtn" class="tab1">Setting</button>
-      </div>
-
-      <div id="aboutSection" class="section">
-        <div class="info-section">
-          <strong>Email address:</strong>
-          <p>Jordan@gmail.com</p>
-          <hr />
-
-          <strong>Phone Number:</strong>
-          <p>+202-555-4926</p>
-          <hr />
-
-          <strong>Birth Day:</strong>
-          <p>05/09/1991</p>
-          <hr />
+  <section class="bottom-container">
+    <div class="about-cat">
+      <div class="container-ab">
+        <div class="de-header">
+          <button id="aboutBtn" class="tab1 active">About</button>
+          <button id="settingBtn" class="tab1">Setting</button>
         </div>
 
-        <div class="expertise">
-          <strong>Expertise:</strong>
-          <div class="tags">
-            <span class="tag">Corporate Law</span>
-            <span class="tag">Criminal Law</span>
-            <span class="tag">Family Law</span>
-            <span class="tag">Personal Injury</span>
+        <div id="aboutSection" class="section">
+          <div class="info-section">
+            <strong>Email address:</strong>
+            <p><%= user.email%></p>
+            <hr />
+
+            <strong>Phone Number:</strong>
+            <p>+91 <%= user.phone_number%></p>
+            <hr />
+
+            <strong>Experience (in years):</strong>
+            <p><%= provider.experience%></p>
+            <hr />
+
+            <strong>User role:</strong>
+            <p style="text-transform: capitalize"><%= user.user_type%></p>
+            <hr />
           </div>
-          <hr />
-        </div>
 
-        <div class="description-section">
-          <strong>Description:</strong>
-          <div class="description-box">
-            <p>
-              Graduating with honors from [Law School Name], Sam began their
-              career with a focus on corporate transactions and mergers, where
-              they excelled in advising businesses on strategic legal matters
-              and regulatory compliance. Sam's expertise extends to intellectual
-              property law, where they have successfully navigated complex
-              patent and trademark disputes, ensuring client innovations and
-              brand identities are well-protected.
-            </p>
+          <div class="expertise">
+            <strong>Expertise:</strong>
+            <div class="tags">
+              <% for(tag of provider.tags) {%>
+              <span class="tag"><%=tag.name%></span>
+              <% } %>
+            </div>
+            <hr />
+          </div>
+
+          <div class="description-section">
+            <strong>Description:</strong>
+            <div class="description-box">
+              <p><%= provider.bio%></p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="settingSection" class="section-s hidden">
-        <button class="setting-btn">Edit Profile</button>
-        <button class="setting-btn">Change Password</button>
-        <button class="setting-btn">Notification Preferences</button>
-        <button class="setting-btn">Theme</button>
-        <button class="setting-btn">Language</button>
-        <button class="setting-btn">Manage Linked Accounts</button>
-        <button class="setting-btn">Login Activity</button>
-        <button class="setting-btn">Two-Factor Authentication</button>
-        <button class="setting-btn">Help Center</button>
-        <button class="setting-btn">Contact Support</button>
-        <button class="setting-btn">Report</button>
-        <button class="setting-btn btn-delete">Delete Account</button>
+        <div id="settingSection" class="section-s hidden">
+          <button class="setting-btn">Edit Profile</button>
+          <button class="setting-btn">Change Password</button>
+          <button class="setting-btn">Notification Preferences</button>
+          <button class="setting-btn">Theme</button>
+          <button class="setting-btn">Language</button>
+          <button class="setting-btn">Manage Linked Accounts</button>
+          <button class="setting-btn">Login Activity</button>
+          <button class="setting-btn">Two-Factor Authentication</button>
+          <button class="setting-btn">Help Center</button>
+          <button class="setting-btn">Contact Support</button>
+          <button class="setting-btn">Report</button>
+          <button class="setting-btn btn-delete">Delete Account</button>
+        </div>
+        <button class="book-btn">Book Appointment</button>
       </div>
-      <button class="book-btn">Book Appointment</button>
     </div>
-  </section>
-
-  <section class="post-points">
-    <div class="post-container">
-      <div class="post-header">
-        <button id="postsBtn" class="tab active">Posts</button>
-        <button id="reviewsBtn" class="tab">Reviews</button>
-        <button id="appointmentBtn" class="tab">Appointment</button>
-      </div>
-
-      <!-- Posts Section -->
-      <div id="postsSection" class="section1 cmt-input">
-        <textarea
-          id="postInput"
-          placeholder="Please write your comment"
-        ></textarea>
-        <div class="action-row">
-          <input type="file" id="imageUpload" class="hidden1" />
-          <button class="icon-btn igg-btn" id="imageBtn">
-            <img src="/assests/attachment2.png" alt="Image" />
-          </button>
-          <button class="icon-btn" id="emojiBtn">
-            <img src="/assests/emoji.png" alt="Emoji" />
-          </button>
-          <button id="postBtn" class="post-btn">Post</button>
+    <div class="right-bottom-container">
+      <div class="post-container">
+        <div class="post-header">
+          <button id="postsBtn" class="tab active">Posts</button>
+          <button id="reviewsBtn" class="tab">Reviews</button>
+          <button id="appointmentBtn" class="tab">Appointment</button>
         </div>
-        <div id="postContent" class="content-box"></div>
-      </div>
 
-      <!-- Reviews Section -->
-      <div id="reviewsSection" class="section1 hidden1 cmt-input">
-        <textarea
-          id="reviewInput"
-          placeholder="Please write your review"
-        ></textarea>
-        <button id="reviewBtn" class="post-btn">Post</button>
-        <div id="reviewContent" class="review-list"></div>
-      </div>
+        <!-- Posts Section -->
+        <div id="postsSection" class="section1 cmt-input">
+          <textarea
+            id="postInput"
+            placeholder="Please write your comment"
+          ></textarea>
+          <div class="action-row">
+            <input type="file" id="imageUpload" class="hidden1" />
+            <button class="icon-btn igg-btn" id="imageBtn">
+              <img src="/assests/attachment2.png" alt="Image" />
+            </button>
+            <button class="icon-btn" id="emojiBtn">
+              <img src="/assests/emoji.png" alt="Emoji" />
+            </button>
+            <button id="postBtn" class="post-btn">Post</button>
+          </div>
+          <div id="postContent" class="content-box"></div>
+        </div>
 
-      <!-- Appointment Section -->
-      <div id="appointmentSection" class="section1 hidden1 cmt-input">
-        <%=provider%>
-        <form
-          id="appointmentForm"
-          action="/booking/<%=clientId%>/<%=provider._id%>"
-          method="POST"
-        >
-          <label for="description">Description:</label>
-          <textarea id="description" name="description" required ></textarea>
-          <label for="date">Date:</label>
-          <input type="date" id="date" name="date" required />
-          <button type="submit" class="post-btn">Book Appointment</button>
-        </form>
-        <div id="appointmentResult" class="content-box"></div>
+        <!-- Reviews Section -->
+        <div id="reviewsSection" class="section1 hidden1 cmt-input">
+          <textarea
+            id="reviewInput"
+            placeholder="Please write your review"
+          ></textarea>
+          <button id="reviewBtn" class="post-btn">Post</button>
+          <div id="reviewContent" class="review-list"></div>
+        </div>
+
+        <!-- Appointment Section -->
+        <div id="appointmentSection" class="section1 hidden1 cmt-input">
+          <%=provider%>
+          <form
+            id="appointmentForm"
+            action="/booking/<%=clientId%>/<%=provider._id%>"
+            method="POST"
+          >
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+            <button type="submit" class="post-btn">Book Appointment</button>
+          </form>
+          <div id="appointmentResult" class="content-box"></div>
+        </div>
       </div>
     </div>
   </section>
