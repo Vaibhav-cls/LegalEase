@@ -8,11 +8,34 @@
   -webkit-box-shadow: 0 2px 3px #eaedf2;
   box-shadow: 0 2px 3px #eaedf2;
 }
+.img-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.img-overlay {
+  font-size: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  align-content: center;
+  background-color: rgba(244, 224, 255, 0.466);
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  color: rgb(77, 50, 0);
+  transition: all 0.2s ease-in;
+}
 
-.img-overlay{
-    top: 50%;
-    left: 30%;
-    transform: translate(-80%, -50%);
+.master-img-container:hover .img-container{
+  transform: rotateY(180deg);
+}
+.master-img-container:hover .img-overlay {
+  opacity: 1;
 }
 
 .pb-0 {

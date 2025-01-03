@@ -164,23 +164,23 @@ document.getElementById("postsBtn").addEventListener("click", function() {
   });
   
   // Appointment booking form
-  document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+  // document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+  //   event.preventDefault();
   
-    const name = document.getElementById("name").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
+  //   const name = document.getElementById("name").value;
+  //   const date = document.getElementById("date").value;
+  //   const time = document.getElementById("time").value;
   
-    const resultDiv = document.getElementById("appointmentResult");
-    resultDiv.innerHTML = `
-      <p><strong>Appointment Booked!</strong></p>
-      <p>Name: ${name}</p>
-      <p>Date: ${date}</p>
-      <p>Time: ${time}</p>
-    `;
+  //   const resultDiv = document.getElementById("appointmentResult");
+  //   resultDiv.innerHTML = `
+  //     <p><strong>Appointment Booked!</strong></p>
+  //     <p>Name: ${name}</p>
+  //     <p>Date: ${date}</p>
+  //     <p>Time: ${time}</p>
+  //   `;
   
-    document.getElementById("appointmentForm").reset();
-  });
+  //   document.getElementById("appointmentForm").reset();
+  // });
 
 
   /*-------------Experties selection Script-----------*/

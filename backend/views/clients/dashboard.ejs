@@ -9,13 +9,15 @@
           <div class="row align-items-center">
             <div class="col-md-3">
               <div class="text-center border-end">
-                <div class="img-container" >
-                  <img
-                  src="<%= user.image.url %>"
-                  class="img-fluid avatar-xxl rounded-circle"
-                  alt
-                  />
-                  <i class="fa-solid fa-camera img-overlay" style="background-color: rgba(128, 128, 128, 0.521);"></i>
+                <div class="master-img-container">
+                  <div class="img-container" >
+                    <img
+                    src="<%= user.image.url %>"
+                    class="img-fluid avatar-xxl "
+                    alt
+                    />
+                    <i class="fa-solid fa-camera img-overlay"></i>
+                  </div>
                 </div>
                 <h4 class="text-primary font-size-20 mt-3 mb-2">
                   <%=user.first_name%> <%=user.last_name%>
@@ -327,10 +329,6 @@
                       item.providerId.user.last_name %></b
                     >
                     <br />
-                    <small class="text-body-secondary fs-9"
-                      >note: <%= item.description %></small
-                    >
-                    <br />
                     <small>
                       Booking Date: <%= item.date.toDateString()%>
                     </small>
@@ -370,10 +368,6 @@
                       item.providerId.user.last_name %></b
                     >
                     <br />
-                    <small class="text-body-secondary fs-9"
-                      ><%= item.providerId.bio %></small
-                    >
-
                     <small>
                       Booking Date: <%= item.date.toDateString()%>
                     </small>

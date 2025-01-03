@@ -181,6 +181,7 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
     "tags"
   );
   const providerId = providerInfo._id.toString();
+  const clientId = req.session.clientId;
   req.session.providerId = providerId;
   const appointments = await Appointment.find({
     providerId: providerId,
@@ -188,6 +189,7 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   res.render("providers/dashboard.ejs", {
     provider: providerInfo,
     user: userInfo,
+    clientId,
     appointment: appointments,
   });
 });
@@ -462,7 +464,7 @@ app.get("/booking", (req, res) => {
     clientId: req.session.clientId,
     providerId: req.session.providerId,
   };
-  res.render("users/booking.ejs", { sessionData });
+  res.render("users/booking.ejs",{sessionData});
 });
 app.post("/booking/:clientId/:providerId", async (req, res) => {
   const appointmentCreds = req.body;

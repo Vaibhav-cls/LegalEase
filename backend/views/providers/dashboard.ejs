@@ -1,100 +1,80 @@
 <% layout("/layouts/boilerplate") -%>
-<style>
-  body {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      149deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 220, 188, 1) 100%
-    );
-  }
-</style>
+
 <div class="master">
+  provider = <%=provider %>
+  user = <%= user %>
   <section>
     <div class="ms-container">
       <div class="profile-1">
         <div class="img-1">
           <img
-            src="https://cdn.pixabay.com/photo/2020/09/18/22/05/man-5583034_1280.jpg"
-            alt=""
+            src= <%= user.image.url %>
+            alt="profile picture"
           />
         </div>
-        <div class="info">
-          <h2 class="name">Sam Jordan</h2>
-          <h3 class="proff">Advocate</h3>
-          <p class="address">
-            1465 Flinderation Road,Bensenville <br />Saint Paul, CADGA 4824
-          </p>
-        </div>
-        <div class="follow">
-          <ul>
-            <li class="btn-f"><button>Follow</button></li>
-            <li class="btn-m"><button>Message</button></li>
-          </ul>
-        </div>
-        <div class="links">
-          <ul>
-            <li>
-              <a href=""><i class="fa-brands fa-facebook"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa-brands fa-x-twitter"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa-brands fa-linkedin"></i></a>
-            </li>
-            <li>
-              <a href=""><i class="fa-brands fa-instagram"></i></a>
-            </li>
-          </ul>
+        <div class="right-card">
+          <div class="info">
+            <h2 class="name"><%= user.first_name %> <%= user.last_name %></h2>
+            <p class="address" style="text-align: left;">
+              <%= provider.location.city %>, <%= provider.location.state %>
+              <br> <%= provider.location.country %>
+            </p>
+          </div>
+          <div class="follow">
+            <ul>
+              <% for(tag of provider.tags) {%>
+                <li class="btn-f"><button><%=tag.name%></button></li>
+              <% } %>
+            </ul>
+            
+          </div>
+          <div class="links">
+            <ul>
+              <li>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
     <div class="stats-container">
       <div class="stat-box">
-        <img
-          src="/assets/camera.png"
-          alt="Shots View"
-        />
+        <img src="/assets/camera.png" alt="Shots View" />
         <p class="stat-number">2413</p>
         <p class="stat-type">Shots View</p>
       </div>
       <div class="stat-box">
-        <img
-        src="/assets/like.png"
-        alt="Likes">
+        <img src="/assets/like.png" alt="Likes" />
         <p class="stat-number">1512</p>
         <p class="stat-type">Likes</p>
       </div>
       <div class="stat-box">
-        <img
-          src="/assets/comments.png"
-          alt="Comments"
-        />
+        <img src="/assets/comments.png" alt="Comments" />
         <p class="stat-number">642</p>
         <p class="stat-type">Comments</p>
       </div>
       <div class="stat-box">
-        <img
-          src="/assets/p.views.png"
-          alt="Profile View"
-        />
+        <img src="/assets/p.views.png" alt="Profile View" />
         <p class="stat-number">6001</p>
         <p class="stat-type">Profile View</p>
       </div>
       <div class="stat-box">
-        <img
-          src="/assets/W.views.png"
-          alt="Website View"
-        />
+        <img src="/assets/W.views.png" alt="Website View" />
         <p class="stat-number">240</p>
         <p class="stat-type">Website View</p>
       </div>
       <div class="stat-box">
-        <img
-          src="/assets/attachment.png"
-          alt="Attachment"
-        />
+        <img src="/assets/attachment.png" alt="Attachment" />
         <p class="stat-number">52</p>
         <p class="stat-type">Attachment</p>
       </div>
@@ -206,13 +186,16 @@
 
       <!-- Appointment Section -->
       <div id="appointmentSection" class="section1 hidden1 cmt-input">
-        <form id="appointmentForm">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
+        <%=provider%>
+        <form
+          id="appointmentForm"
+          action="/booking/<%=clientId%>/<%=provider._id%>"
+          method="POST"
+        >
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" required ></textarea>
           <label for="date">Date:</label>
           <input type="date" id="date" name="date" required />
-          <label for="time">Time:</label>
-          <input type="time" id="time" name="time" required />
           <button type="submit" class="post-btn">Book Appointment</button>
         </form>
         <div id="appointmentResult" class="content-box"></div>
