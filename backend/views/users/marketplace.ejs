@@ -1,9 +1,10 @@
-<% layout("/layouts/boilerplate") -%> <% if(q) {%>
+<% layout("/layouts/boilerplate") -%> 
+<div style="padding: 0px 50px">
+<% if(q) {%>
 <p class="result-text">Showing results for:- <%=q%></p>
 <% }else {%>
 <p class="result-text">Showing results for:- All(*)</p>
 <% } %>
-
 <div class="card-container" id="main">
   <% for(p of providers) {%> <%if(p.user.user_type=="provider") {%>
   <div
@@ -63,3 +64,7 @@
   </div>
   <% } %> <% } %>
 </div>
+</div>
+
+
+

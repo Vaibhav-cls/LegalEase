@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") -%>
 
-<div class="master-container">
+<div class="master-container" style="padding: 0px 50px">
   <section class="top-container">
     <div class="profile-1">
       <div class="img-1">
@@ -227,7 +227,114 @@
       </div>
     </div>
   </section>
+  <!-- POPUP FOR BOOKING CONFIRMATION -->
+<div class="booking-popup">
+  <form id="details-form" action="/client/edit/?_method=PATCH" method="POST">
+    <fieldset disabled id="fieldset">
+      <div class="row">
+        <legend class="col-4">Booking Details</legend>
+        <p id="editBtn" style="cursor: pointer;" class="col-4 py-2 text-primary text-decoration-underline">Edit</p>
+      </div>
+      <%= appointment %>
+      <div class="row">
+        <div class="mb-3 col">
+          <label for="first_name" class="form-label"
+            >First name</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="form-control"
+            value=
+            disabled
+          />
+        </div>
+        <div class="mb-3 col">
+          <label for="last_name" class="form-label"
+            >Last name</label
+          >
+          <input
+            type="text"
+            id="last_name"
+            class="form-control"
+            value=
+            disabled
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="user_type" class="form-label"
+          >User role</label
+        >
+          <input
+          type="text"
+          id="user_type"
+          class="form-control"
+          value=
+          disabled
+          />
+        </div>
+        <h5>Location Details</h5>
+        <div class="row">
+          <div class="mb-3 col">
+            <label for="location[country]" class="form-label"
+              >Country</label
+            >
+            <input
+              type="text"
+              id="country"
+              name="location[country]"
+              class="form-control"
+              value=
+            />
+          </div>
+          <div class="mb-3 col">
+            <label for="location[state]" class="form-label"
+              >State</label
+            >
+            <input
+              type="text"
+              name="location[state]"
+              id="state"
+              class="form-control"
+              value="vv"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col">
+            <label for="location[city]" class="form-label"
+              >City</label
+            >
+            <input
+            type="text"
+            id="city"
+            name="location[city]"
+            class="form-control"
+            value="dg"
+            />
+          </div>
+          <div class="mb-3 col">
+            <label for="location[pincode]" class="form-label"
+              >Pincode</label
+            >
+            <input
+            type="number"
+            name="location[pincode]"
+            id="pincode"
+            maxlength="4"
+            minlength="4"
+            class="form-control"
+            value="terw"
+            />
+          </div>
+        </div>
+        <button type="submit" id="submitBtn" class="btn btn-primary d-none">Submit</button>
+      </fieldset>
+    </form>
+  </div>
 </div>
+
 <script src="/js/main.js"></script>
 
 <script>

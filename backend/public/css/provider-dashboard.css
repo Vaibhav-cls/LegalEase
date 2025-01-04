@@ -3,6 +3,7 @@ body {
 }
 .master-container {
   display: flex;
+  position: relative;
   flex-direction: column;
 }
 .top-container {
@@ -422,4 +423,18 @@ hr {
 
 .username {
   font-weight: bold;
+}
+
+/* POPUP STYLING */
+
+.booking-popup{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 50rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

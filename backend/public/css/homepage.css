@@ -1,17 +1,7 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-body {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    149deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 220, 188, 1) 100%
-  );
-}
 /* CSS for top_head Section */
+body{
+    background-color: purple !important;
+}
 .head-container {
   display: flex;
   justify-content: space-between;
