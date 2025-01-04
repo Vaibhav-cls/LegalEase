@@ -1,60 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const part1 = document.querySelector(".sign-up-part-1");
     const part2 = document.querySelector(".sign-up-part-2");
     const part3 = document.querySelector(".sign-up-part-3");
-    const nextBtns = document.querySelectorAll(".next");
-    const prevBtns = document.querySelectorAll(".prev");
-    const userTypeSwitch = document.getElementById("toggle-switch");
-    const clientNextBtn = part2.querySelector(".next-btn");
-
-    let isClient = false;
-
-    // Function to update visibility based on user type
-    function updateVisibility() {
-        part1.style.display = "block";
-        part2.style.display = "none";
-        part3.style.display = "none";
-        clientNextBtn.textContent = isClient ? "Sign Up" : "Next";
-    }
+    const nextBtn = part2.querySelector(".next-btn"); // "Next" button in part-2
+    const prevPart3Btn = part3.querySelector(".prev-part3"); // "Previous" icon in part-3
 
     // Initial visibility setup
-    updateVisibility();
-
-    // Event listener for user type toggle
-    userTypeSwitch.addEventListener("change", () => {
-        isClient = userTypeSwitch.checked;
-        updateVisibility();
-    });
+    part2.style.display = "block"; // Show part-2 initially
+    part3.style.display = "none"; // Hide part-3 initially
 
     // Next button functionality
-    nextBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            if (part1.style.display === "block") {
-                part1.style.display = "none";
-                part2.style.display = "block";
-            } else if (part2.style.display === "block") {
-                if (isClient) {
-                    // If client, "Sign Up" action here
-                    alert("Client signed up!");
-                    updateVisibility();
-                } else {
-                    part2.style.display = "none";
-                    part3.style.display = "block";
-                }
-            }
-        });
+    nextBtn.addEventListener("click", () => {
+        part2.style.display = "none"; // Hide part-2
+        part3.style.display = "block"; // Show part-3
     });
 
-    // Previous button functionality
-    prevBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            if (part2.style.display === "block") {
-                part2.style.display = "none";
-                part1.style.display = "block";
-            } else if (part3.style.display === "block") {
-                part3.style.display = "none";
-                part2.style.display = "block";
-            }
-        });
+    // Previous button functionality for part-3
+    prevPart3Btn.addEventListener("click", () => {
+        part3.style.display = "none"; // Hide part-3
+        part2.style.display = "block"; // Show part-2
     });
 });
