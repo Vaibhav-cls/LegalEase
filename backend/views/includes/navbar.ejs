@@ -10,6 +10,12 @@
     <div class="topright d-flex align-items-center justify-content-between">
       <a href="#main" class="skip border-">Skip to main content</a>
       <a href="/homepage" class="skip border-">Home</a>
+      <a href="/marketplace" class="skip border-">Marketplace</a>
+      <%if(currUser.user_type == "client"){%>
+      <a href="/client/dashboard/<%=currUser._id%>" class="skip border-">Dashboard</a>
+      <%}else if(currUser.user_type == "provider"){%>
+        <a href="/provider/dashboard/<%=currUser._id%>" class="skip border-">Dashboard</a>
+      <%}%>
       <%if(!currUser){%>
         <a href="/login" class="login">Log In</a>
         <a href="/signup" class="login">Sign Up</a>

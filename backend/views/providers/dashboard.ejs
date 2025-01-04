@@ -174,18 +174,56 @@
 
         <!-- Appointment Section -->
         <div id="appointmentSection" class="section1 hidden1 cmt-input">
-          <%=provider%>
-          <form
+          <%=currUser%>
+          <% if(currUser.user_type==="client"){ %>
+            <form
             id="appointmentForm"
             action="/booking/<%=clientId%>/<%=provider._id%>"
             method="POST"
-          >
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required />
-            <button type="submit" class="post-btn">Book Appointment</button>
-          </form>
+            >
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required></textarea>
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" required />
+              <button type="submit" class="post-btn">Book Appointment</button>
+            </form>
+          <% }else { %>
+            <% for(item of appointment) { %>
+              <div class="card mb-3" style="width: 400px">
+                <div class="row g">
+                  <div class="col-md-3">
+                    <img
+                    src="<%=item.clientId.user.image.url%>"
+                    class="img-flid rounded-start"
+                    alt="Client Image"
+                  />
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <b
+                      ><%= item.clientId.user.first_name %> <%=
+                      item.clientId.user.last_name %></b
+                    >
+                      <br />
+                      <small>
+                        Booking Date: <%= item.date.toDateString()%>
+                      </small>
+                      <br />
+                      <% if(item.confirmationStatus == "pending") {%>
+                      <small> Status: Pending </small>
+                      <%}else if(item.confirmationStatus == "confirmed"){%>
+                      <small> Status: Confirmed </small>
+                      <%}else if(item.confirmationStatus == "canceled") {%>
+                      <small> Status: Canceled </small>
+                      <%}else{%>
+                      <small> Status: N/A </small>
+                      <%}%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <% } %>
+          <%}%>
           <div id="appointmentResult" class="content-box"></div>
         </div>
       </div>

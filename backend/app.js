@@ -80,6 +80,7 @@ app.use((req, res, next) => {
 
 // User signup
 app.get("/signup", (req, res) => {
+  //const allTags = await Tag.find();
   res.render("users/signup");
 });
 app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
@@ -124,7 +125,7 @@ app.get("/signup/provider/:id", async (req, res) => {
   const { id } = req.params;
   const providerDetails = await User.findOne({ _id: id });
   const allTags = await Tag.find();
-  res.render("providers/providerForm.ejs", { id, providerDetails, allTags });
+  res.render("providers/signup1", { id, providerDetails, allTags });
 });
 app.post("/signup/provider/:id", async (req, res) => {
   try {
@@ -185,7 +186,14 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   req.session.providerId = providerId;
   const appointments = await Appointment.find({
     providerId: providerId,
-  }).populate("clientId");
+  }).populate({
+    path: "clientId",
+    populate: {
+      path: "user",
+      model:"User",
+    }
+  });
+  console.log(appointments, "\n");
   res.render("providers/dashboard.ejs", {
     provider: providerInfo,
     user: userInfo,
@@ -277,7 +285,8 @@ app.get("/client/dashboard/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const userDetails = await User.findOne({ _id: id.toString() });
   const clientDetails = await Client.findOne({ user: id });
-  const clientId = userDetails._id.toString();
+  const clientId = clientDetails._id.toString();
+  console.log("CLient id: ", clientId.toString());
   req.session.clientId = clientId.toString();
   const bookingDetails = await Appointment.find({
     clientId: clientId,
