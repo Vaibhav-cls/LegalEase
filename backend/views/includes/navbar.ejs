@@ -11,26 +11,36 @@
       <a href="#main" class="skip border-">Skip to main content</a>
       <a href="/homepage" class="skip border-">Home</a>
       <a href="/marketplace" class="skip border-">Marketplace</a>
-      <%if(currUser.user_type == "client"){%>
-      <a href="/client/dashboard/<%=currUser._id%>" class="skip border-">Dashboard</a>
-      <%}else if(currUser.user_type == "provider"){%>
-        <a href="/provider/dashboard/<%=currUser._id%>" class="skip border-">Dashboard</a>
-      <%}%>
-      <%if(!currUser){%>
+      
+      <!-- Dashboard Link -->
+      <% if (currUser) { %>
+        <% if (currUser.user_type === "client") { %>
+          <a href="/client/dashboard/<%= currUser._id %>" class="skip border-">Dashboard</a>
+        <% } else if (currUser.user_type === "provider") { %>
+          <a href="/provider/dashboard/<%= currUser._id %>" class="skip border-">Dashboard</a>
+        <% } else { %>
+          <a href="/login" class="skip border-">Dashboard</a>
+        <% } %>
+      <% } else { %>
+        <a href="/login" class="skip border-">Dashboard</a>
+      <% } %>
+
+      <!-- Log In / Log Out Links -->
+      <% if (!currUser) { %>
         <a href="/login" class="login">Log In</a>
         <a href="/signup" class="login">Sign Up</a>
-      <%}else{%>
+      <% } else { %>
         <a href="/logout" class="logout">Log Out</a>
-      <%}%>
+      <% } %>
+
+      <!-- Text Size Changer -->
       <span class="sizechanger">
-        <a href="#" class="text_size_decrease changer" onclick="Decrease()"
-          >-A</a
-        >
+        <a href="#" class="text_size_decrease changer" onclick="Decrease()">-A</a>
         <a href="#" class="text_size_reset changer" onclick="Reset()">A</a>
-        <a href="#" class="text_size_increase changer" onclick="Increase()"
-          >+A</a
-        >
+        <a href="#" class="text_size_increase changer" onclick="Increase()">+A</a>
       </span>
+      
+      <!-- Language Changer -->
       <a href="#" class="languagechanger" onclick="Language()">हिन्दी</a>
     </div>
   </div>
@@ -39,16 +49,17 @@
 <!-- Second Navbar: top_middle -->
 <div class="top_middle sticky" id="Home">
   <div class="nav-container d-flex justify-content-between align-items-center">
-    <span class="Site-logo"
-      ><img
-        src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png"
-    /></span>
+    <span class="Site-logo">
+      <img src="https://res.cloudinary.com/djzomy8vf/image/upload/v1723018397/sitelog_tmaldf.png" />
+    </span>
     <span class="moto">
       <h1 id="moto-text"></h1>
     </span>
   </div>
 </div>
+
 <!-----------------search bar area-------------->
+
 <div class="search-bar">
   <nav class="navbar">
     <div class="search-area">
@@ -70,10 +81,6 @@
               </button>
             </form>
           </div>
-          <!-- <select name="State" id="" >
-          <option value="Select">select state</option>
-          <option value="Raipur">Raipur</option>
-        </select> -->
         </div>
       </div>
       <div class="part">
@@ -89,7 +96,7 @@
           </form>
           <form action="/search" method="POST">
             <input type="hidden" name="search" value="mediator" />
-            <button>Meditators</button>
+            <button>Mediators</button>
           </form>
           <form action="/search" method="POST">
             <input type="hidden" name="search" value="arbitrator" />
