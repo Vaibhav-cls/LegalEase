@@ -190,8 +190,8 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
     path: "clientId",
     populate: {
       path: "user",
-      model:"User",
-    }
+      model: "User",
+    },
   });
   console.log(appointments, "\n");
   res.render("providers/dashboard.ejs", {
@@ -473,8 +473,24 @@ app.get("/booking", (req, res) => {
     clientId: req.session.clientId,
     providerId: req.session.providerId,
   };
-  res.render("users/booking.ejs",{sessionData});
+  res.render("users/booking.ejs", { sessionData });
 });
+app.patch("/booking/:id", async (req, res) => {
+  const { id } = req.params;
+  const { confirmationStatus } = req.body;
+
+  try {
+    await Appointment.findByIdAndUpdate(id, {
+      confirmationStatus: confirmationStatus,
+    });
+    const {user} = await Provider.findById(req.session.providerId);
+    res.redirect(`/provider/dashboard/${user}`); 
+  } catch (error) {
+    console.error("Error updating booking:", error);
+    res.status(500).send("Server error");
+  }
+});
+
 app.post("/booking/:clientId/:providerId", async (req, res) => {
   const appointmentCreds = req.body;
   const { clientId, providerId } = req.params;

@@ -438,3 +438,14 @@ hr {
   width: 50rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.bg-overlay{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.507);
+  height: 100%;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+  
+}

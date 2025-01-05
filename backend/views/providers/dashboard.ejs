@@ -137,13 +137,13 @@
     <div class="right-bottom-container">
       <div class="post-container">
         <div class="post-header">
-          <button id="postsBtn" class="tab active">Posts</button>
+          <button id="postsBtn" class="tab">Posts</button>
           <button id="reviewsBtn" class="tab">Reviews</button>
-          <button id="appointmentBtn" class="tab">Appointment</button>
+          <button id="appointmentBtn" class="tab active">Appointment</button>
         </div>
 
         <!-- Posts Section -->
-        <div id="postsSection" class="section1 cmt-input">
+        <div id="postsSection" class="section1 hidden1 cmt-input">
           <textarea
             id="postInput"
             placeholder="Please write your comment"
@@ -172,175 +172,180 @@
         </div>
 
         <!-- Appointment Section -->
-        <div id="appointmentSection" class="section1 hidden1 cmt-input">
+        <div id="appointmentSection" class="section1 cmt-input">
           <% if(currUser.user_type==="client"){ %>
-            <form
+          <form
             id="appointmentForm"
             action="/booking/<%=clientId%>/<%=provider._id%>"
             method="POST"
-            >
-              <label for="description">Description:</label>
-              <textarea id="description" name="description" required></textarea>
-              <label for="date">Date:</label>
-              <input type="date" id="date" name="date" required />
-              <button type="submit" class="post-btn">Book Appointment</button>
-            </form>
-          <% }else { %>
-            <% for(item of appointment) { %>
-              <div class="card mb-3" style="width: 400px">
-                <div class="row g">
-                  <div class="col-md-3">
-                    <img
-                    src="<%=item.clientId.user.image.url%>"
-                    class="img-flid rounded-start"
-                    alt="Client Image"
-                  />
-                  </div>
-                  <div class="col-md-7">
-                    <div class="card-body">
-                      <b
-                      ><%= item.clientId.user.first_name %> <%=
-                      item.clientId.user.last_name %></b
-                    >
-                      <br />
-                      <small>
-                        Booking Date: <%= item.date.toDateString()%>
-                      </small>
-                      <br />
-                      <% if(item.confirmationStatus == "pending") {%>
-                      <small> Status: Pending </small>
-                      <%}else if(item.confirmationStatus == "confirmed"){%>
-                      <small> Status: Confirmed </small>
-                      <%}else if(item.confirmationStatus == "canceled") {%>
-                      <small> Status: Canceled </small>
-                      <%}else{%>
-                      <small> Status: N/A </small>
-                      <%}%>
-                    </div>
-                  </div>
+          >
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+            <button type="submit" class="post-btn">Book Appointment</button>
+          </form>
+          <% }else { %> <% for(item of appointment) { %>
+          <div
+            class="card mb-3"
+            style="width: 400px"
+            data-name="<%= item.clientId.user.first_name %> <%=
+                    item.clientId.user.last_name %>"
+            data-description="<%=item.description%>"
+            data-date="<%=item.date.toDateString()%>"
+            data-status="<%=item.confirmationStatus%>"
+            data-id="<%= item._id%>"
+          >
+            <div class="row g">
+              <div class="col-md-3">
+                <img
+                  src="<%=item.clientId.user.image.url%>"
+                  class="img-flid rounded-start"
+                  alt="Client Image"
+                />
+              </div>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <b
+                    ><%= item.clientId.user.first_name %> <%=
+                    item.clientId.user.last_name %></b
+                  >
+                  <p class="hidden" id=""><%=item.description%></p>
+                  <br />
+                  <small> Booking Date: <%= item.date.toDateString()%> </small>
+                  <br />
+                  <% if(item.confirmationStatus == "pending") {%>
+                  <small> Status: Pending </small>
+                  <%}else if(item.confirmationStatus == "confirmed"){%>
+                  <small> Status: Confirmed </small>
+                  <%}else if(item.confirmationStatus == "canceled") {%>
+                  <small> Status: Canceled </small>
+                  <%}else{%>
+                  <small> Status: N/A </small>
+                  <%}%>
                 </div>
               </div>
-               <% } %>
-          <%}%>
+            </div>
+          </div>
+          <% } %> <%}%>
           <div id="appointmentResult" class="content-box"></div>
+          <!-- POPUP FOR BOOKING CONFIRMATION -->
+          <div class="bg-overlay hidden" id="bg-overlay">
+            <div class="booking-popup hidden" id="popup">
+              <h4 class="col-5">Booking Details</h4>
+              <hr />
+              <div class="det-container">
+                <p class="fw-bolder fs-8" id="popup-name"></p>
+                <p class="fw-bolder fs-8" id="popup-date"></p>
+                <p class="fw-bolder fs-8" id="popup-description"></p>
+                <p class="fw-bolder w-50">Current Status:</p>
+                <form action="" method="POST" id="booking-form">
+                  <select
+                    class="form-select w-50"
+                    style="text-transform: capitalize"
+                    aria-label="Default select example"
+                    id="status"
+                    name="confirmationStatus"
+                  >
+                    <option selected disabled>Select status</option>
+                    <option value="confirmed">confirm</option>
+                    <option value="canceled">reject</option>
+                    <option value="pending">pending</option>
+                  </select>
+                  <p
+                    id="sub-text"
+                    class="hidden"
+                    style="font-size: 12px; padding: 5px; color: red"
+                  >
+                    No Changes
+                  </p>
+                  <button class="btn btn-success mt-3" id="approve-btn">
+                    Approve Changes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger mt-3"
+                    id="popup-close"
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- POPUP FOR BOOKING CONFIRMATION -->
-<div class="booking-popup">
-  <form id="details-form" action="/client/edit/?_method=PATCH" method="POST">
-    <fieldset disabled id="fieldset">
-      <div class="row">
-        <legend class="col-4">Booking Details</legend>
-        <p id="editBtn" style="cursor: pointer;" class="col-4 py-2 text-primary text-decoration-underline">Edit</p>
-      </div>
-      <%= appointment %>
-      <div class="row">
-        <div class="mb-3 col">
-          <label for="first_name" class="form-label"
-            >First name</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="form-control"
-            value=
-            disabled
-          />
-        </div>
-        <div class="mb-3 col">
-          <label for="last_name" class="form-label"
-            >Last name</label
-          >
-          <input
-            type="text"
-            id="last_name"
-            class="form-control"
-            value=
-            disabled
-          />
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="user_type" class="form-label"
-          >User role</label
-        >
-          <input
-          type="text"
-          id="user_type"
-          class="form-control"
-          value=
-          disabled
-          />
-        </div>
-        <h5>Location Details</h5>
-        <div class="row">
-          <div class="mb-3 col">
-            <label for="location[country]" class="form-label"
-              >Country</label
-            >
-            <input
-              type="text"
-              id="country"
-              name="location[country]"
-              class="form-control"
-              value=
-            />
-          </div>
-          <div class="mb-3 col">
-            <label for="location[state]" class="form-label"
-              >State</label
-            >
-            <input
-              type="text"
-              name="location[state]"
-              id="state"
-              class="form-control"
-              value="vv"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col">
-            <label for="location[city]" class="form-label"
-              >City</label
-            >
-            <input
-            type="text"
-            id="city"
-            name="location[city]"
-            class="form-control"
-            value="dg"
-            />
-          </div>
-          <div class="mb-3 col">
-            <label for="location[pincode]" class="form-label"
-              >Pincode</label
-            >
-            <input
-            type="number"
-            name="location[pincode]"
-            id="pincode"
-            maxlength="4"
-            minlength="4"
-            class="form-control"
-            value="terw"
-            />
-          </div>
-        </div>
-        <button type="submit" id="submitBtn" class="btn btn-primary d-none">Submit</button>
-      </fieldset>
-    </form>
-  </div>
 </div>
 
 <script src="/js/main.js"></script>
 
 <script>
-  let uploadFile = document.getElementById("upload-file");
-  let changeBtn = document.getElementById("changeBtn");
-  changeBtn.addEventListener("click", () => {
-    uploadFile.style.display = "block";
+  // let uploadFile = document.getElementById("upload-file");
+  // let changeBtn = document.getElementById("changeBtn");
+  // changeBtn.addEventListener("click", () => {
+  //   uploadFile.style.display = "block";
+  // });
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".card");
+    const popup = document.getElementById("popup");
+    const popupClose = document.getElementById("popup-close");
+    const subText = document.getElementById("sub-text");
+    const bgOverlay = document.getElementById("bg-overlay");
+    //const popupClose = document.getElementById("popup-close");
+
+    const popupName = document.getElementById("popup-name");
+    const popupDescription = document.getElementById("popup-description");
+    const popupDate = document.getElementById("popup-date");
+    const approveBtn = document.getElementById("approve-btn");
+    // Show popup with details
+    elements.forEach((element) => {
+      element.addEventListener("click", () => {
+        const name = element.getAttribute("data-name");
+        const description = element.getAttribute("data-description");
+        const date = element.getAttribute("data-date");
+        const statusData = element.getAttribute("data-status");
+        const status = document.getElementById("status");
+        const bookingId = element.getAttribute("data-id");
+        const body = document.body;
+        const form = document.getElementById("booking-form");
+        form.action = `/booking/${bookingId}?_method=PATCH`;
+        // Update popup content
+        popupName.textContent = "Client name: " + name;
+        popupDescription.textContent =
+          "Appointment Description: " + description;
+        popupDate.textContent = "Date: " + date;
+        // Show popup
+        popup.classList.remove("hidden");
+        bgOverlay.classList.remove("hidden");
+        popup.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        status.addEventListener("change", () => {
+          if (status.value == statusData) {
+            approveBtn.classList.add("disabled");
+            subText.classList.remove("hidden");
+          } else {
+            approveBtn.classList.remove("disabled");
+            subText.classList.add("hidden");
+          }
+        });
+      });
+    });
+
+    // Close popup
+    popupClose.addEventListener("click", () => {
+      popup.classList.add("hidden");
+      bgOverlay.classList.add("hidden");
+      status.selectedIndex = 0;
+    });
+    //Close popup when clicking outside the content
+    // window.addEventListener("click", (e) => {
+    //   if (e.target != popup) {
+    //     popup.classList.add("hidden");
+    //   }
+    // });
   });
 </script>
