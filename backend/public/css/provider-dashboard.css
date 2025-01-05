@@ -449,3 +449,12 @@ hr {
   transition: all 0.2s ease-in-out;
   
 }
+.parent-card{
+  display: flex;
+  justify-content: space-evenly;
+  transition: all 0.2s ease;
+}
+.card{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}

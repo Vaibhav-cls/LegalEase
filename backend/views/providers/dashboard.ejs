@@ -78,7 +78,9 @@
       <div class="container-ab">
         <div class="de-header">
           <button id="aboutBtn" class="tab1 active">About</button>
+          <%if(currUser.user_type == "provider"){%>
           <button id="settingBtn" class="tab1">Setting</button>
+          <%}%>
         </div>
 
         <div id="aboutSection" class="section">
@@ -185,49 +187,48 @@
             <input type="date" id="date" name="date" required />
             <button type="submit" class="post-btn">Book Appointment</button>
           </form>
-          <% }else { %> <% for(item of appointment) { %>
-          <div
-            class="card mb-3"
-            style="width: 400px"
-            data-name="<%= item.clientId.user.first_name %> <%=
-                    item.clientId.user.last_name %>"
-            data-description="<%=item.description%>"
-            data-date="<%=item.date.toDateString()%>"
-            data-status="<%=item.confirmationStatus%>"
-            data-id="<%= item._id%>"
-          >
-            <div class="row g">
-              <div class="col-md-3">
-                <img
-                  src="<%=item.clientId.user.image.url%>"
-                  class="img-flid rounded-start"
-                  alt="Client Image"
-                />
-              </div>
-              <div class="col-md-7">
-                <div class="card-body">
-                  <b
-                    ><%= item.clientId.user.first_name %> <%=
-                    item.clientId.user.last_name %></b
-                  >
-                  <p class="hidden" id=""><%=item.description%></p>
-                  <br />
-                  <small> Booking Date: <%= item.date.toDateString()%> </small>
-                  <br />
-                  <% if(item.confirmationStatus == "pending") {%>
-                  <small> Status: Pending </small>
-                  <%}else if(item.confirmationStatus == "confirmed"){%>
-                  <small> Status: Confirmed </small>
-                  <%}else if(item.confirmationStatus == "canceled") {%>
-                  <small> Status: Canceled </small>
-                  <%}else{%>
-                  <small> Status: N/A </small>
-                  <%}%>
-                </div>
+          <% }else { %>
+          <div class="parent-card ">
+            <% for(item of appointment) { %>
+            <div
+              class="card"
+              data-name="<%= item.clientId.user.first_name %> <%=
+                      item.clientId.user.last_name %>"
+              data-description="<%=item.description%>"
+              data-date="<%=item.date.toDateString()%>"
+              data-status="<%=item.confirmationStatus%>"
+              data-id="<%= item._id%>"
+              style="width: 10rem"
+            >
+              <img
+                src="<%=item.clientId.user.image.url%>"
+                class="card-img-top center"
+                style="height: 10rem"
+                alt=""
+              />
+              <div class="card-body">
+                <b
+                  ><%= item.clientId.user.first_name %> <%=
+                  item.clientId.user.last_name %></b
+                >
+                <p class="hidden" id=""><%=item.description%></p>
+                <br />
+                <small> Booking Date: <%= item.date.toDateString()%> </small>
+                <br />
+                <% if(item.confirmationStatus == "pending") {%>
+                <small> Status: Pending </small>
+                <%}else if(item.confirmationStatus == "confirmed"){%>
+                <small> Status: Confirmed </small>
+                <%}else if(item.confirmationStatus == "canceled") {%>
+                <small> Status: Canceled </small>
+                <%}else{%>
+                <small> Status: N/A </small>
+                <%}%>
               </div>
             </div>
+            <% } %>
           </div>
-          <% } %> <%}%>
+          <%}%>
           <div id="appointmentResult" class="content-box"></div>
           <!-- POPUP FOR BOOKING CONFIRMATION -->
           <div class="bg-overlay hidden" id="bg-overlay">
@@ -238,7 +239,7 @@
                 <p class="fw-bolder fs-8" id="popup-name"></p>
                 <p class="fw-bolder fs-8" id="popup-date"></p>
                 <p class="fw-bolder fs-8" id="popup-description"></p>
-                <p class="fw-bolder w-50">Current Status:</p>
+                <p class="fw-bolder w-50" id="popup-status">Current Status:</p>
                 <form action="" method="POST" id="booking-form">
                   <select
                     class="form-select w-50"
@@ -297,6 +298,7 @@
 
     const popupName = document.getElementById("popup-name");
     const popupDescription = document.getElementById("popup-description");
+    const popupStatus = document.getElementById("popup-status");
     const popupDate = document.getElementById("popup-date");
     const approveBtn = document.getElementById("approve-btn");
     // Show popup with details
@@ -316,6 +318,7 @@
         popupDescription.textContent =
           "Appointment Description: " + description;
         popupDate.textContent = "Date: " + date;
+        popupStatus.textContent = "Current Status: " + statusData;
         // Show popup
         popup.classList.remove("hidden");
         bgOverlay.classList.remove("hidden");

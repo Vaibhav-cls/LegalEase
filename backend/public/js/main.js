@@ -26,19 +26,34 @@ function DarkMode() {
 
 
 /*-----------------service provider About section----------*/
-document.getElementById("aboutBtn").addEventListener("click", function() {
-    document.getElementById("aboutSection").classList.remove("hidden");
-    document.getElementById("settingSection").classList.add("hidden");
-    this.classList.add("active");
-    document.getElementById("settingBtn").classList.remove("active");
+try {
+  // Event listener for about section
+  document.getElementById("aboutBtn").addEventListener("click", function() {
+    try {
+      document.getElementById("aboutSection").classList.remove("hidden");
+      document.getElementById("settingSection").classList.add("hidden");
+      this.classList.add("active");
+      document.getElementById("settingBtn").classList.remove("active");
+    } catch (error) {
+      console.error("Error handling about button click: ", error);
+    }
   });
   
+  // Event listener for setting section
   document.getElementById("settingBtn").addEventListener("click", function() {
-    document.getElementById("settingSection").classList.remove("hidden");
-    document.getElementById("aboutSection").classList.add("hidden");
-    this.classList.add("active");
-    document.getElementById("aboutBtn").classList.remove("active");
+    try {
+      document.getElementById("settingSection").classList.remove("hidden");
+      document.getElementById("aboutSection").classList.add("hidden");
+      this.classList.add("active");
+      document.getElementById("aboutBtn").classList.remove("active");
+    } catch (error) {
+      console.error("Error handling setting button click: ", error);
+    }
   });
+  
+} catch (error) {
+  console.error("Error initializing event listeners: ", error);
+}
 
   
   /*----------- Post area content of javascrit ------*/
