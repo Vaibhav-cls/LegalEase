@@ -1,7 +1,4 @@
 /* CSS for top_head Section */
-body{
-    background-color: purple !important;
-}
 .head-container {
   display: flex;
   justify-content: space-between;
