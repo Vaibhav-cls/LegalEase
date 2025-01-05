@@ -28,6 +28,7 @@ const Tag = require("./models/tag.js");
 const Provider = require("./models/provider.js");
 const Client = require("./models/client.js");
 const Appointment = require("./models/appointment.js");
+const Review = require("./models/review.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -178,9 +179,19 @@ app.get("/provider/dashboard/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const userInfo = await User.findOne({ _id: id });
   const userId = userInfo._id.toString();
-  const providerInfo = await Provider.findOne({ user: userId }).populate(
-    "tags"
-  );
+  const providerInfo = await Provider.findOne({ user: userId })
+    .populate("tags")
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "author",
+        model: "Client",
+        populate: {
+          path: "user",
+          model: "User",
+        },
+      },
+    });
   const providerId = providerInfo._id.toString();
   const clientId = req.session.clientId;
   req.session.providerId = providerId;
@@ -483,8 +494,8 @@ app.patch("/booking/:id", async (req, res) => {
     await Appointment.findByIdAndUpdate(id, {
       confirmationStatus: confirmationStatus,
     });
-    const {user} = await Provider.findById(req.session.providerId);
-    res.redirect(`/provider/dashboard/${user}`); 
+    const { user } = await Provider.findById(req.session.providerId);
+    res.redirect(`/provider/dashboard/${user}`);
   } catch (error) {
     console.error("Error updating booking:", error);
     res.status(500).send("Server error");
@@ -505,9 +516,46 @@ app.post("/booking/:clientId/:providerId", async (req, res) => {
   console.log("Booking success");
   res.redirect(`/marketplace`);
 });
-app.get("/nav", (req, res) => {
-  res.render("includes/navbar.ejs");
+
+app.post("/review", async (req, res) => {
+  try {
+    const { clientId, providerId } = req.session; // Extract client and provider IDs from the session
+
+    // Validate session details
+    if (!clientId || !providerId) {
+      return res
+        .status(400)
+        .json({ error: "Client or Provider ID missing in session" });
+    }
+
+    // Fetch the details of the client and provider
+    const clientDetails = await Client.findById(clientId).populate("user");
+    const providerDetails = await Provider.findById(providerId);
+
+    if (!clientDetails || !providerDetails) {
+      return res.status(404).json({ error: "Client or Provider not found" });
+    }
+
+    // Create and save the review
+    const data = req.body; // Contains review details like `rating`, `content`, etc.
+    const reviewDetails = new Review({
+      author: clientId, // Reference to the client who is submitting the review
+      ...data,
+    });
+    await reviewDetails.save(); // Save the review in the `Review` database
+
+    // Update the provider with the new review ID
+    providerDetails.reviews.push(reviewDetails._id); // Add the review ID to the `reviews` array
+    await providerDetails.save(); // Save the updated provider information
+
+    // Send a success response
+    res.status(201).redirect(`/provider/dashboard/${providerDetails.user}`);
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
+
 const PORT = process.env.CONNECTION_PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const User = require("./user.js");
 const Review = require("./review.js");
 const Tag = require("./tag.js");
+const { type } = require("jquery");
 const providerSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,

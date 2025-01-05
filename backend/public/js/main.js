@@ -110,25 +110,25 @@ document.getElementById("postsBtn").addEventListener("click", function() {
   });
   
   
-  document.getElementById("reviewBtn").addEventListener("click", function() {
-    const reviewInput = document.getElementById("reviewInput").value;
-    if (reviewInput.trim() !== "") {
-      const reviewContent = document.getElementById("reviewContent");
-      const reviewItem = document.createElement("div");
-      reviewItem.classList.add("review-item");
+  // document.getElementById("reviewBtn").addEventListener("click", function() {
+  //   const reviewInput = document.getElementById("reviewInput").value;
+  //   if (reviewInput.trim() !== "") {
+  //     const reviewContent = document.getElementById("reviewContent");
+  //     const reviewItem = document.createElement("div");
+  //     reviewItem.classList.add("review-item");
   
-      reviewItem.innerHTML = `
-        <div class="avatar" style="background-color: green;"></div>
-        <div class="content-text">
-          <p class="username">User@123</p>
-          <p>${reviewInput}</p>
-        </div>
-      `;
+  //     reviewItem.innerHTML = `
+  //       <div class="avatar" style="background-color: green;"></div>
+  //       <div class="content-text">
+  //         <p class="username">User@123</p>
+  //         <p>${reviewInput}</p>
+  //       </div>
+  //     `;
   
-      reviewContent.appendChild(reviewItem);
-      document.getElementById("reviewInput").value = "";
-    }
-  });
+  //     reviewContent.appendChild(reviewItem);
+  //     document.getElementById("reviewInput").value = "";
+  //   }
+  // });
   
 
   document.getElementById("imageBtn").addEventListener("click", function() {

@@ -165,9 +165,9 @@
 
         <!-- Reviews Section -->
         <div id="reviewsSection" class="section1 cmt-input">
-          <%if(currUser.user_type == "client"){%>
           <div class="review-ct">
-            <form action="">
+            <%if(currUser.user_type == "client"){%>
+            <form action="/review" method="POST">
               <div class="mb-3 mt-3">
                 <label for="rating" class="form-label">Rating</label>
                 <fieldset class="starability-slot">
@@ -183,35 +183,35 @@
                   <input
                     type="radio"
                     id="first-rate1"
-                    name="review[rating]"
+                    name="rating"
                     value="1"
                   />
                   <label for="first-rate1" title="Terrible">1 star</label>
                   <input
                     type="radio"
                     id="first-rate2"
-                    name="review[rating]"
+                    name="rating"
                     value="2"
                   />
                   <label for="first-rate2" title="Not good">2 stars</label>
                   <input
                     type="radio"
                     id="first-rate3"
-                    name="review[rating]"
+                    name="rating"
                     value="3"
                   />
                   <label for="first-rate3" title="Average">3 stars</label>
                   <input
                     type="radio"
                     id="first-rate4"
-                    name="review[rating]"
+                    name="rating"
                     value="4"
                   />
                   <label for="first-rate4" title="Very good">4 stars</label>
                   <input
                     type="radio"
                     id="first-rate5"
-                    name="review[rating]"
+                    name="rating"
                     value="5"
                   />
                   <label for="first-rate5" title="Amazing">5 stars</label>
@@ -219,13 +219,26 @@
               </div>
               <textarea
                 id="reviewInput"
+                name="review"
                 placeholder="Please write your review"
               ></textarea>
               <button id="reviewBtn" class="post-btn">Post</button>
             </form>
-            <div id="reviewContent" class="review-list"></div>
+            <%}%> <%for(review of provider.reviews){%>
+            <div id="reviewContent" class="review-list">
+              <div class="review-item">
+                <div class="avatar">
+                  <img src="<%=review.author.user.image.url%>" alt="" />
+                </div>
+                <div class="content-text">
+                  <p class="username"><%=review.author.user.username%></p>
+                  <p><%=review.review%></p>
+                  <p><%=review.rating%> ⭐</p>
+                </div>
+              </div>
+            </div>
+            <%}%>
           </div>
-          <%}%>
         </div>
 
         <!-- Appointment Section -->
