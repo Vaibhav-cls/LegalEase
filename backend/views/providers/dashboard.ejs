@@ -123,16 +123,6 @@
 
         <div id="settingSection" class="section-s hidden">
           <button class="setting-btn">Edit Profile</button>
-          <button class="setting-btn">Change Password</button>
-          <button class="setting-btn">Notification Preferences</button>
-          <button class="setting-btn">Theme</button>
-          <button class="setting-btn">Language</button>
-          <button class="setting-btn">Manage Linked Accounts</button>
-          <button class="setting-btn">Login Activity</button>
-          <button class="setting-btn">Two-Factor Authentication</button>
-          <button class="setting-btn">Help Center</button>
-          <button class="setting-btn">Contact Support</button>
-          <button class="setting-btn">Report</button>
           <button class="setting-btn btn-delete">Delete Account</button>
         </div>
       </div>
@@ -142,7 +132,9 @@
         <div class="post-header">
           <button id="postsBtn" class="tab">Posts</button>
           <button id="reviewsBtn" class="tab active">Reviews</button>
+          <%if(currUser._id.toString() === provider.user._id.toString()){%>
           <button id="appointmentBtn" class="tab">Appointment</button>
+          <%}%>
         </div>
 
         <!-- Posts Section -->
@@ -225,7 +217,11 @@
               ></textarea>
               <button id="reviewBtn" class="post-btn">Post</button>
             </form>
-            <%}%> <%for(review of provider.reviews){%>
+            <%}%> 
+            <%if(provider.reviews.length==0){%>
+              <h5>No Reviews Yet</h5>
+            <%}else{%>
+            <%for(review of provider.reviews){%>
             <div id="reviewContent" class="review-list">
               <div class="review-item">
                 <div class="avatar">
@@ -238,6 +234,7 @@
                 </div>
               </div>
             </div>
+            <%}%>
             <%}%>
           </div>
         </div>

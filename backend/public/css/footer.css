@@ -4,9 +4,11 @@ footer {
   padding: 0;
   display: flex;
   position: static;
+  height: 200px;
   width: 100%;
   bottom: 0px;
   left: 0px;
+  z-index: 101;
   margin-top: 5rem;
   align-items: center;
 }
@@ -24,6 +26,7 @@ footer {
 .logo img {
   height: 100%;
   width: 100%;
+  filter: invert(100%);
 }
 .footer-text p {
   margin-top: 10px;

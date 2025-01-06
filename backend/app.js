@@ -150,7 +150,7 @@ app.get("/signup/provider/:id", async (req, res) => {
   const { id } = req.params;
   const providerDetails = await User.findOne({ _id: id });
   const allTags = await Tag.find();
-  res.render("providers/signup1", { id, providerDetails, allTags });
+  res.render("providers/signup", { id, providerDetails, allTags });
 });
 app.post("/signup/provider/:id", async (req, res) => {
   try {
