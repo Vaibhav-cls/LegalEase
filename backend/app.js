@@ -49,7 +49,31 @@ main()
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
+const setupIndexes = async () => {
+  try {
+    // Get a list of existing indexes
+    const existingIndexes = await Tag.collection.indexes();
 
+    // Check if the text index exists
+    const indexExists = existingIndexes.some(
+      (index) => index.name === "name_text_index" // Use the custom index name you provided
+    );
+
+    if (!indexExists) {
+      // Create the text index if it doesn't exist
+      await Tag.collection.createIndex(
+        { name: "text" },
+        { name: "name_text_index" }
+      );
+      console.log("Text index created successfully.");
+    } else {
+      console.log("Text index already exists.");
+    }
+  } catch (error) {
+    console.error("Error setting up indexes:", error.message);
+  }
+};
+setupIndexes();
 const sessionOptions = {
   secret: "mysupersecretcode",
   resave: false,
