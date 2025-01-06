@@ -78,7 +78,8 @@
       <div class="container-ab">
         <div class="de-header">
           <button id="aboutBtn" class="tab1 active">About</button>
-          <%if(currUser.user_type == "provider"){%>
+          <%if(currUser.user_type == "provider" && (currUser._id.toString() ===
+          provider.user._id.toString())){%>
           <button id="settingBtn" class="tab1">Setting</button>
           <%}%>
         </div>
@@ -255,7 +256,8 @@
             <input type="date" id="date" name="date" required />
             <button type="submit" class="post-btn">Book Appointment</button>
           </form>
-          <% }else { %>
+          <% }else if(currUser._id.toString() === provider.user._id.toString())
+          { %>
           <div class="parent-card">
             <% for(item of appointment) { %>
             <div
@@ -296,6 +298,8 @@
             </div>
             <% } %>
           </div>
+          <%}else{%>
+          <h5>Hey, we respect your curiosity! But you are not authorized</h5>
           <%}%>
           <div id="appointmentResult" class="content-box"></div>
           <!-- POPUP FOR BOOKING CONFIRMATION -->
