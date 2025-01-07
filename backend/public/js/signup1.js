@@ -11,7 +11,3 @@ toggleDiv.addEventListener("click", function () {
     }
     
 });
-userTypeSwitch.addEventListener("change", () => {
-    isClient = userTypeSwitch.checked;
-    updateVisibility();
-});
