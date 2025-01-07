@@ -343,7 +343,7 @@ app.get("/client/dashboard/:id", isLoggedIn, async (req, res) => {
 app.get("/signup/client/:id", async (req, res) => {
   const { id } = req.params;
   const clientDetails = await User.findOne({ _id: id });
-  res.render("clients/clientForm.ejs", { id, clientDetails });
+  res.render("clients/signup2.ejs", { id, clientDetails });
 });
 app.post("/signup/client/:id", async (req, res) => {
   try {
