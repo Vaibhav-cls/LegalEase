@@ -106,7 +106,7 @@ app.use((req, res, next) => {
 // User signup
 app.get("/signup", (req, res) => {
   //const allTags = await Tag.find();
-  res.render("users/signup");
+  res.render("users/signup1");
 });
 app.post("/signup", upload.single("user[image]"), async (req, res, next) => {
   try {
@@ -150,7 +150,7 @@ app.get("/signup/provider/:id", async (req, res) => {
   const { id } = req.params;
   const providerDetails = await User.findOne({ _id: id });
   const allTags = await Tag.find();
-  res.render("providers/providerForm.ejs", { id, providerDetails, allTags });
+  res.render("providers/signup2.ejs", { id, providerDetails, allTags });
 });
 app.post("/signup/provider/:id", async (req, res) => {
   try {
