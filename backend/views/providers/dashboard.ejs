@@ -132,13 +132,15 @@
         <div class="post-header">
           <button id="postsBtn" class="tab">Posts</button>
           <button id="reviewsBtn" class="tab active">Reviews</button>
-          <%if(currUser._id.toString() === provider.user._id.toString()){%>
+          <%if((currUser._id.toString() === provider.user._id.toString()) || (currUser.user_type ==="client")){%>
           <button id="appointmentBtn" class="tab">Appointment</button>
           <%}%>
         </div>
 
         <!-- Posts Section -->
         <div id="postsSection" class="section1 hidden1 cmt-input">
+          <%if(currUser.user_type == "provider" && (currUser._id.toString() ===
+          provider.user._id.toString())){%>
           <textarea
             id="postInput"
             placeholder="Please write your comment"
@@ -153,6 +155,8 @@
             </button>
             <button id="postBtn" class="post-btn">Post</button>
           </div>
+          <%}%>
+
           <div id="postContent" class="content-box"></div>
         </div>
 
@@ -217,11 +221,9 @@
               ></textarea>
               <button id="reviewBtn" class="post-btn">Post</button>
             </form>
-            <%}%> 
-            <%if(provider.reviews.length==0){%>
-              <h5>No Reviews Yet</h5>
-            <%}else{%>
-            <%for(review of provider.reviews){%>
+            <%}%> <%if(provider.reviews.length==0){%>
+            <h5>No Reviews Yet</h5>
+            <%}else{%> <%for(review of provider.reviews){%>
             <div id="reviewContent" class="review-list">
               <div class="review-item">
                 <div class="avatar">
@@ -234,14 +236,13 @@
                 </div>
               </div>
             </div>
-            <%}%>
-            <%}%>
+            <%}%> <%}%>
           </div>
         </div>
 
         <!-- Appointment Section -->
         <div id="appointmentSection" class="section1 hidden1 cmt-input">
-          <% if(currUser.user_type==="client"){ %>
+          <% if(currUser.user_type ==="client"){ %>
           <form
             id="appointmentForm"
             action="/booking/<%=clientId%>/<%=provider._id%>"
