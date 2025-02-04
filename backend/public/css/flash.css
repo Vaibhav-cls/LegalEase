@@ -1,0 +1,44 @@
+.toasttt {
+  position: absolute;
+  top: 40px;
+  right: -250px;
+  z-index: 9999;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 1.2em;
+  opacity: 0;
+  font-weight: bold;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  transition: right 0.5s ease-in-out;
+}
+
+.toasttt::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 0%;
+  height: 3px;
+  transition: width 3s linear;
+}
+
+.success-toast::after {
+  background-color: green;
+}
+
+.error-toast::after {
+  background-color: red;
+}
+
+.toasttt.show {
+  right: 10px;
+  opacity: 1;
+}
+
+.toasttt.show::after {
+  width: 100%;
+}
+body {
+  overflow-x: hidden;
+}

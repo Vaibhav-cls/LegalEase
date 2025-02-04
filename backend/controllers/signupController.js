@@ -33,8 +33,7 @@ module.exports.signup = async (req, res, next) => {
     const registeredUser = await User.register(newUser, password);
     req.login(registeredUser, async (err) => {
       if (err) return next(err);
-      req.flash("success", `Welcome, ${first_name}!`);
-      console.log("login success");
+      req.flash("success", `Welcome, ${first_name} to LegalEase`);
       const id = registeredUser._id.toString();
       res.redirect(`/signup/${user_type}/${id}`);
     });

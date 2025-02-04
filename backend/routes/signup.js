@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const { storage } = require("../cloudConfig");
+const { storage } = require("../config/cloud.js");
 const signupController = require("../controllers/signupController.js");
 const upload = multer({ storage });
 

@@ -23,7 +23,8 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
-    />
+    />  
+    <link rel="stylesheet" href="/css/flash.css" />
     <link rel="stylesheet" href="/css/provider-card.css" />
     <link rel="stylesheet" href="/css/nav.css" />
     <link rel="stylesheet" href="/css/client-dashboard.css" />
@@ -52,12 +53,14 @@
     </script>
   </head>
   <body>
+    <%- include("../includes/flash.ejs")%>
     <%- include("../includes/navbar.ejs")%>
     <div id="main-content">
-      <%- include("../includes/flash.ejs")%> <%- body %>
+       <%- body %>
     </div>
     <%- include("../includes/loader.ejs")%>
     <%- include("../includes/footer.ejs")%>
+    <script src="/js/flash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/nav.js"></script>
     <script src="/js/loader.js"></script>

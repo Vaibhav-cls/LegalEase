@@ -4,7 +4,6 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const MONGO_URL = process.env.MONGO_URL;
@@ -16,20 +15,14 @@ const LocalStrategy = require("passport-local");
 const bodyParser = require("body-parser");
 
 //Routers
-const loginRoutes = require("./routes/login.js");
-const signupRoutes = require("./routes/signup.js");
-const providerRoutes = require("./routes/provider.js");
-const clientRoutes = require("./routes/client.js");
-const bookingRoutes = require("./routes/booking.js");
-const miscRoutes = require("./routes/misc.js");
+const routes = require("./routes/index.js");
 
-
-//MODELS REQUIRE
+//MODELS
 const User = require("./models/user");
-const Tag = require("./models/tag.js");
 const Provider = require("./models/provider.js");
 const Client = require("./models/client.js");
 const Review = require("./models/review.js");
+const connectDB = require("./config/db");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -39,41 +32,9 @@ app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.engine("ejs", ejsMate);
 
-main()
-  .then(() => {
-    console.log("Connected to DB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-async function main() {
-  await mongoose.connect(MONGO_URL);
-}
-const setupIndexes = async () => {
-  try {
-    // Get a list of existing indexes
-    const existingIndexes = await Tag.collection.indexes();
 
-    // Check if the text index exists
-    const indexExists = existingIndexes.some(
-      (index) => index.name === "name_text_index" // Use the custom index name you provided
-    );
+connectDB(MONGO_URL);
 
-    if (!indexExists) {
-      // Create the text index if it doesn't exist
-      await Tag.collection.createIndex(
-        { name: "text" },
-        { name: "name_text_index" }
-      );
-      console.log("Text index created successfully.");
-    } else {
-      console.log("Text index already exists.");
-    }
-  } catch (error) {
-    console.error("Error setting up indexes:", error.message);
-  }
-};
-setupIndexes();
 const sessionOptions = {
   secret: "mysupersecretcode",
   resave: false,
@@ -90,8 +51,8 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
 
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -103,12 +64,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", loginRoutes); // Login routes
-app.use("/signup", signupRoutes); // Signup routes
-app.use("/provider", providerRoutes); // Provider routes
-app.use("/client", clientRoutes); // Client routes
-app.use("/booking", bookingRoutes); // Booking routes
-app.use("/", miscRoutes); // Misc routes
+app.use("/", routes); // All routes
 
 
 app.post("/review", async (req, res) => {

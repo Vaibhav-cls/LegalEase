@@ -13,12 +13,14 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/css/flash.css" />
     <script>
       const allTags = <%- JSON.stringify(allTags) %>;
     </script>
     <title>Sign Up</title>
   </head>
   <body>
+    <%- include("../includes/flash.ejs")%>
     <div class="outer-container">
       <div class="outer-child-container">
         <div class="left-section">
@@ -253,5 +255,6 @@
         })
       });
     </script>
+    <script src="/js/flash.js"></script>
   </body>
 </html>

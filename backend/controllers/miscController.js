@@ -3,7 +3,7 @@ const Provider = require("../models/provider");
 const Tag = require("../models/tag");
 const Appointment = require("../models/appointment");
 const Review = require("../models/review");
-const { cloudinary } = require("../cloudConfig");
+const { cloudinary } = require("../config/cloud");
 
 module.exports.ChangeUserImage = async (req, res, next) => {
   let { id } = req.params;
