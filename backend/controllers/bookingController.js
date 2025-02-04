@@ -18,9 +18,10 @@ module.exports.editAppointment = async (req, res) => {
       confirmationStatus: confirmationStatus,
     });
     const { user } = await Provider.findById(req.session.providerId);
+    req.flash("success", "Booking status updated successfully");
     res.redirect(`/provider/dashboard/${user}`);
   } catch (error) {
-    console.error("Error updating booking:", error);
+    req.flash("error", error.message);
     res.status(500).send("Server error");
   }
 };
@@ -28,14 +29,17 @@ module.exports.editAppointment = async (req, res) => {
 module.exports.CreateAppointment = async (req, res) => {
   const appointmentCreds = req.body;
   const { clientId, providerId } = req.params;
-  // console.log(client,"...",provider)
-  const bookingDetails = new Appointment({
-    clientId: clientId,
-    providerId: providerId,
-    confirmationStatus: "pending",
-    ...appointmentCreds,
-  });
-  await bookingDetails.save();
-  console.log("Booking success");
+  try {
+    const bookingDetails = new Appointment({
+      clientId: clientId,
+      providerId: providerId,
+      confirmationStatus: "pending",
+      ...appointmentCreds,
+    });
+    await bookingDetails.save();
+    req.flash("success", "Booking success");
+  } catch (error) {
+    req.flash("error", error.message);
+  }
   res.redirect(`/marketplace`);
 };

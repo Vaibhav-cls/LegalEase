@@ -32,7 +32,6 @@ module.exports.renderDashboard = async (req, res) => {
       model: "User",
     },
   });
-  console.log(appointments, "\n");
   res.render("providers/dashboard.ejs", {
     provider: providerInfo,
     user: userInfo,

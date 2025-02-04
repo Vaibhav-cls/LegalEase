@@ -1,12 +1,9 @@
 <% if (success && success.length) { %>
-  <div class="toasttt success-toast" id="successToast">
-    <%= success %>
-  </div>
+<div class="toasttt success-toast" id="successToast">
+  <i class="fa-solid fa-circle-check"></i><%= success %>
+</div>
+<% } %> <% if (error && error.length) { %>
+<div class="toasttt error-toast" id="errorToast">
+  <i class="fa-solid fa-circle-xmark"></i><%= error %>
+</div>
 <% } %>
-
-<% if (error && error.length) { %>
-  <div class="toasttt error-toast" id="errorToast">
-    <%= error %>
-  </div>
-<% } %>
-

@@ -5,8 +5,8 @@
   z-index: 9999;
   padding: 8px;
   border-radius: 5px;
-  background-color: white;
-  font-size: 1.2em;
+  background-color: rgb(236, 255, 231);
+  font-size: 1em;
   opacity: 0;
   font-weight: bold;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
@@ -30,6 +30,9 @@
 .error-toast::after {
   background-color: red;
 }
+.error-toast{
+  background-color: rgb(255, 231, 233);
+}
 
 .toasttt.show {
   right: 10px;
@@ -38,6 +41,14 @@
 
 .toasttt.show::after {
   width: 100%;
+}
+.fa-circle-xmark{
+  color: rgba(255, 0, 0, 0.753);
+  margin-right: 5px;
+}
+.fa-circle-check{
+  color: green;
+  margin-right: 5px;
 }
 body {
   overflow-x: hidden;
