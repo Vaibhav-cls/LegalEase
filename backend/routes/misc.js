@@ -3,6 +3,7 @@ const router = express.Router();
 const miscController = require("../controllers/miscController");
 const multer = require("multer");
 const { storage } = require("../config/cloud.js");
+const { isLoggedIn } = require("../middlewares/middleware.js");
 const upload = multer({ storage });
 // const textFlow = require("../middleware/textFlow");
 // const { verificationOptions } = require("../middleware/textFlow");
@@ -31,4 +32,17 @@ router.post("/search", miscController.search);
 // ROOT PATH
 router.get("/", miscController.home);
 
+router.post("/check-email", async (req, res) => {
+  try {
+    const emailExists = await User.findOne({ email: req.body.email });
+    if (emailExists) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/changePassword/:id", isLoggedIn, miscController.ChangePassword);
 module.exports = router;

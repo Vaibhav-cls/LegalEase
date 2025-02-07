@@ -32,7 +32,6 @@ app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.engine("ejs", ejsMate);
 
-
 connectDB(MONGO_URL);
 
 const sessionOptions = {
@@ -51,7 +50,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -65,6 +63,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", routes); // All routes
+
 
 
 app.post("/review", async (req, res) => {

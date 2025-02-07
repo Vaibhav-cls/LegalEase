@@ -1,5 +1,6 @@
 .toasttt {
   position: absolute;
+  max-width: 25rem;
   top: 40px;
   right: -250px;
   z-index: 9999;

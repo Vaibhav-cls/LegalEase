@@ -1,4 +1,5 @@
-// const
+const { dashboard } = require("../config/dashboard");
+const User = require("../models/user");
 
 module.exports.isLoggedIn = (req, res, next) => {
   console.log(req.user);
@@ -19,10 +20,11 @@ module.exports.saveRedirectUrl = (req, res, next) => {
 };
 module.exports.isOwner = async (req, res, next) => {
   let { id } = req.params;
-  let listing = await User.findById(id);
-  if (!listing.owner.equals(res.locals.currUser._id)) {
-    req.flash("error", "You are not the owner of this listing");
-    return res.redirect(`/listings/${id}`);
+  let user = await User.findById(id);
+  if (!user._id.equals(res.locals.currUser._id)) {
+    req.flash("error", "You are not the owner of that account");
+    console.log("cowcow:" +user)
+    return res.redirect(dashboard(res.locals.currUser));
   }
   next();
 };

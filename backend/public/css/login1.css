@@ -69,6 +69,36 @@ body::before {
     border: 1px solid #ccc;
     font-size: 14px;
 }
+.input-group input:focus {
+    outline: none;
+}
+
+.pass-field{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.pass-field input{
+    border-right: transparent !important;
+}
+#show-btn {
+    background-color: white;
+    height: 43px;
+    width: 30px;
+    color: rgb(121, 121, 121);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #ccc;
+    border-left: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#show-btn i{
+    transition:all 0.3s ease-in;
+    margin-right: 10px;
+}
+
 .sub-heading {
     display: flex;
     color: #71777c;

@@ -34,20 +34,21 @@
               type="text"
               name="username"
               autocomplete="username"
-              value="adam143"
               placeholder="Email or Phone"
               required
             />
           </div>
           <div class="sub-heading"><span>Password</span></div>
-          <div class="input-group">
+          <div class="input-group pass-field">
             <input
               type="password"
               name="password"
-              value="adam@123"
               placeholder="Password"
               required
             />
+            <button type="button" id="show-btn">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
           </div>
           <a href="#" class="forgot-password">Forget Password</a>
           <div class="input-group">
@@ -67,6 +68,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/flash.js"></script>
-    <script src="./main.js"></script>
+    <!-- <script>
+      // const showBtn = document.getElementById("show-btn");
+      // const password = document.querySelector("input[type='password']");
+      // showBtn.addEventListener("click", () => {
+      //   if (password.type === "password") {
+      //     password.type = "text";
+      //     showBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+      //   } else {
+      //     password.type = "password";
+      //     showBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+      //   }
+      // });
+    </script> -->
+    <script src="/js/password-input.js"></script>
   </body>
 </html>

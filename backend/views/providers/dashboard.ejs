@@ -122,8 +122,20 @@
         </div>
 
         <div id="settingSection" class="section-s hidden">
+          <button class="password-btn">Reset Password</button>
           <button class="setting-btn">Edit Profile</button>
           <button class="setting-btn btn-delete">Delete Account</button>
+        </div>
+        <div class="password-reset hidde">
+          <form action="/changePassword/<%=currUser._id%>" method="post">
+            <label for="old_pass">Old Password</label>
+            <input type="password" required name="old_pass" id="old_pass" />
+            <label for="new_pass">New Password</label>
+            <input type="password"  name="new_pass" id="new_pass" />
+            <label>Confirm Password</label>
+            <input type="password" required id="confirm_pass" />
+            <button class="change-pass-btn" type="submit">Change Password</button>
+          </form>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const providerController = require("../controllers/providerController");
-const { isLoggedIn, isOwner } = require("../middleware");
+const { isLoggedIn, isOwner } = require("../middlewares/middleware");
 
 // Provider Dashboard
 router.get("/dashboard/:id", isLoggedIn, providerController.renderDashboard);

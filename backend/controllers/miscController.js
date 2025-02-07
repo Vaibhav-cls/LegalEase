@@ -4,6 +4,7 @@ const Tag = require("../models/tag");
 const Appointment = require("../models/appointment");
 const Review = require("../models/review");
 const { cloudinary } = require("../config/cloud");
+const {dashboard} = require("../config/dashboard");
 
 module.exports.ChangeUserImage = async (req, res, next) => {
   let { id } = req.params;
@@ -30,6 +31,7 @@ module.exports.loadMarketplace = async (req, res) => {
       .populate("user")
       .populate("tags");
   }
+  console.log("len: " + providers[0].reviews.length);
   res.render("users/marketplace.ejs", { providers, q });
   req.session.searchResults = null;
 };
@@ -45,6 +47,40 @@ module.exports.search = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+module.exports.ChangePassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { old_pass, new_pass } = req.body;
+    const user = await User.findById(id);
+    // Validate input
+    if (!old_pass || !new_pass) {
+      req.flash("error", "Old and new password are required");
+      return res.redirect(dashboard(user));
+    }
+
+    if (!user) {
+      req.flash("error", "User not found");
+      res.redirect("/login");
+    }
+
+    // Change password
+    user.changePassword(old_pass, new_pass, (err) => {
+      if (err) {
+        req.flash("error", err.message);
+        return res.redirect(dashboard(user));
+      }
+      
+      req.flash("success", "Password changed successfully");
+      return res.redirect(dashboard(user));
+    });
+
+  } catch (error) {
+    console.error("Error changing password:", error);
+    req.flash("error", "An unexpected error occurred. Please try again.");
+    res.redirect("back");
+  }
+};
+
 
 module.exports.home = (req, res) => {
   res.render("users/homepage.ejs");

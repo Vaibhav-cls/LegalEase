@@ -230,7 +230,8 @@ hr {
   background-color: #f9f9f9;
 }
 
-.setting-btn {
+.setting-btn,
+.password-btn {
   display: block;
   padding: 14.4px;
   background-color: #ffffff;
@@ -245,7 +246,7 @@ hr {
   transition: background-color 0.3s ease;
 }
 
-.setting-btn:hover {
+.setting-btn:hover,.password-btn:hover {
   background-color: #000000;
   color: white;
 }
@@ -339,7 +340,8 @@ hr {
 
 .section1 input[type="text"],
 .section1 input[type="date"],
-.section1 input[type="time"] {
+.section1 input[type="time"],
+.password-reset input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -377,7 +379,7 @@ hr {
   display: none;
 }
 
-.post-btn {
+.post-btn,.change-pass-btn {
   background-color: #1e90ff;
   color: #fff;
   border: none;
@@ -387,7 +389,7 @@ hr {
   cursor: pointer;
 }
 
-.post-btn:hover {
+.post-btn:hover,.change-pass-btn:hover {
   background-color: #0073e6;
 }
 
@@ -428,7 +430,7 @@ hr {
 
 /* POPUP STYLING */
 
-.booking-popup{
+.booking-popup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -439,7 +441,7 @@ hr {
   width: 50rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.bg-overlay{
+.bg-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -448,14 +450,13 @@ hr {
   height: 100%;
   width: 100%;
   transition: all 0.2s ease-in-out;
-  
 }
-.parent-card{
+.parent-card {
   display: flex;
   justify-content: space-evenly;
   transition: all 0.2s ease;
 }
-.card{
+.card {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
 }

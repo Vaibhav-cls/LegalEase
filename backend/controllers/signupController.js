@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Provider = require("../models/provider");
 const Tag = require("../models/tag");
 const Client = require("../models/client");
+const cloudinary = require("../config/cloud");
 
 module.exports.renderSignupForm = (req, res) => {
   res.render("users/signup1");
@@ -18,6 +19,16 @@ module.exports.signup = async (req, res, next) => {
       phone_number,
       user_type,
     } = req.body;
+
+    // const emailExists = await User.findOne({ email: email });
+    // if (emailExists) {
+    //   if (req.file) {
+    //     await cloudinary.uploader.destroy(legalEase_User/req.file.filename); // Delete uploaded image
+    //   }
+    //   req.flash("error", "Email already exists");
+    //   return res.redirect("/signup");
+    // }
+
     const newUser = new User({
       first_name,
       last_name,
@@ -30,6 +41,7 @@ module.exports.signup = async (req, res, next) => {
     if (req.file) {
       newUser.image = { url: req.file.path, filename: req.file.filename };
     }
+
     const registeredUser = await User.register(newUser, password);
     req.login(registeredUser, async (err) => {
       if (err) return next(err);

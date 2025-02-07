@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { isLoggedIn } = require("../middleware.js");
+const { isLoggedIn, isOwner } = require("../middlewares/middleware.js");
 const clientController = require("../controllers/clientController");
 
-router.get(
-  "/dashboard/:id",
-  isLoggedIn,
-  clientController.renderDashboard
-);
+router.get("/dashboard/:id", isLoggedIn,isOwner, clientController.renderDashboard);
 
 //Client edit details
 router
