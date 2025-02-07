@@ -26,17 +26,19 @@ function DarkMode() {
 /*-----------------service provider About section----------*/
 try {
   // Event listener for about section
+  const passwordSection = document.getElementById("password-reset");
+  const passwordBtn = document.getElementById("password-btn");
   document.getElementById("aboutBtn").addEventListener("click", function () {
     try {
       document.getElementById("aboutSection").classList.remove("hidden");
       document.getElementById("settingSection").classList.add("hidden");
+      passwordSection.classList.add("hidden");
       this.classList.add("active");
       document.getElementById("settingBtn").classList.remove("active");
     } catch (error) {
       console.error("Error handling about button click: ", error);
     }
   });
-
   // Event listener for setting section
   document.getElementById("settingBtn").addEventListener("click", function () {
     try {
@@ -48,6 +50,10 @@ try {
       console.error("Error handling setting button click: ", error);
     }
   });
+  passwordBtn.addEventListener("click", () => {
+    passwordSection.classList.toggle("hidden");
+
+  })
 } catch (error) {
   console.error("Error initializing event listeners: ", error);
 }
@@ -229,3 +235,23 @@ showBtn.addEventListener("click", () => {
     showBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
   }
 });
+
+/* Password section*/
+
+const newPassword = document.getElementById("new_pass");
+const confirmPassword = document.getElementById("confirm_pass");
+const alertNote = document.getElementById("alert-note");
+// Function to validate password for both the fields
+function validatePassword() {
+  const newPasswordValue = newPassword.value;
+  const confirmPasswordValue = confirmPassword.value;
+  if (newPasswordValue !== confirmPasswordValue) {
+    // confirmPassword.setCustomValidity("Passwords do not match");
+    alertNote.classList.remove("hidden");
+  } else {
+    confirmPassword.setCustomValidity("");
+    alertNote.classList.add("hidden");
+
+  }
+}
+validatePassword();
